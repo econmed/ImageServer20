@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClearCanvas.Common.Dicom {
+namespace ClearCanvas.Dicom.Data {
     using System;
     
     
@@ -37,7 +37,7 @@ namespace ClearCanvas.Common.Dicom {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClearCanvas.Common.Dicom.SR", typeof(SR).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClearCanvas.Dicom.Data.SR", typeof(SR).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
