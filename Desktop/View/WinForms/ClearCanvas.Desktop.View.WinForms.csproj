@@ -45,6 +45,7 @@
     <Compile Include="ActiveToolbarButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ApplicationComponentView.cs" />
     <Compile Include="IconFactory.cs" />
     <Compile Include="MessageBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
