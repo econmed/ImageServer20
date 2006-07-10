@@ -6,6 +6,8 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
+using ClearCanvas.Desktop.View.WinForms;
+
 namespace ClearCanvas.Ris.Client.Admin.View.WinForms
 {
     public partial class PatientAdminControl : UserControl
@@ -13,6 +15,11 @@ namespace ClearCanvas.Ris.Client.Admin.View.WinForms
         public PatientAdminControl()
         {
             InitializeComponent();
+        }
+
+        public TableView PatientTableView
+        {
+            get { return _patientTableView; }
         }
     }
 }
