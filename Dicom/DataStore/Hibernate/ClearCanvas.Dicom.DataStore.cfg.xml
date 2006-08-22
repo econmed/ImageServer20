@@ -10,7 +10,7 @@
 		<property name="hibernate.connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
 		<property name="hibernate.dialect">NHibernate.Dialect.MsSql2000Dialect</property>
 		<property name="hibernate.connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
-		<property name="hibernate.connection.connection_string">Data Source=CLINTONLAPTOP\SQLEXPRESS;Initial Catalog=ripp_version5;User ID=sa;Password=root</property>
+		<property name="hibernate.connection.connection_string">Data Source=CLINTONMOBILE\SQLEXPRESS;Initial Catalog=ripp_version5;User ID=ccviewer;Password=ccviewer</property>
 		-->
 	</session-factory>
 </hibernate-configuration>
