@@ -44,13 +44,6 @@
   <ItemGroup>
     <Compile Include="LocalImageExplorer.cs" />
     <Compile Include="LocalImageExplorerComponent.cs" />
-    <Compile Include="LocalImageExplorerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="LocalImageExplorerControl.Designer.cs">
-      <DependentUpon>LocalImageExplorerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LocalImageExplorerComponentView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SR.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -89,10 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icons\OpenStudySmall.png" />
-    <EmbeddedResource Include="LocalImageExplorerControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>LocalImageExplorerControl.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
