@@ -922,7 +922,10 @@ namespace ClearCanvas.ImageViewer.StudyManagement
 				bool tagExists;
 				double windowCenter;
                 _dicomImage.GetTag(Dcm.WindowCenter, out windowCenter, out tagExists);
-				return windowCenter;
+				if (tagExists)
+					return windowCenter;
+
+				return double.NaN;
 			}
 			set
 			{
@@ -937,7 +940,10 @@ namespace ClearCanvas.ImageViewer.StudyManagement
 				bool tagExists;
 				double windowWidth;
                 _dicomImage.GetTag(Dcm.WindowWidth, out windowWidth, out tagExists);
-				return windowWidth;
+				if (tagExists)
+					return windowWidth;
+				
+				return double.NaN;
 			}
 			set
 			{
