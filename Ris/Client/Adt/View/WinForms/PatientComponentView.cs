@@ -14,7 +14,7 @@ namespace ClearCanvas.Ris.Client.Adt.View.WinForms
     [ExtensionOf(typeof(PatientComponentViewExtensionPoint))]
     public class PatientComponentView : WinFormsView, IApplicationComponentView
     {
-        private PatientComponent _component;
+        private PatientOverviewComponent _component;
         private PatientComponentControl _control;
 
 
@@ -22,7 +22,7 @@ namespace ClearCanvas.Ris.Client.Adt.View.WinForms
 
         public void SetComponent(IApplicationComponent component)
         {
-            _component = (PatientComponent)component;
+            _component = (PatientOverviewComponent)component;
         }
 
         #endregion
