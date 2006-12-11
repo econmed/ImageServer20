@@ -6,34 +6,15 @@ namespace ClearCanvas.Common.Specifications
 {
     public class NotNullSpecification : PrimitiveSpecification
     {
-
-        private object _nullValue;
-
-        public NotNullSpecification(string testExpression, object nullValue, string failureMessage)
+        public NotNullSpecification(string testExpression, string failureMessage)
             :base(testExpression, failureMessage)
         {
-            _nullValue = nullValue;
         }
 
         protected override TestResult InnerTest(object exp)
         {
-            // if a null value was supplied, just test exp against it
-            if (_nullValue != null)
-            {
-                return DefaultTestResult(!_nullValue.Equals(exp));
-            }
-            else
-            {
-                // _nullValue == null (the reference value is "null" itself)
-
-                // make a special case for string - treat "" as null
-                if (exp is string)
-                {
-                    return DefaultTestResult(exp != null && (exp as string) != "");
-                }
-
-                return DefaultTestResult(exp != null);
-            }
+            // treat string "" as null, in the case where exp is a string
+            return DefaultTestResult(exp != null && ((exp as string) != ""));
         }
     }
 }
