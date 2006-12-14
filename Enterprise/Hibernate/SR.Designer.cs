@@ -63,36 +63,45 @@ namespace ClearCanvas.Enterprise.Hibernate {
         /// <summary>
         ///   Looks up a localized string similar to Error closing context.
         /// </summary>
-        internal static string ErrorCloseContext {
+        internal static string ExceptionCloseContext {
             get {
-                return ResourceManager.GetString("ErrorCloseContext", resourceCulture);
+                return ResourceManager.GetString("ExceptionCloseContext", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Commit failed - transaction aborted.
         /// </summary>
-        internal static string ErrorCommitFailure {
+        internal static string ExceptionCommitFailure {
             get {
-                return ResourceManager.GetString("ErrorCommitFailure", resourceCulture);
+                return ResourceManager.GetString("ExceptionCommitFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The entity is not in the persistence context.
+        /// </summary>
+        internal static string ExceptionEntityNotInContext {
+            get {
+                return ResourceManager.GetString("ExceptionEntityNotInContext", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to No current transaction.
         /// </summary>
-        internal static string ErrorNoCurrentTransaction {
+        internal static string ExceptionNoCurrentTransaction {
             get {
-                return ResourceManager.GetString("ErrorNoCurrentTransaction", resourceCulture);
+                return ResourceManager.GetString("ExceptionNoCurrentTransaction", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Error resuming context.
         /// </summary>
-        internal static string ErrorResumeContext {
+        internal static string ExceptionResumeContext {
             get {
-                return ResourceManager.GetString("ErrorResumeContext", resourceCulture);
+                return ResourceManager.GetString("ExceptionResumeContext", resourceCulture);
             }
         }
     }

@@ -117,16 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErrorCloseContext" xml:space="preserve">
+  <data name="ExceptionCloseContext" xml:space="preserve">
     <value>Error closing context</value>
   </data>
-  <data name="ErrorCommitFailure" xml:space="preserve">
+  <data name="ExceptionCommitFailure" xml:space="preserve">
     <value>Commit failed - transaction aborted</value>
   </data>
-  <data name="ErrorNoCurrentTransaction" xml:space="preserve">
+  <data name="ExceptionEntityNotInContext" xml:space="preserve">
+    <value>The entity is not in the persistence context</value>
+  </data>
+  <data name="ExceptionNoCurrentTransaction" xml:space="preserve">
     <value>No current transaction</value>
   </data>
-  <data name="ErrorResumeContext" xml:space="preserve">
+  <data name="ExceptionResumeContext" xml:space="preserve">
     <value>Error resuming context</value>
   </data>
 </root>
