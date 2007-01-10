@@ -69,7 +69,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)..\SampleShred1\$(OutDir)SampleShred1.dll $(TargetDir)plugins
-copy $(ProjectDir)..\SampleShred2\$(OutDir)SampleShred2.dll $(TargetDir)plugins</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
