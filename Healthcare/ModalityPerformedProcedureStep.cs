@@ -8,16 +8,5 @@ namespace ClearCanvas.Healthcare
 {
     public class ModalityPerformedProcedureStep : PerformedProcedureStep
     {
-        public virtual void Complete()
-        {
-            this.EndTime = Platform.Time;
-            this.Status = ActivityPerformedStepStatus.CM;
-        }
-
-        public virtual void Discontinue()
-        {
-            this.EndTime = Platform.Time;
-            this.Status = ActivityPerformedStepStatus.DC;
-        }
     }
 }
