@@ -60,6 +60,17 @@ namespace ClearCanvas.Healthcare
             _status = status;
         }
 
+        public override bool Equals(object obj)
+        {
+            ModalityWorklistQueryResult that = (ModalityWorklistQueryResult)obj;
+            return that != null && this._procedureStep.Equals(that._procedureStep);
+        }
+
+        public override int GetHashCode()
+        {
+            return _procedureStep.GetHashCode();
+        }
+
         public EntityRef<ModalityProcedureStep> ProcedureStep
         {
             get { return _procedureStep; }

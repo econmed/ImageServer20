@@ -64,7 +64,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="IFolder.cs" />
-    <Compile Include="IFolderGroup.cs" />
+    <Compile Include="WorkflowFolderSystem.cs" />
     <Compile Include="ImportDiagnosticServicesApplication.cs" />
     <Compile Include="ImportDiagnosticServicesComponent.cs" />
     <Compile Include="PhoneNumberEditorComponent.cs" />
@@ -79,7 +79,6 @@
     <Compile Include="StorageFolder.cs" />
     <Compile Include="TelephoneNumberTable.cs" />
     <Compile Include="TestStorageFolders.cs" />
-    <Compile Include="TestWorkflowFolders.cs" />
     <Compile Include="TextFieldMasks.cs" />
     <Compile Include="WorkflowFolder.cs" />
     <Compile Include="FolderExplorerComponent.cs" />
