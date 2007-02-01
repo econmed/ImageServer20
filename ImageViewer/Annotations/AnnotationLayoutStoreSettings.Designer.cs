@@ -23,24 +23,15 @@ namespace ClearCanvas.ImageViewer.Annotations {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ApplicationDefaultLayoutSettings {
-            get {
-                return ((string)(this["ApplicationDefaultLayoutSettings"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LayoutSettings {
+        [global::System.Configuration.DefaultSettingValueAttribute("AnnotationLayoutStoreDefaults.xml")]
+        public string LayoutSettingsXml {
             get {
-                return ((string)(this["LayoutSettings"]));
+                return ((string)(this["LayoutSettingsXml"]));
             }
             set {
-                this["LayoutSettings"] = value;
+                this["LayoutSettingsXml"] = value;
             }
         }
     }
