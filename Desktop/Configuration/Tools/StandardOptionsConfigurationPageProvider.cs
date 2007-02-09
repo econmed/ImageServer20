@@ -20,7 +20,7 @@ namespace ClearCanvas.Desktop.Configuration.Tools
 		{
 			List<IConfigurationPage> listPages = new List<IConfigurationPage>();
 
-			listPages.Add(new DateFormatConfigurationPage("TitleDateFormat"));
+			listPages.Add(new ConfigurationPage<DateFormatApplicationComponent>("TitleDateFormat"));
 		
 			return listPages.AsReadOnly();
 		}
