@@ -13,21 +13,6 @@ namespace ClearCanvas.Ris.Application.Common.Admin
         public EntityRef LocationRef;
 
         [DataMember]
-        public EntityRef Facility;
-
-        [DataMember]
-        public string Building;
-
-        [DataMember]
-        public string Floor;
-
-        [DataMember]
-        public string PointOfCare;
-
-        [DataMember]
-        public string Room;
-
-        [DataMember]
-        public string Bed;
+        public LocationDetail LocationDetail;
     }
 }
