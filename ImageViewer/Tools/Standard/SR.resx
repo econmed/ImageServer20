@@ -264,4 +264,7 @@
   <data name="LabelPresentationLut" xml:space="preserve">
     <value>PRE</value>
   </data>
+  <data name="WindowLevelConfiguration" xml:space="preserve">
+    <value>Window Level Presets</value>
+  </data>
 </root>
