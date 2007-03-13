@@ -10,7 +10,7 @@ namespace ClearCanvas.Ris.Application.Common.ModalityWorkflow
     public class ModalityWorklistItem : DataContractBase
     {
         [DataMember(IsRequired = true)]
-        public EntityRef MPSRef;
+        public EntityRef ProcedureStepRef;
 
         [DataMember]
         public string MRNAssigningAuthority;
