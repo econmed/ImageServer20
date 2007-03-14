@@ -11,6 +11,6 @@ namespace ClearCanvas.Ris.Application.Common.ModalityWorkflow
     {
         //TODO: expand the MPS search criteria here
         [DataMember]
-        public string ActivityStatus;
+        public string ActivityStatusCode;
     }
 }
