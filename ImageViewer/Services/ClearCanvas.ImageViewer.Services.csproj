@@ -35,7 +35,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DicomMoveRequestServiceClient.cs" />
+    <Compile Include="DicomServerServiceClient.cs" />
+    <Compile Include="LocalDataStoreActivityMonitorServiceClient.cs" />
+    <Compile Include="LocalDataStoreServiceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SR.Designer.cs">
       <AutoGen>True</AutoGen>
