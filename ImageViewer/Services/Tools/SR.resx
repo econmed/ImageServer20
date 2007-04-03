@@ -126,18 +126,6 @@
   <data name="DicomSendReceiveActivity" xml:space="preserve">
     <value>Send/Receive Activity</value>
   </data>
-  <data name="ExceptionFailedToImportSelection" xml:space="preserve">
-    <value>Failed to initiate an import of the selected items.</value>
-  </data>
-  <data name="ExceptionFailedToLaunchReindexComponent" xml:space="preserve">
-    <value>Failed to launch the Reindex Activity manager, likely due to a communication error with the Failed to launch the Import Activity manager, likely due to a communication error with the service.  Please check and make sure the service is running or call your system administrator.</value>
-  </data>
-  <data name="ExceptionFailedToRetrieveStudy" xml:space="preserve">
-    <value>Failed to initiate a retrieval of the selected items.</value>
-  </data>
-  <data name="ExceptionFailedToSendStudy" xml:space="preserve">
-    <value>Failed to initiate sending of the selected items.</value>
-  </data>
   <data name="ExceptionIdentifiersMustMatch" xml:space="preserve">
     <value>The identifiers must match.</value>
   </data>
@@ -165,11 +153,26 @@
   <data name="MessageClearInactiveFailed" xml:space="preserve">
     <value>Failed to clear the selected items.</value>
   </data>
+  <data name="MessageFailedToImportSelection" xml:space="preserve">
+    <value>Failed to initiate an import of the selected items.</value>
+  </data>
   <data name="MessageFailedToLaunchImportActivityComponent" xml:space="preserve">
     <value>Failed to launch the Import Activity manager, likely due to a communication error with the service.  Please check and make sure the service is running or call your system administrator.</value>
   </data>
+  <data name="MessageFailedToLaunchReindexComponent" xml:space="preserve">
+    <value>Failed to launch the Reindex Activity manager, likely due to a communication error with the Failed to launch the Import Activity manager, likely due to a communication error with the service.  Please check and make sure the service is running or call your system administrator.</value>
+  </data>
   <data name="MessageFailedToLaunchSendReceiveActivityComponent" xml:space="preserve">
     <value>Failed to launch the Send/Receive Activity manager, likely due to a communication error with the service.  Please check and make sure the service is running or call your system administrator.</value>
+  </data>
+  <data name="MessageFailedToRetrieveStudy" xml:space="preserve">
+    <value>Failed to initiate a retrieval of the selected items.</value>
+  </data>
+  <data name="MessageFailedToSendStudy" xml:space="preserve">
+    <value>Failed to initiate sending of the selected items.</value>
+  </data>
+  <data name="MessageFailedToStartReindex" xml:space="preserve">
+    <value>Failed to start Reindex operation.</value>
   </data>
   <data name="MessageNothingSelected" xml:space="preserve">
     <value>Nothing has been selected.</value>
@@ -212,6 +215,9 @@
   </data>
   <data name="TitleReceived" xml:space="preserve">
     <value>Received</value>
+  </data>
+  <data name="TitleReindexLocalDataStore" xml:space="preserve">
+    <value>Reindex Local Data Store</value>
   </data>
   <data name="TitleSend" xml:space="preserve">
     <value>Send</value>
