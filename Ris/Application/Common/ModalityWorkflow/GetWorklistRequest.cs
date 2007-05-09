@@ -9,10 +9,18 @@ namespace ClearCanvas.Ris.Application.Common.ModalityWorkflow
     [DataContract]
     public class GetWorklistRequest : DataContractBase
     {
-        [DataMember]
-        public ModalityWorklistSearchData SearchCriteria;
+        public GetWorklistRequest(string worklistClassName)
+        {
+            this.WorklistClassName = worklistClassName;
+        }
 
         [DataMember]
-        public string PatientProfileAuthority;
+        public string WorklistClassName;
+
+        //[DataMember]
+        //public ModalityWorklistSearchData SearchCriteria;
+
+        //[DataMember]
+        //public string PatientProfileAuthority;
     }
 }
