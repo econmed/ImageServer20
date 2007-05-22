@@ -15,7 +15,7 @@ namespace ClearCanvas.Healthcare {
 	public partial class InterpretationStep : ReportingProcedureStep
 	{
         public InterpretationStep(RequestedProcedure procedure)
-            :base(procedure)
+            :base(procedure, null)
         {
         }
 
