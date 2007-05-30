@@ -9,10 +9,18 @@ namespace ClearCanvas.Ris.Application.Common.ReportingWorkflow
     [DataContract]
     public class GetWorklistRequest : DataContractBase
     {
-        [DataMember]
-        public Type StepClass;
+        public GetWorklistRequest(string worklistClassName)
+        {
+            this.WorklistClassName = worklistClassName;
+        }
 
         [DataMember]
-        public ReportingWorklistSearchCriteria SearchCriteria;
+        public string WorklistClassName;
+
+        //[DataMember]
+        //public Type StepClass;
+
+        //[DataMember]
+        //public ReportingWorklistSearchCriteria SearchCriteria;
     }
 }

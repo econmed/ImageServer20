@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,6 @@ using ClearCanvas.Desktop.Tools;
 using ClearCanvas.Ris.Client;
 using ClearCanvas.Ris.Application.Common;
 using ClearCanvas.Ris.Application.Common.RegistrationWorkflow;
-using System.Collections;
 
 namespace ClearCanvas.Ris.Client.Adt
 {
