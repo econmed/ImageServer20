@@ -95,55 +95,54 @@
 			    data = JSML.parse(jsml) || {};
 			    data.injections = data.injections || [];
 			    data.scans = data.scans || [];
-
 		        var injectionsTable = Table.createTable($("injectionsTable"), { editInPlace: true },
 		             [
-		                {   // Injection
+		                {   label: "Injection",
 		                    cellType: "choice",
 		                    choices: radioPharms,
 		                    getValue: function(item) { return item.injection; },
 		                    setValue: function(item, value) { item.injection = value; }
 		                },
-		                {   // Activity
+		                {   label: "Activity",
 		                    cellType: "text",
 		                    size: 4,
 		                    getValue: function(item) { return item.activity; },
 		                    setValue: function(item, value) { item.activity = parseFloat(value); }
 		                },
-		                {   // Units
+		                {   label: "Units",
 		                    cellType: "choice",
 		                    choices: ["capsule(s)", "GBq", "kBq", "MBq", "vial"],
 		                    getValue: function(item) { return item.units; },
 		                    setValue: function(item, value) { item.units = value; }
 		                },
-		                {   // Admin Site
+		                {   label: "Site",
 		                    cellType: "choice",
 		                    choices: ["Antecubital Fossa", "Buttocks", "Deltoid", "Foot", "Forearm", "Hand", "Wrist"],
 		                    getValue: function(item) { return item.bodySite; },
 		                    setValue: function(item, value) { item.bodySite = value; }
 		                },
-		                {   // Left
+		                {   label: "L",
 		                    cellType: "bool",
 		                    getValue: function(item) { return item.left; },
 		                    setValue: function(item, value) { item.left = value; }
 		                },
-		                {   // Right
+		                {   label: "R",
 		                    cellType: "bool",
 		                    getValue: function(item) { return item.right; },
 		                    setValue: function(item, value) { item.right = value; }
 		                },
-		                {   // Admin method
+		                {   label: "Method",
 		                    cellType: "choice",
 		                    choices: ["IM", "inhalation", "IV", "PO"],
 		                    getValue: function(item) { return item.method; },
 		                    setValue: function(item, value) { item.method = value; }
 		                },
-		                {   // time
+		                {   label: "Time",
 		                    cellType: "text",
 		                    getValue: function(item) { return item.time; },
 		                    setValue: function(item, value) { alert(value); item.time = Date.parse(value); }
 		                },
-		                {   // Admin staff
+		                {   label: "Admin By",
 		                    cellType: "lookup",
 		                    lookup: function(query) { return Ris.resolveStaffName(query); },
 		                    getValue: function(item) { return item.staff; },
@@ -268,7 +267,7 @@
 		    <input type="button" value="Add" onclick="javascript: onAddInjection()" />
 		    <input type="button" value="Delete" onclick="javascript: onDeleteInjection()" />
 		</p>
-			<table id="injectionsTable">
+			<table id="injectionsTable" border="1" width="100%">
 			  <tr>
 			    <td><input id="injectionsCheckAllNone" type="checkbox" onclick="javascript: onInjectionsCheckAllNone()" /></td>
 				<td class="tableheading">Name</td>
