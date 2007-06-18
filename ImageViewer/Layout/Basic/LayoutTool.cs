@@ -19,8 +19,10 @@ namespace ClearCanvas.ImageViewer.Layout.Basic
     /// it so that it reflects the state of the active workspace.
 	/// </summary>
 	[ExtensionOf(typeof(ImageViewerToolExtensionPoint))]
-	public class LayoutTool : ComponentImageViewerTool
+	public class LayoutTool : ImageViewerTool
 	{
+		private static LayoutComponent _layoutComponent;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -43,21 +45,20 @@ namespace ClearCanvas.ImageViewer.Layout.Basic
         public void Show()
 		{
             // check if a layout component is already displayed
-            if (this.ImageViewerToolComponent == null)
+            if (_layoutComponent == null)
             {
                 // create and initialize the layout component
-				this.ImageViewerToolComponent = new LayoutComponent(GetActiveImageViewer());
+				_layoutComponent = new LayoutComponent(this.Context);
 
                 // launch the layout component in a shelf
                 // note that the component is thrown away when the shelf is closed by the user
                 ApplicationComponent.LaunchAsShelf(
                     this.Context.DesktopWindow,
-					this.ImageViewerToolComponent,
+					_layoutComponent,
                     SR.TitleLayoutManager,
                     ShelfDisplayHint.DockLeft,// | ShelfDisplayHint.DockAutoHide,
-					delegate(IApplicationComponent component) { this.ImageViewerToolComponent = null; });
+					delegate(IApplicationComponent component) { _layoutComponent = null; });
             }
         }
-
 	}
 }
