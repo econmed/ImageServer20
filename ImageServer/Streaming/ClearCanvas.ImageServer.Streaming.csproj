@@ -7,8 +7,8 @@
     <ProjectGuid>{DF8F531F-5AE4-4AC1-A086-B50FB799EEF1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClearCanvas.Pacs.Streaming</RootNamespace>
-    <AssemblyName>ClearCanvas.Pacs.Streaming</AssemblyName>
+    <RootNamespace>ClearCanvas.ImageServer.Streaming</RootNamespace>
+    <AssemblyName>ClearCanvas.ImageServer.Streaming</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
