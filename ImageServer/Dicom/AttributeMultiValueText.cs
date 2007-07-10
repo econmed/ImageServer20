@@ -364,7 +364,12 @@ namespace ClearCanvas.ImageServer.Dicom
         {
             return new AttributeDA(this);
         }
-
+        public override DateTime GetDateTime(int i)
+        {
+            // Dicom recommends we still support the old date format (#2) although it is deprecated.
+            // See PS 3.5, table 6.2-1 - 'Dicom Value Representations' under VR DA.
+            return DateTime.ParseExact(_values[i], new string[] { "yyyyMMdd", "yyyy.MM.dd" }, CultureInfo.CurrentCulture, DateTimeStyles.NoCurrentDateDefault);
+        }
     }
     #endregion
 
@@ -473,6 +478,10 @@ namespace ClearCanvas.ImageServer.Dicom
             return new AttributeDT(this);
         }
 
+        public override DateTime GetDateTime(int i)
+        {
+            return DateTime.ParseExact(_values[i], "yyyyMMddHHmmss.FFFFFF&ZZZZ", CultureInfo.CurrentCulture, DateTimeStyles.NoCurrentDateDefault);
+        }
     }
     #endregion
 
@@ -743,6 +752,12 @@ namespace ClearCanvas.ImageServer.Dicom
         {
             return new AttributeTM(this);
         }
+
+        public override DateTime GetDateTime(int i)
+        {
+            return DateTime.ParseExact(_values[i], "HHmmSS.FFFFFF", CultureInfo.CurrentCulture, DateTimeStyles.NoCurrentDateDefault);
+        }
+
     }
     #endregion
 

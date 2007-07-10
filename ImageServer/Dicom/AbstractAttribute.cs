@@ -102,6 +102,11 @@ namespace ClearCanvas.ImageServer.Dicom
         {
             throw new DicomException(SR.InvalidType);
         }
+        public virtual DateTime GetDateTime(int i)
+        {
+            throw new DicomException(SR.InvalidType);
+        }
+
         #endregion
 
         #region Constructors

@@ -439,14 +439,7 @@ namespace ClearCanvas.ImageServer.Dicom
                         }
                         else if (vtype == typeof(DateTime))
                         {
-                            if (elem.Tag.VR == DicomVr.DAvr)
-                                return DateTime.ParseExact(elem.ToString(), "yyyyMMdd", CultureInfo.CurrentCulture, DateTimeStyles.NoCurrentDateDefault);
-                            else if (elem.Tag.VR == DicomVr.TMvr)
-                                return DateTime.ParseExact(elem.ToString(), "HHmmSS.FFFFFF", CultureInfo.CurrentCulture, DateTimeStyles.NoCurrentDateDefault);
-                            else if (elem.Tag.VR == DicomVr.DTvr)
-                                return DateTime.ParseExact(elem.ToString(), "yyyyMMddHHmmss.FFFFFF&ZZZZ", CultureInfo.CurrentCulture, DateTimeStyles.NoCurrentDateDefault);
-
-                            return DateTime.Parse(elem.ToString());
+                            return elem.GetDateTime(0);
                         }
                         //else if (vtype == typeof(DcmDateRange) && elem.GetType().IsSubclassOf(typeof(AttributeMultiValueText)))
                         //{
