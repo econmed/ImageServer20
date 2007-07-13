@@ -13,14 +13,12 @@ namespace ClearCanvas.Ris.Application.Common.ReportingWorkflow
         public EntityRef ReportRef;
 
         [DataMember]
-        public string ReportContent;
-
-        [DataMember]
         public string DiagnosticServiceName;
 
         [DataMember]
         public string RequestedProcedureName;
 
-
+        [DataMember]
+        public List<ReportPartSummary> Parts;
     }
 }
