@@ -165,4 +165,10 @@
   <data name="ExceptionRequestedProcedureTypeGroupNameRequired" xml:space="preserve">
     <value>A requested procedure type group name is required</value>
   </data>
+  <data name="ExceptionWorklistNameAlreadyExists" xml:space="preserve">
+    <value>A worklist with the name {0} already exists</value>
+  </data>
+  <data name="ExceptionWorklistNameRequired" xml:space="preserve">
+    <value>A worklist name is required</value>
+  </data>
 </root>
