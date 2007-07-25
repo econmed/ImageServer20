@@ -10,26 +10,14 @@
 	    <script type="text/javascript" >
 		    var data = {};
 
+            // this no-arg method must be implemented for the component to save report
             function saveData()
             {
-                Ris.setData("Editor", Field.getValue($("reportContent")));
-            }
-            
-            function isEditingAddendum(message, type)
-            {
-                return new Boolean(window.external.IsEditingAddendum());
-            }
-            
-            function tryParseJsml(input)
-            {
-                try
-                {
-                   return JSML.parse(input); 
-                }
-                catch(e)
-                {
-                    return null;
-                }
+                var report = { Finding:    Field.getValue($("finding")),
+                               Impression: Field.getValue($("impression")) };
+                var reportJsml = JSML.create(report, "Report");
+
+                Ris.setData("Report", reportJsml);
             }
             
 		    function onBodyLoad()
@@ -39,14 +27,14 @@
 
 	            try
 	            {
-	                if (isEditingAddendum() == true)
-	                {
-	                    Field.setValue($("reportHeading"), "Addendum");
-	                    $("reportContent").rows = 5;
-	                }
-	            
-                    data = Ris.getData("ReportContent");
-                    Field.setValue($("reportContent"), data);
+                    data = Ris.getData("Report");
+                    var report = JSML.parse(data);
+                    
+                    if (report != null)
+                    {
+                        Field.setValue($("finding"), report.Finding);
+                        Field.setValue($("impression"), report.Impression);
+                    }
 	            }
 	            catch(e)
 	            {
@@ -59,8 +47,10 @@
 	</head>
 	<body onload="javascript: onBodyLoad()" style="padding-top:0">
 		<form id="myForm" style="padding-top:0">
-		    <p class="sectionheading" id="reportHeading">Report</p>
-			<textarea style="width:99%" rows="35" border="0" id="reportContent"></textarea>
+		    <p class="sectionheading">Impression</p>
+			<textarea style="width:99%" rows="15" border="0" id="impression"></textarea>
+		    <p class="sectionheading">Finding</p>
+			<textarea style="width:99%" rows="15" border="0" id="finding"></textarea>
 		</form>
 	</body>
 </html>
