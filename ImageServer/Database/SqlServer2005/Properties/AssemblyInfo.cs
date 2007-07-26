@@ -2,14 +2,16 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+[assembly: ClearCanvas.Common.Plugin]
+
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SqlServer2005")]
+[assembly: AssemblyTitle("ClearCanvas.ImageServer.Database.SqlServer2005")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SqlServer2005")]
+[assembly: AssemblyCompany("ClearCanvas")]
+[assembly: AssemblyProduct("ClearCanvas.ImageServer.Database.SqlServer2005")]
 [assembly: AssemblyCopyright("Copyright ©  2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
