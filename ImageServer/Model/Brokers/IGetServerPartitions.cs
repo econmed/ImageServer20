@@ -8,7 +8,7 @@ using ClearCanvas.Enterprise.Core;
 
 namespace ClearCanvas.ImageServer.Model.Brokers
 {
-    public interface IGetServerPartitions : IProcedureEntityReadBroker<ServerPartition>
+    public interface IGetServerPartitions : IProcedureReadBroker<ServerPartition>
     {
     }
 }

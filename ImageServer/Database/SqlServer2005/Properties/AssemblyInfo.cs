@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ClearCanvas")]
-[assembly: AssemblyProduct("ClearCanvas.ImageServer.Database.SqlServer2005")]
+[assembly: AssemblyProduct("ImageServer")]
 [assembly: AssemblyCopyright("Copyright ©  2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
