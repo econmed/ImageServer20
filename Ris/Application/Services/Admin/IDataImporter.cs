@@ -13,7 +13,7 @@ namespace ClearCanvas.Ris.Application.Services.Admin
         bool SupportsXml { get; }
 
         void ImportCsv(List<string> rows, IUpdateContext context);
-        void ImportXml(XmlDocument xmlDocument, IUpdateContext context);
+        void ImportXml(XmlReader reader, IUpdateContext context);
     }
 
     [ExtensionPoint]
