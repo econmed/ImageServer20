@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ClearCanvas.ImageServer.Database.SqlServer2005")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ClearCanvas")]
+[assembly: AssemblyCompany("ClearCanvas Inc.")]
 [assembly: AssemblyProduct("ImageServer")]
 [assembly: AssemblyCopyright("Copyright ©  2007")]
 [assembly: AssemblyTrademark("")]
