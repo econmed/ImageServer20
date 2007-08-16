@@ -33,6 +33,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEnumBroker.cs" />
     <Compile Include="IProcedureReadBroker.cs" />
     <Compile Include="IProcedureSelectBroker.cs" />
     <Compile Include="IProcedureUpdateBroker.cs" />
@@ -41,6 +42,7 @@
     <Compile Include="ProcedureParameter.cs" />
     <Compile Include="ProcedureParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ClearCanvas.Common.csproj">
