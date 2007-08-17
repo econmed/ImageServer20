@@ -77,6 +77,10 @@
       <Project>{2C9126D3-5B73-4539-BBC9-D56E6097D335}</Project>
       <Name>ClearCanvas.ImageServer.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Queue\ClearCanvas.ImageServer.Queue.csproj">
+      <Project>{65B9B08C-EAE4-4EE2-B164-905B03134443}</Project>
+      <Name>ClearCanvas.ImageServer.Queue</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SR.resx">
