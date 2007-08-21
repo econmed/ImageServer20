@@ -10,7 +10,8 @@ using ClearCanvas.ImageServer.Database.SqlServer2005;
 
 namespace ClearCanvas.ImageServer.Model.SqlServer2005.Brokers
 {
-    public class DeleteWorkQueueUid : ProcedureUpdateBroker<WorkQueueUidDeleteParameters>
+    [ExtensionOf(typeof(BrokerExtensionPoint))]
+    public class DeleteWorkQueueUid : ProcedureUpdateBroker<WorkQueueUidDeleteParameters>, IDeleteWorkQueueUid
     {
         public DeleteWorkQueueUid()
             : base("DeleteWorkQueueUid")
