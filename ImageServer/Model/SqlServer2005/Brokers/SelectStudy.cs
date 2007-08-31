@@ -8,6 +8,9 @@ using ClearCanvas.ImageServer.Model.Criteria;
 
 namespace ClearCanvas.ImageServer.Model.SqlServer2005.Brokers
 {
+    /// <summary>
+    /// Broker implementation for <see cref="ISelectStudy"/>
+    /// </summary>
     [ExtensionOf(typeof(BrokerExtensionPoint))]
     public class SelectStudy : SelectBroker<StudySelectCriteria, Study>, ISelectStudy
     {
