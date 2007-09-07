@@ -8,7 +8,8 @@ using ClearCanvas.Enterprise.Core;
 namespace ClearCanvas.Healthcare {
 
     /// <summary>
-    /// OrderStatus enumeration as defined by HL7 (4.5.1.5)
+    /// OrderStatus enumeration as defined by HL7 (4.5.1.5).  This is only a subset of what HL7 defines.
+    /// More values can be added later if necessary.
     /// </summary>
     [EnumValueClass(typeof(OrderStatusEnum))]
     public enum OrderStatus
@@ -38,21 +39,9 @@ namespace ClearCanvas.Healthcare {
         DC,
 
         /// <summary>
-        /// Hold
-        /// </summary>
-        [EnumValue("Hold", Description="Order is on hold")]
-        HD,
-
-        /// <summary>
         /// In Progress
         /// </summary>
         [EnumValue("In Progress", Description="In process, unspecified")]
-        IP,
-
-        /// <summary>
-        /// Replaced
-        /// </summary>
-        [EnumValue("Replaced", Description="Order has been replaced")]
-        RP,
+        IP
 	}
 }
