@@ -6,12 +6,12 @@ namespace ClearCanvas.Ris.Application.Common.ModalityWorkflow.TechnologistDocume
     [DataContract]
     public class ListPerformedProcedureStepsRequest : DataContractBase
     {
-        public ListPerformedProcedureStepsRequest(EntityRef procedureStepRef)
+        public ListPerformedProcedureStepsRequest(EntityRef orderRef)
         {
-            ProcedureStepRef = procedureStepRef;
+            OrderRef = orderRef;
         }
 
         [DataMember]
-        public EntityRef ProcedureStepRef;
+        public EntityRef OrderRef;
     }
 }
