@@ -46,10 +46,13 @@ namespace ClearCanvas.ImageServer.Rules.AutoRouteAction
 
         public bool Execute(object obj, object context)
         {
+            DicomMessageBase msg = obj as DicomMessageBase;
             DicomAttributeCollection collection = obj as DicomAttributeCollection;
-            if(collection == null)
+            if(collection == null && msg == null)
                 throw new XmlActionCompilerException("Unexpected parameter type");
+            Rule rule = context as Rule;
 
+           
             return true;
         }
 

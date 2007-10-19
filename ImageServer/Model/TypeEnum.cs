@@ -38,7 +38,7 @@ namespace ClearCanvas.ImageServer.Model
 {
     public class TypeEnum : ServerEnum
     {
-        private static Dictionary<short, TypeEnum> _dict = new Dictionary<short, TypeEnum>();
+        private static readonly Dictionary<short, TypeEnum> _dict = new Dictionary<short, TypeEnum>();
 
         /// <summary>
         /// One-time load from the database of type enumerated value.
