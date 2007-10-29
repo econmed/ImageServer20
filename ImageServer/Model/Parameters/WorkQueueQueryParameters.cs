@@ -43,5 +43,11 @@ namespace ClearCanvas.ImageServer.Model.Parameters
         {
             set { this.SubCriteria["TypeEnum"] = new ProcedureParameter<ServerEnum>("TypeEnum", value); }
         }
+
+        public string ProcessorID
+        {
+            set { this.SubCriteria["ProcessorID"] = new ProcedureParameter<string>("ProcessorID", value); }
+        }
+
     }
 }
