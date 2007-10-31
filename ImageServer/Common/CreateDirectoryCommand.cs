@@ -49,7 +49,7 @@ namespace ClearCanvas.ImageServer.Common
         #endregion
 
         public CreateDirectoryCommand(string directory)
-            : base("Create Directory")
+            : base("Create Directory", true)
         {
             Platform.CheckForNullReference(directory, "Directory name");
 

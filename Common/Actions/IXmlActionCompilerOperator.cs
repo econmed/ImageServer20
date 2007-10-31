@@ -35,7 +35,7 @@ using ClearCanvas.Common.Actions;
 namespace ClearCanvas.Common.Actions
 {
     /// <summary>
-    /// Interface for extensions implementing <see cref="XmlActionCompilerOperatorExtensionPoint"/>.
+    /// Interface for extensions implementing <see cref="XmlActionCompilerOperatorExtensionPoint{T}"/>.
     /// </summary>
     public interface IXmlActionCompilerOperator<T>
     {

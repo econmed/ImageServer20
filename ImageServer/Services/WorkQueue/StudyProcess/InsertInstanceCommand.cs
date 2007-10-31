@@ -49,7 +49,7 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.StudyProcess
         #endregion
 
         public InsertInstanceCommand(DicomFile file, StudyStorageLocation location)
-            : base("Insert Instance into Database")
+            : base("Insert Instance into Database", true)
         {
             Platform.CheckForNullReference(file, "Dicom File object");
             Platform.CheckForNullReference(location, "Study Storage Location");
