@@ -156,6 +156,9 @@
   <data name="MessageFailedToUpdateServerSettings" xml:space="preserve">
     <value>Failed to update DICOM Server settings.  Make sure the ClearCanvas Service is running.</value>
   </data>
+  <data name="MonitorConfiguration" xml:space="preserve">
+    <value>Window Configuration</value>
+  </data>
   <data name="ValidationAETitleLengthIncorrect" xml:space="preserve">
     <value>AE Title must contain between 1 and 16 characters inclusive.</value>
   </data>
