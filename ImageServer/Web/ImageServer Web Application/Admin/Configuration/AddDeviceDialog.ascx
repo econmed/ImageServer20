@@ -23,7 +23,7 @@
                                 <td style="width: 162px">
                                 AE Title</td>
                                 <td colspan="3">
-                                    <asp:TextBox ID="AETitleTextBox" runat="server" Width="100%"></asp:TextBox></td>
+                                    <asp:TextBox ID="AETitleTextBox" runat="server" Width="100%" BorderColor="LightSteelBlue" BorderWidth="1px"></asp:TextBox></td>
                                 <td style="width: 3px">
                                 </td>
                             </tr>
@@ -31,7 +31,7 @@
                                 <td style="width: 162px; height: 29px">
                                 IP Address</td>
                                 <td colspan="3" style="height: 29px">
-                                    <asp:TextBox ID="IPAddressTextBox" runat="server" Width="100%"></asp:TextBox></td>
+                                    <asp:TextBox ID="IPAddressTextBox" runat="server" Width="100%" BorderColor="LightSteelBlue" BorderWidth="1px"></asp:TextBox></td>
                                 <td style="width: 3px; height: 29px">
                                 </td>
                             </tr>
@@ -39,7 +39,7 @@
                                 <td style="width: 162px">
                                 Port</td>
                                 <td colspan="3">
-                                    <asp:TextBox ID="PortTextBox" runat="server" Width="100%"></asp:TextBox></td>
+                                    <asp:TextBox ID="PortTextBox" runat="server" Width="100%" BorderColor="LightSteelBlue" BorderWidth="1px"></asp:TextBox></td>
                                 <td style="width: 3px">
                                 </td>
                             </tr>
@@ -47,7 +47,7 @@
                                 <td style="width: 162px">
                                 Description</td>
                                 <td colspan="3">
-                                    <asp:TextBox ID="DescriptionTextBox" runat="server" Width="100%"></asp:TextBox></td>
+                                    <asp:TextBox ID="DescriptionTextBox" runat="server" Width="100%" BorderColor="LightSteelBlue" BorderWidth="1px"></asp:TextBox></td>
                                 <td style="width: 3px">
                                 </td>
                             </tr>
@@ -55,24 +55,24 @@
                                 <td style="width: 162px; height: 24px">
                                 Server Partition</td>
                                 <td align="left" colspan="3" style="height: 24px">
-                                    <asp:DropDownList ID="ServerPartitionDropDownList" runat="server" DataTextField="Description"
+                                    <asp:DropDownList ID="ServerPartitionDropDownList" runat="server"  DataTextField="Description"
                                         DataValueField="Key" Width="100%">
                                     </asp:DropDownList></td>
                                 <td style="width: 3px; height: 24px">
                                 </td>
                             </tr>
                             <tr>
-                                <td style="width: 162px;">
+                                <td style="width: 162px; height: 22px;">
                                 </td>
-                                <td style="width: 128px;">
+                                <td style="width: 128px; height: 22px;">
                                     <asp:CheckBox ID="ActiveCheckBox" runat="server" Text="Active" />
                                 </td>
-                                <td style="width: 128px;">
+                                <td style="width: 128px; height: 22px;">
                                     <asp:CheckBox ID="DHCPCheckBox" runat="server" Text="DHCP" /></td>
-                                <td align="left">
+                                <td align="left" style="height: 22px">
                                     &nbsp;
                                 </td>
-                                <td style="width: 3px;">
+                                <td style="width: 3px; height: 22px;">
                                 </td>
                             </tr>
                             <tr>
