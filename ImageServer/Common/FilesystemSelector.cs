@@ -51,7 +51,7 @@ namespace ClearCanvas.ImageServer.Common
             ServerFilesystemInfo selectedFilesystem = null;
             float selectedFreeBytes = 0;
 
-            foreach (ServerFilesystemInfo info in _monitor.Filesystems)
+            foreach (ServerFilesystemInfo info in _monitor.Filesystems.Values)
             {
                 if (info.Online && info.Filesystem.Enabled && !info.Filesystem.ReadOnly)
                 {

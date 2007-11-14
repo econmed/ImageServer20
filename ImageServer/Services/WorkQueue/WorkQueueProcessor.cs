@@ -35,6 +35,7 @@ using System.Threading;
 using ClearCanvas.Common;
 using ClearCanvas.Common.Utilities;
 using ClearCanvas.Enterprise.Core;
+using ClearCanvas.ImageServer.Common;
 using ClearCanvas.ImageServer.Model;
 using ClearCanvas.ImageServer.Model.Brokers;
 using ClearCanvas.ImageServer.Model.Parameters;
@@ -53,7 +54,6 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue
         private readonly IPersistentStore _store = PersistentStoreRegistry.GetDefaultStore();
         private readonly Dictionary<TypeEnum, IWorkQueueProcessorFactory> _extensions = new Dictionary<TypeEnum, IWorkQueueProcessorFactory>();
         private readonly SimpleBlockingThreadPool _threadPool;
-        private string _processorID = null;
         private ManualResetEvent _threadStop;
         private Thread _theThread = null;
         private bool _stop = false;
@@ -87,73 +87,6 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue
                         Platform.Log(LogLevel.Error, "Unexpected incorrect type loaded for extension: {0}",
                                      obj.GetType());
                 }
-            }
-        }
-        #endregion
-
-        #region public members
-        /// <summary>
-        /// A string representing the ID of the work queue processor.
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// This ID is used to reset the work queue items.
-        /// </para>
-        /// <para>
-        /// For the time being, the machine ID is tied to the IP address. Assumimg the server
-        /// will be installed on a machine with DHCP disabled or if the DNS server always assign
-        /// the same IP for the machine, this will work fine.
-        /// </para>
-        /// <para>
-        /// Because of this implemenation, all instances of WorkQueueProcessor will have the same ID.
-        /// </para>
-        /// </remarks>
-        protected string ProcessorID
-        {
-            get
-            {
-
-                if (_processorID == null)
-                {
-                    try
-                    {
-                        String strHostName = Dns.GetHostName();
-
-                        // Find host by name
-                        IPHostEntry iphostentry = Dns.GetHostEntry(strHostName);
-
-                        // Enumerate IP addresses, pick an IPv4 address first
-                        foreach (IPAddress ipaddress in iphostentry.AddressList)
-                        {
-                            if (ipaddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                            {
-                                _processorID = ipaddress.ToString();
-                                break;
-                            }
-                        }
-                        if (_processorID == null)
-                        {
-                            foreach (IPAddress ipaddress in iphostentry.AddressList)
-                            {
-                                _processorID = ipaddress.ToString();
-                                break;
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Platform.Log(LogLevel.Error, e, "Cannot resolve hostname into IP address");
-                    }
-                }
-
-                if (_processorID == null)
-                {
-                    Platform.Log(LogLevel.Warn, "Could not determine hostname or IP address of the local machine. Work Queue Processor ID is set to Unknown");
-                    _processorID = "Unknown";
-
-                }
-
-                return _processorID;
             }
         }
         #endregion
@@ -198,7 +131,7 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue
             {
                 IUpdateWorkQueue update = updateContext.GetBroker<IUpdateWorkQueue>();
                 WorkQueueUpdateParameters parms = new WorkQueueUpdateParameters();
-                parms.ProcessorID = ProcessorID;
+                parms.ProcessorID = ServiceTools.ProcessorId;
 
                 parms.WorkQueueKey = item.GetKey();
                 parms.StudyStorageKey = item.StudyStorageKey;
@@ -250,7 +183,7 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue
             {
                 IWorkQueueReset reset = ctx.GetBroker<IWorkQueueReset>();
                 WorkQueueResetParameters parms = new WorkQueueResetParameters();
-                parms.ProcessorID = ProcessorID;
+                parms.ProcessorID = ServiceTools.ProcessorId;
 
                 // reschedule to start again now
                 parms.RescheduleTime = Platform.Time;
@@ -315,7 +248,7 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue
                     {
                         IQueryWorkQueue select = read.GetBroker<IQueryWorkQueue>();
                         WorkQueueQueryParameters parms = new WorkQueueQueryParameters();
-                        parms.ProcessorID = ProcessorID;
+                        parms.ProcessorID = ServiceTools.ProcessorId;
 
                         IList<Model.WorkQueue> list = select.Execute(parms);
 
@@ -357,7 +290,7 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue
                             //          is when users stop the service. All other general failures will be handled cleanly by the general
                             //          exception handler.
                             //  
-                            processor.ProcessorID = ProcessorID;
+                            processor.ProcessorID = ServiceTools.ProcessorId;
 
                             // Enqueue the actual processing of the item to the 
                             // thread pool.  

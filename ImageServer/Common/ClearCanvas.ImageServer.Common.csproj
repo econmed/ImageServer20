@@ -41,6 +41,7 @@
     <Compile Include="ServerCommand.cs" />
     <Compile Include="ServerCommandProcessor.cs" />
     <Compile Include="ServerFilesystemInfo.cs" />
+    <Compile Include="ServiceTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ClearCanvas.Common.csproj">
