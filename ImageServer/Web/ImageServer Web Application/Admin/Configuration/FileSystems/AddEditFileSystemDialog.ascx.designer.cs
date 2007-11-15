@@ -110,13 +110,13 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems {
         protected global::System.Web.UI.WebControls.TextBox DescriptionTextBox;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// ConditionalRequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Sample.Web.UI.Compatibility.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::ClearCanvas.ImageServer.Web.WebControls.ConditionalRequiredFieldValidator ConditionalRequiredFieldValidator1;
         
         /// <summary>
         /// ReadCheckBox control.
@@ -137,13 +137,13 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems {
         protected global::System.Web.UI.WebControls.TextBox PathTextBox;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// ConditionalRequiredFieldValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Sample.Web.UI.Compatibility.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::ClearCanvas.ImageServer.Web.WebControls.ConditionalRequiredFieldValidator ConditionalRequiredFieldValidator2;
         
         /// <summary>
         /// WriteCheckBox control.
@@ -164,22 +164,13 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems {
         protected global::System.Web.UI.WebControls.DropDownList TiersDropDownList;
         
         /// <summary>
-        /// TextBoxWatermarkExtender2 control.
+        /// ValidationSummary1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxWatermarkExtender2;
-        
-        /// <summary>
-        /// TextBoxWatermarkExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxWatermarkExtender1;
+        protected global::Sample.Web.UI.Compatibility.ValidationSummary ValidationSummary1;
         
         /// <summary>
         /// TabPanel2 control.

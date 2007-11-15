@@ -47,21 +47,12 @@ namespace ImageServerWebApplication.Admin.Configuration.ServerPartitions {
         protected global::ImageServerWebApplication.Admin.Configuration.ServerPartitions.ServerPartitionPanel ServerPartitionPanel;
         
         /// <summary>
-        /// AddPartitionDialog control.
+        /// AddEditPartitionDialog1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ImageServerWebApplication.Admin.Configuration.ServerPartitions.AddPartitionDialog AddPartitionDialog;
-        
-        /// <summary>
-        /// EditPartitionDialog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ImageServerWebApplication.Admin.Configuration.ServerPartitions.EditPartitionDialog EditPartitionDialog;
+        protected global::ImageServerWebApplication.Admin.Configuration.ServerPartitions.AddEditPartitionDialog AddEditPartitionDialog1;
     }
 }

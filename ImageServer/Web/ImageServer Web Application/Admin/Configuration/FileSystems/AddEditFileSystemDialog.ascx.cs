@@ -44,7 +44,7 @@ using ImageServerWebApplication.Common;
 namespace ImageServerWebApplication.Admin.Configuration.FileSystems
 {
     //
-    // Dialog for adding new device.
+    // Dialog for adding a new device or editting an existing one.
     //
     public partial class AddFilesystemDialog : UserControl
     {
@@ -59,7 +59,7 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems
 
         #region public members
         /// <summary>
-        /// Sets the list of filesystem tiers users allowed to pick for the new filesystem.
+        /// Sets or gets the list of filesystem tiers which users are allowed to pick.
         /// </summary>
         public IList<FilesystemTierEnum> FilesystemTiers
         {
@@ -81,18 +81,18 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems
         {
             set { 
                 _editMode = value;
-                ViewState["AddEditFileSystemDialog_EditMode"] = value;
+                ViewState[ ClientID+"_EditMode"] = value;
             }
             get { return _editMode; }
         }
 
         /// <summary>
-        /// Sets the filesystem to be editted or retrieves the new filesystem to be added.
+        /// Sets or gets the filesystem users are working on.
         /// </summary>
         public Filesystem FileSystem
         {
             set { _filesystem = value;
-                ViewState["AddEditFilesystemDialog_FileSystem"] = value;
+                ViewState[ ClientID+"_FileSystem"] = value;
             }
             get { return _filesystem; }
         }
@@ -143,16 +143,16 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems
             ModalPopupExtender1.PopupDragHandleControlID = TitleBarPanel.UniqueID;
 
 
-            // Register a javascript that can be called to popup this dialog on the client
-            // 
-            Page.RegisterClientScriptBlock("popupThisWindow",
-                      @"<script language='javascript'>
-                        function ShowAddDeviceDialog()
-                        {  
-                            var ctrl = $find('" + ModalPopupExtender1.UniqueID + @"'); 
-                            ctrl.show();
-                        }
-                    </script>");
+//            Register a javascript that can be called to popup this dialog on the client
+             
+//            Page.RegisterClientScriptBlock("popupThisWindow",
+//                      @"<script language='javascript'>
+//                        function ShowAddDeviceDialog()
+//                        {  
+//                            var ctrl = $find('" + ModalPopupExtender1.UniqueID + @"'); 
+//                            ctrl.show();
+//                        }
+//                    </script>");
 
 
            
@@ -168,11 +168,11 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems
             }
             else
             {
-                // reload the device information that was editted
-                if (ViewState["AddEditFileSystemDialog_EditMode"]!=null)
-                    _editMode = (bool) ViewState["AddEditFileSystemDialog_EditMode"];
+                // reload the filesystem information user is working on
+                if (ViewState[ ClientID+"_EditMode"]!=null)
+                    _editMode = (bool) ViewState[ ClientID+"_EditMode"];
 
-                FileSystem = ViewState["AddEditFilesystemDialog_FileSystem"] as Filesystem;
+                FileSystem = ViewState[ ClientID+"_FileSystem"] as Filesystem;
             }
         }
 
@@ -184,9 +184,9 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems
         /// <param name="e"></param>
         protected void OKButton_Click(object sender, EventArgs e)
         {
-            if (EditMode == false)
+            if (FileSystem == null)
             {
-                // is add mode... create a filesystem 
+                // create a filesystem 
                 FileSystem = new Filesystem();
             }
 
@@ -226,19 +226,14 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems
         /// </summary>
         public void Show()
         {
-            // STRANGE AJAX BUG?: 
-            //      This block of code will cause 
-            //      WebForms.PageRequestManagerServerErrorException: Status code 500 when the dialog box is dismissed.
-            //
-            //
-            // Pre-fill the data
-            //
-            //  AETitleTextBox.Text = "<Enter AE Title>";
-            //  ActiveCheckBox.Checked = false;
-            //  DHCPCheckBox.Checked = false;
-            //  DescriptionTextBox.Text = "<Enter Description>";
-            //  PortTextBox.Text = "<Port #>";
 
+            // update the dropdown list
+            TiersDropDownList.Items.Clear();
+            foreach (FilesystemTierEnum tier in _tiers)
+            {
+                TiersDropDownList.Items.Add(new ListItem(tier.Description, tier.Enum.ToString()));
+            }
+            
             if (EditMode)
             {
                 // set the dialog box title and OK button text
@@ -251,7 +246,7 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems
                 ReadCheckBox.Checked = FileSystem.Enabled && (FileSystem.ReadOnly || (FileSystem.WriteOnly == false));
                 WriteCheckBox.Checked = FileSystem.Enabled && (FileSystem.WriteOnly || (FileSystem.ReadOnly == false));
 
-                
+                TiersDropDownList.SelectedValue = FileSystem.FilesystemTierEnum.Enum.ToString();
             }
             else
             {
@@ -265,15 +260,10 @@ namespace ImageServerWebApplication.Admin.Configuration.FileSystems
                 ReadCheckBox.Checked = true;
                 WriteCheckBox.Checked = true;
 
+                TiersDropDownList.SelectedIndex = 0;
+
             }
 
-
-            // update the dropdown list
-            TiersDropDownList.Items.Clear();
-            foreach (FilesystemTierEnum tier in _tiers)
-            {
-                TiersDropDownList.Items.Add(new ListItem(tier.Description, tier.GetKey().Key.ToString()));
-            }
 
             UpdatePanel.Update();
             ModalPopupExtender1.Show();
