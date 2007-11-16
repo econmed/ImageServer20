@@ -51,14 +51,16 @@ namespace ClearCanvas.ImageServer.Rules
         private ServerCommandProcessor _commandProcessor;
         private readonly ServerEntityKey _serverPartitionKey;
         private readonly ServerEntityKey _studyLocationKey;
+        private readonly ServerEntityKey _filesystemKey;
         #endregion
 
         #region Constructors
-        public ServerActionContext(DicomMessageBase msg, ServerEntityKey serverPartitionKey, ServerEntityKey studyLocationKey)
+        public ServerActionContext(DicomMessageBase msg, ServerEntityKey filesystemKey, ServerEntityKey serverPartitionKey, ServerEntityKey studyLocationKey)
         {
             _msg = msg;
             _serverPartitionKey = serverPartitionKey;
             _studyLocationKey = studyLocationKey;
+            _filesystemKey = filesystemKey;
         }
         #endregion
 
@@ -75,6 +77,10 @@ namespace ClearCanvas.ImageServer.Rules
         public ServerEntityKey ServerPartitionKey
         {
             get { return _serverPartitionKey; }
+        }
+        public ServerEntityKey FilesystemKey
+        {
+            get { return _filesystemKey; }
         }
         public ServerEntityKey StudyLocationKey
         {
