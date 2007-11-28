@@ -38,7 +38,7 @@ namespace ClearCanvas.Ris.Application.Services
 {
     public class RequestedProcedureTypeAssembler
     {
-        public RequestedProcedureTypeSummary GetRequestedProcedureTypeSummary(RequestedProcedureType rpt)
+        public RequestedProcedureTypeSummary CreateRequestedProcedureTypeSummary(RequestedProcedureType rpt)
         {
             return new RequestedProcedureTypeSummary(rpt.GetRef(), rpt.Name, rpt.Id);
         }
