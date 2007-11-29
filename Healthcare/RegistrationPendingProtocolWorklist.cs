@@ -34,12 +34,12 @@ namespace ClearCanvas.Healthcare {
 
         public override IList GetWorklist(Staff currentUserStaff, IPersistenceContext context)
         {
-            return (IList)GetBroker<IRegistrationWorklistBroker>(context).GetProtocolWorklist(QueryConditions, this);
+            return (IList)GetBroker<IRegistrationWorklistBroker>(context).GetProtocolWorklist(typeof(ProtocolAssignmentStep), QueryConditions, this);
         }
 
         public override int GetWorklistCount(Staff currentUserStaff, IPersistenceContext context)
         {
-            return GetBroker<IRegistrationWorklistBroker>(context).GetProtocolWorklistCount(QueryConditions, this);
+            return GetBroker<IRegistrationWorklistBroker>(context).GetProtocolWorklistCount(typeof(ProtocolAssignmentStep), QueryConditions, this);
         }
 
         #region Object overrides
