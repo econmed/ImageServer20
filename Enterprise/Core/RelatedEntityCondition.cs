@@ -29,10 +29,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace ClearCanvas.Enterprise.Core
 {
     /// <summary>
@@ -43,14 +39,34 @@ namespace ClearCanvas.Enterprise.Core
     public class RelatedEntityCondition<T> : SearchConditionBase, IRelatedEntityCondition<T>
         where T: SearchCriteria
     {
+        #region Private Members
+        private readonly string _baseTableColumn;
+        private readonly string _relatedTableColumn;
+        #endregion
+
+        #region Public Properties
+        public string BaseTableColumn
+        {
+            get { return _baseTableColumn; }
+        }
+        public string RelatedTableColumn
+        {
+            get { return _relatedTableColumn; }
+        }
+        #endregion
+
+        #region Constructors
         public RelatedEntityCondition()
         {
         }
 
-        public RelatedEntityCondition(string name)
+        public RelatedEntityCondition(string name, string baseTableColumn, string relatedTableColumn)
             : base(name)
         {
+            _baseTableColumn = baseTableColumn;
+            _relatedTableColumn = relatedTableColumn;
         }
+        #endregion
 
         #region IRelatedEntityCondition<T> Members
 
