@@ -40,7 +40,7 @@ using ClearCanvas.Desktop.View.WinForms;
 namespace ClearCanvas.Ris.Client.View.WinForms
 {
     /// <summary>
-    /// Provides a Windows Forms view onto <see cref="WorklistExplorerComponent"/>
+    /// Provides a Windows Forms view onto <see cref="FolderExplorerComponent"/>
     /// </summary>
     [ExtensionOf(typeof(FolderExplorerComponentViewExtensionPoint))]
     public class FolderExplorerComponentView : WinFormsView, IApplicationComponentView

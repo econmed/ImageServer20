@@ -61,32 +61,8 @@ namespace ClearCanvas.Ris.Client.View.WinForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._folderTreeView = new ClearCanvas.Desktop.View.WinForms.BindingTreeView();
-            this._folderContentsTableView = new ClearCanvas.Desktop.View.WinForms.TableView();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this._folderTreeView);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this._folderContentsTableView);
-            this.splitContainer1.Size = new System.Drawing.Size(529, 493);
-            this.splitContainer1.SplitterDistance = 176;
-            this.splitContainer1.SplitterWidth = 3;
-            this.splitContainer1.TabIndex = 0;
             // 
             // _folderTreeView
             // 
@@ -99,43 +75,24 @@ namespace ClearCanvas.Ris.Client.View.WinForms
             this._folderTreeView.Name = "_folderTreeView";
             this._folderTreeView.ShowLines = false;
             this._folderTreeView.ShowRootLines = false;
-            this._folderTreeView.Size = new System.Drawing.Size(176, 493);
+            this._folderTreeView.Size = new System.Drawing.Size(183, 500);
             this._folderTreeView.TabIndex = 1;
             this._folderTreeView.ToolStripItemDisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.ImageAndText;
-            // 
-            // _folderContentsTableView
-            // 
-            this._folderContentsTableView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._folderContentsTableView.Location = new System.Drawing.Point(0, 0);
-            this._folderContentsTableView.MultiSelect = false;
-            this._folderContentsTableView.Name = "_folderContentsTableView";
-            this._folderContentsTableView.ReadOnly = false;
-            this._folderContentsTableView.Size = new System.Drawing.Size(350, 493);
-            this._folderContentsTableView.SortButtonVisible = true;
-            this._folderContentsTableView.TabIndex = 0;
-            this._folderContentsTableView.ToolStripItemDisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.ImageAndText;
-            this._folderContentsTableView.ItemDrag += new System.EventHandler<System.Windows.Forms.ItemDragEventArgs>(this._folderContentsTableView_ItemDrag);
-            this._folderContentsTableView.ItemDoubleClicked += new System.EventHandler(this._folderContentsTableView_ItemDoubleClicked);
             // 
             // FolderExplorerComponentControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this._folderTreeView);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FolderExplorerComponentControl";
-            this.Size = new System.Drawing.Size(529, 493);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(183, 500);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private ClearCanvas.Desktop.View.WinForms.BindingTreeView _folderTreeView;
-        private ClearCanvas.Desktop.View.WinForms.TableView _folderContentsTableView;
     }
 }
