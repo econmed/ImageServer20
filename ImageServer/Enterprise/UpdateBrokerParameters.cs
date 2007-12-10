@@ -29,30 +29,30 @@
 
 #endregion
 
-using ClearCanvas.Enterprise.Core;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using ClearCanvas.Common;
+using ClearCanvas.Enterprise.Core;
 
 namespace ClearCanvas.ImageServer.Enterprise
 {
     /// <summary>
-    /// Abstract base class to store a collection of update parameters to be used in an update broker.
+    /// Abstract base class to store a collection of update parameters to be used in in a non-procedural update broker implementing the <see cref="IUpdateBroker"/> interface.
     /// </summary>
-    abstract public class UpdateBrokerParameters
+    /// <remark>
+    /// Each updatable field in the parameter collection is an element of the <see cref="SubParameters"/>.
+    /// </remark>
+    abstract public class UpdateBrokerParameters : UpdateBrokerParameterBase
     {
-        private Dictionary<string, UpdateBrokerParameterBase> _subParameters = new Dictionary<string,UpdateBrokerParameterBase>();
-
-
+       
+        #region Constructors
         public UpdateBrokerParameters(string entityName)
+            :base(entityName)
         {
-               
+
         }
 
-        public IDictionary<string, UpdateBrokerParameterBase> SubParameters
-        {
-            get { return _subParameters; }
-        }
-
+        #endregion Constructors
 
     }
 }
