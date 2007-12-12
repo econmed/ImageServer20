@@ -38,15 +38,6 @@ namespace ClearCanvas.ImageServer.Web.Application.Search {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// SearchToolBarControl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ClearCanvas.ImageServer.Web.Application.Search.SearchToolBar SearchToolBarControl;
-        
-        /// <summary>
         /// SearchFilterPanel control.
         /// </summary>
         /// <remarks>
@@ -56,21 +47,12 @@ namespace ClearCanvas.ImageServer.Web.Application.Search {
         protected global::ClearCanvas.ImageServer.Web.Application.Search.SearchFilterPanel SearchFilterPanel;
         
         /// <summary>
-        /// SearchGridViewControl control.
+        /// SearchAccordianControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ClearCanvas.ImageServer.Web.Application.Search.SearchGridView SearchGridViewControl;
-        
-        /// <summary>
-        /// GridPager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ClearCanvas.ImageServer.Web.Application.Common.GridPager GridPager1;
+        protected global::ClearCanvas.ImageServer.Web.Application.Search.SearchAccordian SearchAccordianControl;
     }
 }
