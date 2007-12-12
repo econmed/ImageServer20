@@ -38,60 +38,44 @@ using ClearCanvas.Ris.Application.Common.Admin;
 namespace ClearCanvas.Ris.Application.Common
 {
     [DataContract]
-    public class NoteDetail : DataContractBase, ICloneable
+    public class PatientNoteCategorySummary : DataContractBase, ICloneable
     {
-        public NoteDetail(string comment, 
-            NoteCategorySummary category, 
-            StaffSummary createdBy, 
-            DateTime? timeStamp,
-            DateTime? validRangeFrom,
-            DateTime? validRangeUntil)
+        public PatientNoteCategorySummary(EntityRef noteCategoryRef, string name, string description, EnumValueInfo severity)
         {
-            this.Comment = comment;
-            this.Category = category;
-            this.CreatedBy = createdBy;
-            this.TimeStamp = timeStamp;
-            this.ValidRangeFrom = validRangeFrom;
-            this.ValidRangeUntil = validRangeUntil;
+            this.NoteCategoryRef = noteCategoryRef;
+            this.Name = name;
+            this.Description = description;
+            this.Severity = severity;
         }
 
-        public NoteDetail()
+        public PatientNoteCategorySummary()
         {
         }
 
         [DataMember]
-        public string Comment;
+        public EntityRef NoteCategoryRef;
 
         [DataMember]
-        public NoteCategorySummary Category;
+        public string Name;
 
         [DataMember]
-        public StaffSummary CreatedBy;
+        public string Description;
 
         [DataMember]
-        public DateTime? TimeStamp;
-
-        [DataMember]
-        public DateTime? ValidRangeFrom;
-
-        [DataMember]
-        public DateTime? ValidRangeUntil;
+        public EnumValueInfo Severity;
 
         #region ICloneable Members
 
         public object Clone()
         {
-            NoteDetail clone = new NoteDetail();
-            clone.Comment = this.Comment;
-            clone.Category = (NoteCategorySummary)this.Category.Clone();
-            clone.CreatedBy = this.CreatedBy == null ? null : (StaffSummary)this.CreatedBy.Clone();
-            clone.TimeStamp = this.TimeStamp;
-            clone.ValidRangeFrom = this.ValidRangeFrom;
-            clone.ValidRangeUntil = this.ValidRangeUntil;
-
+            PatientNoteCategorySummary clone = new PatientNoteCategorySummary();
+            clone.NoteCategoryRef = this.NoteCategoryRef;
+            clone.Name = this.Name;
+            clone.Description = this.Description;
+            clone.Severity = (EnumValueInfo)this.Severity.Clone();
             return clone;
         }
 
-        #endregion    
+        #endregion
     }
 }

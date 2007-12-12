@@ -40,14 +40,14 @@ using ClearCanvas.Ris.Application.Common;
 
 namespace ClearCanvas.Ris.Application.Services
 {
-    public class NoteCategoryAssembler
+    public class PatientNoteCategoryAssembler
     {
-        public NoteCategoryDetail CreateNoteCategoryDetail(NoteCategory category, IPersistenceContext context)
+        public PatientNoteCategoryDetail CreateNoteCategoryDetail(PatientNoteCategory category, IPersistenceContext context)
         {
             if (category == null)
                 return null;
 
-            NoteCategoryDetail detail = new NoteCategoryDetail();
+            PatientNoteCategoryDetail detail = new PatientNoteCategoryDetail();
 
             detail.Category = category.Name;
             detail.Description = category.Description;
@@ -57,12 +57,12 @@ namespace ClearCanvas.Ris.Application.Services
             return detail;
         }
 
-        public NoteCategorySummary CreateNoteCategorySummary(NoteCategory category, IPersistenceContext context)
+        public PatientNoteCategorySummary CreateNoteCategorySummary(PatientNoteCategory category, IPersistenceContext context)
         {
             if (category == null)
                 return null;
 
-            NoteCategorySummary summary = new NoteCategorySummary();
+            PatientNoteCategorySummary summary = new PatientNoteCategorySummary();
 
             summary.NoteCategoryRef = category.GetRef();
             summary.Name = category.Name;
@@ -73,7 +73,7 @@ namespace ClearCanvas.Ris.Application.Services
             return summary;
         }
 
-        public void UpdateNoteCategory(NoteCategoryDetail detail, NoteCategory category)
+        public void UpdateNoteCategory(PatientNoteCategoryDetail detail, PatientNoteCategory category)
         {
             category.Name = detail.Category;
             category.Description = detail.Description;
