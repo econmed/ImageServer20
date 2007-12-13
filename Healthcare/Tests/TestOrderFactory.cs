@@ -49,6 +49,7 @@ namespace ClearCanvas.Healthcare.Tests
             ExternalPractitioner orderingPrac = TestExternalPractitionerFactory.CreatePractitioner();
             Facility facility = TestFacilityFactory.CreateFacility();
             IList<OrderAttachment> attachments = TestOrderAttachmentFactory.CreateOrderAttachments();
+            IList<OrderNote> notes = TestOrderNoteFactory.CreateOrderNotes();
 
             return Order.NewOrder(
                 accession,
@@ -63,7 +64,8 @@ namespace ClearCanvas.Healthcare.Tests
                 scheduleOrder ? scheduleTime : null,
                 orderingPrac,
                 new List<ExternalPractitioner>(),
-                attachments);
+                attachments,
+                notes);
         }
     }
 }
