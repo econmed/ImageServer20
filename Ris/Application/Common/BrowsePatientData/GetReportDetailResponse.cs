@@ -37,5 +37,12 @@ namespace ClearCanvas.Ris.Application.Common.BrowsePatientData
     [DataContract]
     public class GetReportDetailResponse : DataContractBase
     {
+        public GetReportDetailResponse(ReportDetail report)
+        {
+            this.Report = report;
+        }
+
+        [DataMember]
+        public ReportDetail Report;
     }
 }
