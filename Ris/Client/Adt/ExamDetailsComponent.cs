@@ -46,7 +46,7 @@ namespace ClearCanvas.Ris.Client.Adt
             SetUrl(url);
         }
 
-        protected override string GetTagData(string tag)
+        protected override string GetTag(string tag)
         {
             string value;
             _orderExtendedProperties.TryGetValue(tag, out value);
@@ -54,7 +54,7 @@ namespace ClearCanvas.Ris.Client.Adt
             return value;
         }
 
-        protected override void SetTagData(string tag, string data)
+        protected override void SetTag(string tag, string data)
         {
             _orderExtendedProperties[tag] = data;
         }
