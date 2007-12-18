@@ -104,23 +104,18 @@
                     else
                         Field.show($("orderNotesTable"), false);
 
-                    if(reportDetail)
-                    {
- 	                    // hide ordered procedures section
-	                    Field.show($("orderSection"), false);
-	                    
-                        var reportedProcedures = String.combine(reportDetail.Procedures.map(function(rp) { return rp.Type.Name; }), ", ");
-                        Field.setValue($("reportedProcedures"), reportedProcedures);
+					var reportDetail = data.GetReportDetailResponse ? data.GetReportDetailResponse.Report : null;
+					if (reportDetail)
+					{
+						var procedures = reportDetail.Procedures;
+						createRequestedProceduresTable($("proceduresTable"), procedures);
 	                    $("report").innerHTML = formatReport(reportDetail);
-	                }
-	                else
-	                {
+					}
+					else
+					{
 	                    // hide report section
-	                    Field.show($("reportSection"), false);
-	                    
-	                    // show ordered procedures
-                        createProceduresTable($("orderedProceduresTable"), orderDetail.RequestedProcedures);
-	                }
+						Field.show($("proceduresTable"), false);
+					}
 	            }
 	            catch(e)
 	            {
@@ -128,50 +123,6 @@
 		            Field.setValue($("myForm"), message);
 	            }
 		    }
-
-            function createOrderNotesTable(htmlTable, notes)
-            {
-	            htmlTable = Table.createTable(htmlTable, { editInPlace: false, flow: false },
-		             [
-			            {   label: "Comment",
-				            cellType: "text",
-				            getValue: function(item) { return item.Comment; }
-			            },
-			            {   label: "Time",
-				            cellType: "text",
-				            getValue: function(item) { return Ris.formatDateTime(item.CreationTime); }
-			            },
-			            {   label: "Author",
-				            cellType: "text",
-				            getValue: function(item) { return Ris.formatPersonName(item.Author.Name); }
-			            }
-		             ]);
-            		 
-	            htmlTable.rowCycleClassNames = ["row0", "row1"];
-	            htmlTable.bindItems(notes);
-            }
-            
-			function createProceduresTable(htmlTable, procedures)
-			{
-				htmlTable = Table.createTable(htmlTable, { editInPlace: false, flow: false },
-					 [
-						{   label: "Procedure",
-							cellType: "text",
-							getValue: function(item) { return item.Type.Name; }
-						},
-						{   label: "Status",
-							cellType: "text",
-							getValue: function(item) { return item.Status.Value; }
-						},
-						{   label: "Protocol",
-							cellType: "html",
-							getValue: function(item) { return item.Protocol ? String.combine(item.Protocol.Codes.map(function(code) { return code.Name; }), "<br>") : null; }
-						}
-					 ]);
-					 
-				htmlTable.rowCycleClassNames = ["row0", "row1"];
-				htmlTable.bindItems(procedures);
-			}
 		</script>
 	</head>
 	<body onload="javascript: onBodyLoad()">
@@ -240,25 +191,16 @@
 		            <td>Author</td>
 	            </tr>
 	        </table>
-	        <div id="orderSection">
-	        <table border="0" id="orderedProceduresTable">
-	            <tr><td class="sectionheading" colspan="6">Ordered Procedures</td></tr>
-	            <tr class="tableheading">
-		            <td>Procedure</td>
-		            <td>Status</td>
-		            <td>Protocol</td>
-	            </tr>
-	        </table>
-	        </div>
             <p>&nbsp;</p>
             <div id="reportSection">
     		    <p id="reportheading" class="sectionheading">Report</p>
-                <table width="100%" border="0">
-                    <tr>
-                        <td width="120" class="propertyname">Procedures Reported</td>
-                        <td width="200"><div id="reportedProcedures"/></td>
-                    </tr>
-                </table>
+		        <table border="0" id="proceduresTable">
+		            <tr class="tableheading">
+			            <td>Reported Procedure</td>
+			            <td>Status</td>
+			            <td>Protocol</td>
+		            </tr>
+		        </table>
 		        <div id="report"></div>
             </div>
 		</form>

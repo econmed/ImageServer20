@@ -48,7 +48,7 @@
                          	}
                     };
                     
-					var service = Ris.getService("ClearCanvas.Ris.Application.Common.BrowsePatientData.IBrowsePatientDataService, ClearCanvas.Ris.Application.Common");
+					var service = Ris.getPatientDataService();
                     var data = service.getData(request);
 
                     if (data == null || data.length == 0)
@@ -259,7 +259,6 @@
 			    </tr>
 		    </table>
     		
-            <p>&nbsp;</p>
             <table width="100%" border="0">
                 <tr>
                     <td class="sectionheading" colspan="4">Imaging Consultation Overview</td>
@@ -291,7 +290,6 @@
                 </tr>-->
             </table>
 
-            <p>&nbsp;</p>
             <table width="100%" border="0">
                 <tr>
                     <td class="sectionheading" colspan="4">Selected MPS Details</td>
@@ -329,7 +327,7 @@
                     <td width="200"><div id="EndTime"/></td>
                 </tr>
             </table>
-            <p>&nbsp;</p>
+
 	        <table width="100%" border="0" id="activeProceduresTable">
 	            <tr><td class="sectionheading" colspan="6">Active Requests for Imaging Consultation</td></tr>
 	            <tr class="tableheading">
