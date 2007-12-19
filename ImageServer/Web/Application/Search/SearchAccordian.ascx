@@ -4,15 +4,15 @@
 <asp:Table Width="100%">
     <asp:TableHeaderRow>
         <asp:Panel ID="HeaderPanel" runat="server" Width="100%" BorderWidth="0px" CssClass="GridHeader">
-            <asp:Label ID="PatientName" runat="server" Text="Patient Name" EnableViewState="False"
+            <asp:Label ID="PatientName" runat="server" Text="Patient Name" EnableViewState="False" CssClass="GridHeaderText"
                 Width="24%"  />
-            <asp:Label ID="PatientId" runat="server" Text="Patient Id" EnableViewState="False" 
+            <asp:Label ID="PatientId" runat="server" Text="Patient Id" EnableViewState="False"  CssClass="GridHeaderText"
                 Width="12%"  />
-            <asp:Label ID="StudyDate" runat="server" Text="Study Date" EnableViewState="False"
+            <asp:Label ID="StudyDate" runat="server" Text="Study Date" EnableViewState="False" CssClass="GridHeaderText"
                 Width="11%" />
-            <asp:Label ID="AccessionNumber" runat="server" Text="Accession Number" EnableViewState="False"
+            <asp:Label ID="AccessionNumber" runat="server" Text="Accession Number" EnableViewState="False" CssClass="GridHeaderText"
                 Width="19%"  />
-            <asp:Label ID="StudyDescription" runat="server" Text="Description" EnableViewState="False"
+            <asp:Label ID="StudyDescription" runat="server" Text="Description" EnableViewState="False" CssClass="GridHeaderText"
                 Width="24%"  />
         </asp:Panel>
     </asp:TableHeaderRow>
