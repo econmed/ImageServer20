@@ -29,13 +29,13 @@ namespace ClearCanvas.ImageServer.Web.Application.Admin.Configuration.Devices {
         protected global::System.Web.UI.WebControls.Panel PageContent;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// DevicePageUpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel DevicePageUpdatePanel;
         
         /// <summary>
         /// TabContainer1 control.
