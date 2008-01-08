@@ -1,7 +1,18 @@
+/**************************************************************************************************
+
+	This file contains the font CSS  (this includes font size and colors. Text alignment is specified
+	in	layout.css)
+
+**************************************************************************************************/
+
+
+/*************************************************************************************************
+	Global font
+*************************************************************************************************/
 body
 {
 	font-family: verdana,tahoma,helvetica;
-	font-size: 11pt;
+	font-size: 10pt;
 	color:black;
 }
 
@@ -20,9 +31,21 @@ body
 	
 	font-size:110%;
 	font-weight:bold;
+	color:White;
 	
 }
 
+.CSSVersionLabel
+{
+	font-size:70%;
+	color:Silver;
+	font-weight:normal;
+}
+
+
+/*************************************************************************************************
+	Toolbar font
+*************************************************************************************************/
 
 
 /* toolbar panel container */
@@ -41,6 +64,13 @@ body
 {
 
 }
+
+
+
+/*************************************************************************************************
+	Filter panel font
+*************************************************************************************************/
+
 
 /* filter panel container */
 .CSSFilterPanelContainer
@@ -62,24 +92,48 @@ body
 
 }
 
+
+
+
+/*************************************************************************************************
+	Menubar font
+*************************************************************************************************/
+
+
 /* Menubar panel container */
 .CSSMainMenuBarContainer
 {
-	font-size:120%;
+	font-size:110%;	
 }
 
+
 /* Menubar */
-.CSSMenuBar
+.CSSMenuBarBorder
 {
-	color: White;
 	
 }
+
+/* Menu item color */
+.CSSMainMenu a:link , .CSSMainMenu a:visited, .CSSMainMenu a:hover, .CSSMainMenu a:active
+{
+	color:white;
+	font-weight:bold;
+}
+
 
 /* main menu */
 .CSSMenu_TopLevel
 {
-	font-size:120%;
+
 }
+
+
+/* main menu */
+.CSSMenu_TopLevelItem
+{
+}
+
+
 
 /* main menu (when hover over)*/
 .CSSMenu_TopLevel_Hover
@@ -94,11 +148,19 @@ body
 
 }
 
+
 /* submenu item */
 .CSSMenu_SubMenuItem
 {
 	font-size:100%;	
 }
+
+/* submenu item color */
+.CSSMenu_SubMenuItem a:link , .CSSMenu_SubMenuItem a:visited, .CSSMenu_SubMenuItem a:hover, .CSSMenu_SubMenuItem a:active
+{
+	color:white;
+}
+
 
 /* submenu item when hover*/
 .CSSMenu_SubMenu_Hover
@@ -106,6 +168,12 @@ body
 
 	
 }
+
+
+
+/*************************************************************************************************
+	Gridview control font
+*************************************************************************************************/
 
 
 /* Container for the gridview */
@@ -165,6 +233,13 @@ body
 
 
 
+
+
+/*************************************************************************************************
+	Gridview pager panel font
+*************************************************************************************************/
+
+
 /* Grid pager control panel container */
 .CSSGridPagerPanelContainer
 {
@@ -184,6 +259,12 @@ body
 	
 }
 
+
+
+
+/*************************************************************************************************
+	Popup dialog font
+*************************************************************************************************/
 
 .CSSPopupWindow
 {

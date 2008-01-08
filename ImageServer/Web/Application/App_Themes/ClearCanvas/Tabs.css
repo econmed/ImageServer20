@@ -1,3 +1,8 @@
+/*************************************************************************************************
+
+	AJAX Tab control CSS
+
+*************************************************************************************************/
 
 
 /* .ajax__tab_header - A container element that wraps all of the tabs at the top of the TabContainer. Child CSS classes:.ajax__tab_outer. */
@@ -8,10 +13,14 @@
 /* .ajax__tab_hover - This is applied to a tab when the mouse is hovering over. Child CSS classes:.ajax__tab_outer. */
 /* .ajax__tab_active - This is applied to a tab when it is the currently selected tab. Child CSS classes:.ajax__tab_outer. */   
 
-/* XP IE7 theme - Backgrounds */
+
+/*************************************************************************************************
+	Background styles
+*************************************************************************************************/
+
 .TabControl .ajax__tab_header					
 {
-	/*background: url(./images/tab-line.gif) repeat-x bottom; */
+	background: url(./images/tab-line.gif) repeat-x bottom;
 	vertical-align:bottom;
 }
 .TabControl .ajax__tab_outer
@@ -49,11 +58,12 @@
 .TabControl .ajax__tab_active .ajax__tab_tab
 {
 	background: url(./images/tab-active.gif) repeat-x;
-	font-weight: bold;
-	font-size:100%;
 }
 
-/* XP IE7 theme - Other Styles */
+/*************************************************************************************************
+	Other styles
+*************************************************************************************************/
+
 .TabControl .ajax__tab_header
 {
 	margin:0px;
@@ -77,10 +87,18 @@
 }
 .TabControl .ajax__tab_body
 {
-	margin:0px;
-	padding: 5px; /* gap between the tab border and the content in the tab  */
-	border-right: darkgray 1px solid; border-top: darkgray 1px solid; border-left: darkgray 1px solid; border-bottom: darkgray 1px solid; 
-	
+	margin: 0px;
+	padding: 5px;
+	border-right: darkgray 1px solid;
+	border-top: darkgray 1px solid;
+	border-left: darkgray 1px solid;
+	border-bottom: darkgray 1px solid;
+}
+
+.TabControl .ajax__tab_active .ajax__tab_tab
+{
+	font-weight: bold;
+	font-size:100%;
 }
 
 /* tab control content panel */
@@ -91,10 +109,11 @@
 
 
 
+/*************************************************************************************************
+	
+	AJAX Tabcontrol CSS for tabs used in popup dialog 
 
-
-
-
+*************************************************************************************************/
 
 /* .ajax__tab_header - A container element that wraps all of the tabs at the top of the TabContainer. Child CSS classes:.ajax__tab_outer. */
 /* .ajax__tab_outer - An outer element of a tab, often used to set the left-side background image of the tab.Child CSS classes: .ajax__tab_inner. */
@@ -104,10 +123,14 @@
 /* .ajax__tab_hover - This is applied to a tab when the mouse is hovering over. Child CSS classes:.ajax__tab_outer. */
 /* .ajax__tab_active - This is applied to a tab when it is the currently selected tab. Child CSS classes:.ajax__tab_outer. */   
 
-/* XP IE7 theme - Backgrounds */
+
+/*************************************************************************************************
+	Background styles
+*************************************************************************************************/
+
 .CSSDialogTabControl .ajax__tab_header					
 {
-	/*background: url(./images/tab-line.gif) repeat-x bottom; */
+	background: url(./images/tab-line.gif) repeat-x bottom; 
 	vertical-align:bottom;
 }
 .CSSDialogTabControl .ajax__tab_outer
@@ -145,10 +168,13 @@
 .CSSDialogTabControl .ajax__tab_active .ajax__tab_tab
 {
 	background: url(./images/tab-active.gif) repeat-x;
-	font-size:80%;
+	
 }
 
-/* XP IE7 theme - Other Styles */
+
+/*************************************************************************************************
+	Other styles
+*************************************************************************************************/
 .CSSDialogTabControl .ajax__tab_header
 {
 	vertical-align:bottom;
@@ -166,14 +192,20 @@
 {
 	padding: 8px 8px;
 	margin: 0;
-	font-size:80%;
-	
-	
+	font-size:80%;	
 }
+
+.CSSDialogTabControl .ajax__tab_active .ajax__tab_tab
+{
+	font-size:80%;
+}
+
 .CSSDialogTabControl .ajax__tab_body
 {
-	margin:0px;
-	padding: 5px; /* gap between the tab border and the content in the tab  */
-	border-right: darkgray 1px solid; border-top: darkgray 1px solid; border-left: darkgray 1px solid; border-bottom: darkgray 1px solid; 
-	
+	margin: 0px;
+	padding: 5px;
+	border-right: darkgray 1px solid;
+	border-top: darkgray 1px solid;
+	border-left: darkgray 1px solid;
+	border-bottom: darkgray 1px solid;
 }

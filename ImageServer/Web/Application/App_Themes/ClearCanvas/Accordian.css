@@ -1,8 +1,43 @@
+/**************************************************************************************************
+
+	Accordian Styles
+	
+	Used to set the styles of the result panel in the study and workqueue search page.
+
+	The content of the result (including the header columns, result list and the status bar 
+	is contained within CSSAccordianResultPanelContent. The whole panel is wrapped 
+	inside CSSAccordianResultPanelContainer, and its border style is specified in CSSAccordianResultPanelBorder.
+
+
+	The CSS tree for the column headers is as follows:
+
+		CSSAccordianHeaderPanelContainer
+			CSSAccordianHeaderPanelBorder
+				CSSAccordianHeaderPanelContent
+					CSSAccordianHeaderText
+
+
+	The CSS tree for the study result list is as follows:
+		CSSAccordianResultListContainer
+			CSSAccordianStudyHeader/CSSAccordianStudyHeaderSelected 
+			CSSAccordianStudyDetailsContainer
+				CSSAccordianStudyDetailsPanelContent
+
+
+*************************************************************************************************/
+
+
+/*	The result container 
+	Child: 	CSSAccordianResultPanelBorder
+*/
 .CSSAccordianResultPanelContainer
 {
 	
 }
 
+/* Border inside the container
+	Child:CSSAccordianResultPanelContent
+*/
 .CSSAccordianResultPanelBorder
 {
 	border-right: darkgray 1px solid;
@@ -11,20 +46,34 @@
 	border-bottom: darkgray 1px solid;
 }
 
+/*	Result panel. This include the column header. 
+	Child: 
+		CSSAccordianHeaderPanelContainer
+		CSSAccordianResultListContainer
+*/
 .CSSAccordianResultPanelContent
 {
 	margin:1px;
 }
 
-
+/*	The header column panel
+	Child: CSSAccordianHeaderPanelBorder
+*/	
 .CSSAccordianHeaderPanelContainer
 {
 }
 
+/*	The border of the header column panel 
+	Child: CSSAccordianHeaderPanelContent
+*/
 .CSSAccordianHeaderPanelBorder
 {
 }
 
+
+/*	The content in the header column panel 
+	Child: CSSAccordianHeaderText
+*/
 .CSSAccordianHeaderPanelContent
 {
 	height: 24px;
@@ -39,19 +88,25 @@
 	border-bottom: #a9a9a9 1px solid;
 }
 
+/* The header text  */
 .CSSAccordianHeaderText
 {
 	margin:2px;
 }
 
 
-
+/*	The result list panel container 
+	Child: 
+		CSSAccordianStudyHeader
+		CSSAccordianStudyDetailsContainer
+*/
 .CSSAccordianResultListContainer
 {
 	height:580px;
 }
 
 
+/*	The study header (summary) panel */
 .CSSAccordianStudyHeader
 {
     cursor: pointer;
@@ -60,7 +115,7 @@
     
 }
 
-
+/*	The study header (summary) panel when selected */
 .CSSAccordianStudyHeaderSelected
 {
     background-color:#316AC5;
@@ -69,7 +124,10 @@
     
 }
 
-
+/*	The study details panel container 
+	Child:
+		CSSAccordianStudyDetailsPanelContent
+*/
 .CSSAccordianStudyDetailsContainer
 {
 	background-color: #EFF3FB;
@@ -80,7 +138,8 @@
     
 }
 
-.CSSDetailsPanel
+/*	The study details content panel*/
+.CSSAccordianStudyDetailsPanelContent
 {
 	padding-bottom: 5px;
 	padding-top: 5px;
