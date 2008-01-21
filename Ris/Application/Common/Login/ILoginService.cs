@@ -56,6 +56,15 @@ namespace ClearCanvas.Ris.Application.Common.Login
         LoginResponse Login(LoginRequest request);
 
         /// <summary>
+        /// Allows a client application to inform the server explicitly that the user has logged out
+        /// of the application.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [OperationContract]
+        LogoutResponse Logout(LogoutRequest request);
+
+        /// <summary>
         /// Allows the user of a client application to change his password.
         /// </summary>
         /// <param name="request"></param>
