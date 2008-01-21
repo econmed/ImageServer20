@@ -42,28 +42,42 @@ namespace ClearCanvas.Ris.Client.View.WinForms
     public partial class LoginForm : Form
     {
         private string _selectedFacility;
+        private string[] _facilityChoices;
 
-        public LoginForm(string[] facilities, string selectedFacility)
+        public LoginForm()
         {
             InitializeComponent();
+        }
 
-            _facility.DataSource = facilities;
-            _selectedFacility = selectedFacility;
+        public string[] FacilityChoices
+        {
+            get { return _facilityChoices; }
+            set
+            {
+                _facilityChoices = value;
+                _facility.Items.Clear();
+                _facility.Items.AddRange(_facilityChoices);
+            }
         }
 
         public string UserName
         {
-            get { return _userName.Value; }
+            get { return _userName.Text; }
+            set { _userName.Text = value; }
         }
 
         public string Password
         {
-            get { return _password.Value; }
+            get { return _password.Text; }
         }
 
         public string SelectedFacility
         {
-            get { return (string)_facility.Value; }
+            get { return (string)_facility.SelectedItem; }
+            set
+            {
+                _facility.SelectedItem = value;
+            }
         }
 
         private void _loginButton_Click(object sender, EventArgs e)
@@ -76,16 +90,31 @@ namespace ClearCanvas.Ris.Client.View.WinForms
             this.DialogResult = DialogResult.Cancel;
         }
 
-        private void _userName_ValueChanged(object sender, EventArgs e)
-        {
-            bool empty = string.IsNullOrEmpty(_userName.Value);
-            _loginButton.Enabled = !empty;
-            this.AcceptButton = empty ? _cancelButton : _loginButton;
-        }
-
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            _facility.Value = _selectedFacility;
+        }
+
+        private void _userName_TextChanged(object sender, EventArgs e)
+        {
+            UpdateButtonStates();
+        }
+
+        private void _password_TextChanged(object sender, EventArgs e)
+        {
+            UpdateButtonStates();
+        }
+
+        private void _facility_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UpdateButtonStates();
+        }
+
+        private void UpdateButtonStates()
+        {
+            bool ok = !string.IsNullOrEmpty(_userName.Text) && !string.IsNullOrEmpty(_password.Text) &&
+                         _facility.SelectedItem != null;
+            _loginButton.Enabled = ok;
+            this.AcceptButton = ok ? _loginButton : _cancelButton;
         }
     }
 }
