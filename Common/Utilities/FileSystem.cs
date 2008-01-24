@@ -40,12 +40,7 @@ namespace ClearCanvas.Common.Utilities
     /// </summary>
     public class FileSystem
     {
-        #region Constants
-        
-        protected const int TIMEOUT = 1000;
-
-        #endregion Constants
-
+       
         #region Static Methods
 
 
@@ -53,17 +48,29 @@ namespace ClearCanvas.Common.Utilities
         /// Checks if a specified directory exists on the network and accessible from local machine.
         /// </summary>
         /// <param name="dir"></param>
+        /// <param name="timeout"></param>
         /// <returns></returns>
-        public static bool DirectoryExists(String dir)
+        public static bool DirectoryExists(String dir, int timeout)
         {
             bool exists = false;
-            Thread t = new Thread(delegate()
+
+            
+            if (timeout > 0)
+            {
+                Thread t = new Thread(delegate()
                                       {
                                           exists = Directory.Exists(dir);
                                       });
-            t.Start();
-            t.Join(TIMEOUT);
-            t.Abort();
+
+                t.Start();
+                t.Join(timeout);
+                t.Abort();
+            }
+            else
+            {
+                exists = Directory.Exists(dir);
+            }
+            
 
             return exists;
         }
