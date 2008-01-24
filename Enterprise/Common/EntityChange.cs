@@ -53,16 +53,27 @@ namespace ClearCanvas.Enterprise.Common
     [DataContract]
     public class EntityChange
     {
-        private EntityRef _entityRef;
-        private EntityChangeType _changeType;
+        private readonly EntityRef _entityRef;
+        private readonly EntityChangeType _changeType;
+        private readonly PropertyChange[] _propertyChanges;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public EntityChange(EntityRef entityRef, EntityChangeType changeType)
+        public EntityChange(EntityRef entityRef, EntityChangeType changeType, PropertyChange[] propertyChanges)
         {
             _entityRef = entityRef;
             _changeType = changeType;
+            _propertyChanges = propertyChanges;
+        }
+
+        /// <summary>
+        /// Reference to the entity that changed
+        /// </summary>
+        [DataMember]
+        public EntityRef EntityRef
+        {
+            get { return _entityRef; }
         }
 
         /// <summary>
@@ -75,12 +86,12 @@ namespace ClearCanvas.Enterprise.Common
         }
 
         /// <summary>
-        /// Reference to the entity that changed
+        /// Gets an array of <see cref="PropertyChange"/> objects describing the changes
+        /// made to the entity's property values.
         /// </summary>
-        [DataMember]
-        public EntityRef EntityRef
+        public PropertyChange[] PropertyChanges
         {
-            get { return _entityRef; }
+            get { return _propertyChanges; }
         }
     }
 }
