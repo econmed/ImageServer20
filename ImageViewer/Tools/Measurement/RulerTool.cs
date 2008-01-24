@@ -32,17 +32,14 @@
 using System;
 using System.Drawing;
 using ClearCanvas.Common;
-using ClearCanvas.ImageViewer.Mathematics;
-using ClearCanvas.ImageViewer.Imaging;
-using ClearCanvas.ImageViewer.InteractiveGraphics;
-using ClearCanvas.Desktop.Tools;
-using ClearCanvas.Desktop.Actions;
-using ClearCanvas.ImageViewer.StudyManagement;
 using ClearCanvas.Desktop;
-using ClearCanvas.ImageViewer.InputManagement;
-using ClearCanvas.ImageViewer.Graphics;
-using ClearCanvas.ImageViewer.BaseTools;
+using ClearCanvas.Desktop.Actions;
 using ClearCanvas.Dicom;
+using ClearCanvas.ImageViewer.BaseTools;
+using ClearCanvas.ImageViewer.Graphics;
+using ClearCanvas.ImageViewer.InputManagement;
+using ClearCanvas.ImageViewer.InteractiveGraphics;
+using ClearCanvas.ImageViewer.StudyManagement;
 
 namespace ClearCanvas.ImageViewer.Tools.Measurement
 {
@@ -52,24 +49,18 @@ namespace ClearCanvas.ImageViewer.Tools.Measurement
     [CheckedStateObserver("activate", "Active", "ActivationChanged")]
 	[TooltipValueObserver("activate", "Tooltip", "TooltipChanged")]
 	[IconSet("activate", IconScheme.Colour, "Icons.RulerToolSmall.png", "Icons.RulerToolMedium.png", "Icons.RulerToolLarge.png")]
-	[GroupHint("activate", "Tools.Image.Measurement.ROI.Linear")]
+	[GroupHint("activate", "Tools.Image.Measurement.Roi.Linear")]
 
 	[MouseToolButton(XMouseButtons.Left, false)]
 	[ExtensionOf(typeof(ImageViewerToolExtensionPoint))]
     public class RulerTool : MouseImageViewerTool
 	{
-		private static readonly string[] _disallowedModalities = { "CR", "DX", "MG" };
 		private RoiGraphic _createGraphic;
 
 		public RulerTool()
 			: base(SR.TooltipRuler)
 		{
 			this.Behaviour = MouseButtonHandlerBehaviour.SuppressContextMenu | MouseButtonHandlerBehaviour.SuppressOnTileActivate;
-		}
-
-		public override string Tooltip
-		{
-			get { return base.Tooltip; }
 		}
 
 		public override event EventHandler TooltipChanged
