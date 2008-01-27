@@ -61,7 +61,7 @@ namespace ClearCanvas.ImageServer.Web.Services.Shreds.ValidationServer
                 Platform.Log(LogLevel.Debug, "ValidationService: {0} doesn't exist or is not accessible", path); 
                 
                 IPHostEntry local = Dns.GetHostEntry("");
-                res.ErrorText = "The specified path: " + path + " doesn't exist OR is not accessible from " + local.HostName;
+                res.ErrorText = "The specified path is invalid OR not accessible from " + local.HostName;
                 res.Success = false;
                 res.ErrorCode = -1;
                 

@@ -30,7 +30,6 @@
 #endregion
 
 using System;
-using System.Drawing;
 using System.Web.UI.WebControls;
 
 namespace ClearCanvas.ImageServer.Web.Common.WebControls
@@ -61,18 +60,19 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls
     /// 
     /// </example>
     /// 
-    public class ConditionalRequiredFieldValidator: BaseValidator
+    public class ConditionalRequiredFieldValidator : BaseValidator
     {
         #region Private Members
+
         // the control, if checked, "enables" this validation control
         private string _conditionalCheckBoxID;
         // specify when the validation should be enabled: when the condition control is checked or unchecked
-        private bool    _requiredWhenChecked;
-
+        private bool _requiredWhenChecked;
 
         #endregion Private members
 
         #region Public Properties
+
         /// <summary>
         /// Sets or gets the ID of the condition control.
         /// </summary>
@@ -100,129 +100,49 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls
             set { _requiredWhenChecked = value; }
         }
 
-
         #endregion Public Properties
-
 
         #region Protected Methods
 
-        protected override void OnInit(EventArgs e)
+        protected override void RegisterClientSideValidationFunction()
         {
-            TextBox input = FindControl(ControlToValidate) as TextBox;
-            CheckBox ConditionalCheckBox = (String.IsNullOrEmpty(ConditionalCheckBoxID))? null:FindControl(ConditionalCheckBoxID) as CheckBox;
-
-            // Register the javascripts to be used by the validator controls on the client
-            string script;
-
-            
-            // Create different javascript based depending on whether the condition checkbox is specified
-            if (ConditionalCheckBoxID!= null)
+            if (ConditionalCheckBoxID != null)
             {
-                script =
-                    "<script language='javascript'>" + @"
-                        function " + EvalFunctionName + @"()
-                        {
-                                result = true;
+                ScriptTemplate template =
+                    new ScriptTemplate(GetType().Assembly,
+                                       "ClearCanvas.ImageServer.Web.Common.WebControls.ConditionalRequiredFieldValidator_OnValidate_Conditional.js");
+                template.Replace("@@FUNCTION_NAME@@", ClientEvalFunctionName);
+                template.Replace("@@INPUT_CLIENTID@@", InputControl.ClientID);
+                template.Replace("@@CONDITIONAL_CONTROL_CLIENTID@@", GetControlRenderID(ConditionalCheckBoxID));
+                template.Replace("@@REQUIRED_WHEN_CHECKED@@", RequiredWhenChecked.ToString());
 
-                                chkbox = document.getElementById('" + ConditionalCheckBox.ClientID + @"');
-                                textbox = document.getElementById('" + GetControlRenderID(ControlToValidate) + @"');
-                                extenderCtrl =  document.getElementById('" + this.ClientID + @"');
-                                helpCtrl = document.getElementById('" + GetControlRenderID(PopupHelpControlID) + @"');
-
-                                
-                                if (chkbox.checked == " + _requiredWhenChecked.ToString().ToLower() + @")
-                                {
-                                    if (textbox.value==null || textbox.value=='')
-                                    {
-                                        result = false;
-                                    }
-                                }
-
-                                 if (!result)
-                                {
-                                    textbox.style.backgroundColor ='" + InvalidInputBackColor + @"';
-                                    if (helpCtrl!=null){
-                                        helpCtrl.style.visibility='visible';
-                                        helpCtrl.alt='" + ErrorMessage + @"';
-                                    }
-                                }
-                                else
-                                {
-                                    //if (helpCtrl!=null)
-                                    //    helpCtrl.style.visibility='hidden';
-                                }
-
-                                return  result;
-                        }
-
-                        </script>
-                    ";
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), ClientEvalFunctionName, template.Script, true);
             }
             else
             {
-                script =
-                    "<script language='javascript'>" + @"
-                        function " + EvalFunctionName + @"()
-                        {
-
-                                result = true;
-
-                                textbox = document.getElementById('" + GetControlRenderID(ControlToValidate) + @"');
-                                extenderCtrl =  document.getElementById('" + this.ClientID + @"');
-                                helpCtrl = document.getElementById('" + GetControlRenderID(PopupHelpControlID) + @"');
-
-                                if (textbox.value==null || textbox.value=='')
-                                {
-                                    result = false;
-                                }
-                            
-                                if (!result)
-                                {
-                                    if (helpCtrl!=null)
-                                    {
-                                        helpCtrl.style.visibility='visible';
-                                        helpCtrl.alt='" + ErrorMessage + @"';
-                                    }
-                                    textbox.style.backgroundColor ='" + InvalidInputBackColor + @"';
-                                }
-                                else
-                                {
-                                    //if (helpCtrl!=null)
-                                    //    helpCtrl.style.visibility='hidden';
-                                    //textbox.style.backgroundColor='" + System.Drawing.ColorTranslator.ToHtml(BackColor) + @"';
-                                }
-
-                                return  result;
-                        }
-
-                        </script>
-                    ";
+                ScriptTemplate template =
+                    new ScriptTemplate(GetType().Assembly,
+                                       "ClearCanvas.ImageServer.Web.Common.WebControls.ConditionalRequiredFieldValidator_OnValidate.js");
+                template.Replace("@@FUNCTION_NAME@@", ClientEvalFunctionName);
+                template.Replace("@@INPUT_CLIENTID@@", InputControl.ClientID);
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), ClientEvalFunctionName, template.Script, true);
             }
-
-            Page.ClientScript.RegisterClientScriptBlock(GetType(), ClientID, script);
-
-            base.OnInit(e);
         }
 
-
-        /// <summary>
-        /// Called during server side validation
-        /// </summary>
-        /// <returns></returns>
-        protected override bool EvaluateIsValid()
+        protected override bool OnServerSideEvaluate()
         {
-            TextBox input = FindControl(ControlToValidate) as TextBox;
-
-            CheckBox chkbox = String.IsNullOrEmpty(ConditionalCheckBoxID)? null:FindControl(ConditionalCheckBoxID) as CheckBox;
+           
+            CheckBox chkbox = String.IsNullOrEmpty(ConditionalCheckBoxID)
+                                  ? null
+                                  : FindControl(ConditionalCheckBoxID) as CheckBox;
 
             if (chkbox != null)
             {
-                if (chkbox.Checked == _requiredWhenChecked)
+                if (chkbox.Checked && RequiredWhenChecked)
                 {
-                    string value = GetControlValidationValue(this.ControlToValidate);
+                    string value = GetControlValidationValue(ControlToValidate);
                     if (String.IsNullOrEmpty(value))
                     {
-                        input.BackColor = Color.Yellow;
                         return false;
                     }
                 }
@@ -233,10 +153,9 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls
             }
             else
             {
-                string value = GetControlValidationValue(this.ControlToValidate);
+                string value = GetControlValidationValue(ControlToValidate);
                 if (String.IsNullOrEmpty(value))
                 {
-                    input.BackColor = Color.Yellow;
                     return false;
                 }
             }
@@ -246,5 +165,5 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls
         #endregion Protected Methods
     }
 
-    
+   
 }
