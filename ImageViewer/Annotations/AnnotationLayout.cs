@@ -53,12 +53,14 @@ namespace ClearCanvas.ImageViewer.Annotations
 	public abstract class AnnotationLayout : IAnnotationLayout
 	{
 		private static readonly IAnnotationLayout _empty = new EmptyAnnotationLayout();
+		private bool _visible;
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		protected AnnotationLayout()
 		{
+			_visible = true;
 		}
 
 		/// <summary>
@@ -75,6 +77,15 @@ namespace ClearCanvas.ImageViewer.Annotations
 		/// Gets the entire set of <see cref="AnnotationBox"/>es.
 		/// </summary>
 		public abstract IEnumerable<AnnotationBox> AnnotationBoxes { get; }
+
+		/// <summary>
+		/// Gets or sets whether the <see cref="AnnotationLayout"/> is visible.
+		/// </summary>
+		public bool Visible
+		{
+			get { return _visible; }
+			set { _visible = value; }
+		}
 
 		#endregion
 	}
