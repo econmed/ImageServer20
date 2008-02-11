@@ -30,7 +30,6 @@ namespace ClearCanvas.ImageServer.Web.Application.FilesystemServiceProxy
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private ulong FreeSizeInKBField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -74,7 +73,7 @@ namespace ClearCanvas.ImageServer.Web.Application.FilesystemServiceProxy
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public string Path
         {
             get
