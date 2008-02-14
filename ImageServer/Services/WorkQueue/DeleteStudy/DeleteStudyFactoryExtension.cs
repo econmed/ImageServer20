@@ -47,12 +47,12 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.DeleteStudy
 
         #region IWorkQueueProcessorFactory Members
 
-        public WorkQueueTypeEnum GetWorkQueueType()
+        public virtual WorkQueueTypeEnum GetWorkQueueType()
         {
             return WorkQueueTypeEnum.GetEnum("DeleteStudy");
         }
 
-        public IWorkQueueItemProcessor GetItemProcessor()
+        public virtual IWorkQueueItemProcessor GetItemProcessor()
         {
             return new DeleteStudyItemProcessor();
         }
