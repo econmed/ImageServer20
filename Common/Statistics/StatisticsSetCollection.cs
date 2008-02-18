@@ -81,14 +81,15 @@ namespace ClearCanvas.Common.Statistics
         /// Returns the statistics collection as a list of XML elements.
         /// </summary>
         /// <param name="doc"></param>
+        /// <param name="recursive"></param>
         /// <returns></returns>
-        public virtual List<XmlElement> ToXmlElements(XmlDocument doc)
+        public virtual List<XmlElement> ToXmlElements(XmlDocument doc, bool recursive)
         {
             List<XmlElement> list = new List<XmlElement>();
 
             foreach (StatisticsSet item in Items)
             {
-                XmlElement xml = item.GetXmlElement(doc);
+                XmlElement xml = item.GetXmlElement(doc, recursive);
                 list.Add(xml);
             }
 
