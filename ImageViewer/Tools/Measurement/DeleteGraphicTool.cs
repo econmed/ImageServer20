@@ -32,6 +32,7 @@
 using ClearCanvas.Common;
 using ClearCanvas.Desktop.Actions;
 using ClearCanvas.Desktop.Tools;
+using ClearCanvas.ImageViewer.BaseTools;
 using ClearCanvas.ImageViewer.Graphics;
 
 namespace ClearCanvas.ImageViewer.Tools.Measurement
@@ -44,7 +45,7 @@ namespace ClearCanvas.ImageViewer.Tools.Measurement
 
 	[ExtensionOf(typeof(GraphicToolExtensionPoint))]
 
-	public class DeleteGraphicTool : Tool<IGraphicToolContext>
+	public class DeleteGraphicTool : GraphicTool
 	{
 		public DeleteGraphicTool()
 		{

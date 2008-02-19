@@ -32,27 +32,29 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ClearCanvas.Common.Utilities;
 
 namespace ClearCanvas.Dicom
 {
     public class PixelSpacing : IEquatable<PixelSpacing>
     {
+		
 		#region Private Members
 		
 		double _row;
 		double _column;
-		
+
 		#endregion
 		
 		/// <summary>
 		/// Constructor for NHibernate.
 		/// </summary>
-		private PixelSpacing()
+		protected PixelSpacing()
 		{
 		}
 
 		/// <summary>
-		/// Mandatory Constructor.
+		/// Initializes a new instance of <see cref="PixelSpacing"/>.
 		/// </summary>
 		public PixelSpacing(double row, double column)
 		{
@@ -62,7 +64,7 @@ namespace ClearCanvas.Dicom
 
 		public bool IsNull
 		{
-			get { return _row == 0 && _column == 0; }
+			get { return _row == 0 || _column == 0; }
 		}
 
 		#region NHibernate Persistent Properties

@@ -139,13 +139,13 @@
     <value>Area: {0:F0} pixels</value>
   </data>
   <data name="ToolsMeasurementFormatAreaSquareCm" xml:space="preserve">
-    <value>Area: {0:F2} cm²</value>
+    <value>Area: {0:F1} cm²</value>
   </data>
   <data name="ToolsMeasurementFormatLengthCm" xml:space="preserve">
-    <value>Length: {0:F2} cm</value>
+    <value>Length: {0:F1} cm</value>
   </data>
   <data name="ToolsMeasurementFormatLengthPixels" xml:space="preserve">
-    <value>Length: {0:F2} pixels</value>
+    <value>Length: {0:F0} pixels</value>
   </data>
   <data name="NameDeleteGraphic" xml:space="preserve">
     <value>DeleteGraphic</value>
@@ -184,7 +184,7 @@
     <value>Elliptical ROI</value>
   </data>
   <data name="ToolsMeasurementFormatAreaSquareMm" xml:space="preserve">
-    <value>Area: {0:F2} mm²</value>
+    <value>Area: {0:F0} mm²</value>
   </data>
   <data name="CommandCreateEllipiticalRoi" xml:space="preserve">
     <value>Create Elliptical ROI</value>
@@ -199,7 +199,7 @@
     <value>Create Ruler</value>
   </data>
   <data name="ToolsMeasurementFormatLengthMm" xml:space="preserve">
-    <value>Length: {0:F2} mm</value>
+    <value>Length: {0:F0} mm</value>
   </data>
   <data name="ToolsMeasurementFormatMean" xml:space="preserve">
     <value>Mean: {0}</value>
@@ -212,5 +212,17 @@
   </data>
   <data name="ToolsMeasurementFormatStdDevCT" xml:space="preserve">
     <value>Std Dev: {0} HU</value>
+  </data>
+  <data name="CalibrationDialogTitle" xml:space="preserve">
+    <value>Calibrate</value>
+  </data>
+  <data name="MenuCalibrationTool" xml:space="preserve">
+    <value>Calibrate</value>
+  </data>
+  <data name="MessageInvalidLength" xml:space="preserve">
+    <value>Length must be greater than 0 cm.</value>
+  </data>
+  <data name="TooltipCalibrationTool" xml:space="preserve">
+    <value>Calibrate</value>
   </data>
 </root>
