@@ -46,7 +46,7 @@ namespace ClearCanvas.ImageServer.Web.Application.WorkQueue
         /// </summary>
         /// <param name="study"></param>
         /// <returns></returns>
-        public StudyDetails CreateStudyDetail(Study study)
+        public StudyDetails CreateStudyDetail(Model.Study study)
         {
             StudyDetails details = new StudyDetails();
             details.StudyInstanceUID = study.StudyInstanceUid;

@@ -29,6 +29,15 @@ namespace ClearCanvas.ImageServer.Web.Application.Search {
         protected global::System.Web.UI.UpdatePanel UpdatePanel;
         
         /// <summary>
+        /// ScriptManagerProxy1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManagerProxy ScriptManagerProxy1;
+        
+        /// <summary>
         /// PagePanel control.
         /// </summary>
         /// <remarks>
@@ -81,6 +90,15 @@ namespace ClearCanvas.ImageServer.Web.Application.Search {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ClearCanvas.ImageServer.Web.Common.WebControls.UI.ToolbarButton DeleteToolbarButton;
+        
+        /// <summary>
+        /// ToolbarButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ClearCanvas.ImageServer.Web.Common.WebControls.UI.ToolbarButton ToolbarButton1;
         
         /// <summary>
         /// FilterPanel control.
@@ -207,5 +225,14 @@ namespace ClearCanvas.ImageServer.Web.Application.Search {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ClearCanvas.ImageServer.Web.Application.Common.GridPager GridPager1;
+        
+        /// <summary>
+        /// ConfirmDialog1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ClearCanvas.ImageServer.Web.Application.Common.ConfirmDialog ConfirmDialog1;
     }
 }
