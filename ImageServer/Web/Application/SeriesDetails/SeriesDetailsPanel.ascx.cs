@@ -38,8 +38,13 @@ namespace ClearCanvas.ImageServer.Web.Application.SeriesDetails
     /// </summary>
     public partial class SeriesDetailsPanel : System.Web.UI.UserControl
     {
+        #region Private members
         private Model.Study _study;
         private Model.Series _series;
+        #endregion Private members
+
+
+        #region Public Properties
 
         public Model.Study Study
         {
@@ -53,10 +58,26 @@ namespace ClearCanvas.ImageServer.Web.Application.SeriesDetails
             set { _series = value; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Series != null)
-                SeriesDetailsView1.Series = Series;
+            if (_study!=null)
+            {
+                PatientSummaryPanel1.PatientSummary = PatientSummaryAssembler.CreatePatientSummary(_study);
+
+                StudySummaryPanel summary = (StudySummaryPanel)StudySectionPanel.FindControl("StudySummaryPanel1");
+                summary.Study = _study;
+
+                if (Series != null)
+                    SeriesDetailsView1.Series = _series; 
+            }
+
         }
+
+        #endregion Protected Properties
+
     }
 }

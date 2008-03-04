@@ -47,6 +47,15 @@ namespace ClearCanvas.ImageServer.Web.Application.StudyDetails {
         protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// PatientName control.
         /// </summary>
         /// <remarks>
@@ -54,6 +63,15 @@ namespace ClearCanvas.ImageServer.Web.Application.StudyDetails {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label PatientName;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// PatientId control.
@@ -65,6 +83,15 @@ namespace ClearCanvas.ImageServer.Web.Application.StudyDetails {
         protected global::System.Web.UI.WebControls.Label PatientId;
         
         /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
         /// PatientBirthDate control.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,15 @@ namespace ClearCanvas.ImageServer.Web.Application.StudyDetails {
         protected global::System.Web.UI.WebControls.Label PatientBirthDate;
         
         /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
         /// PatientAge control.
         /// </summary>
         /// <remarks>
@@ -81,6 +117,15 @@ namespace ClearCanvas.ImageServer.Web.Application.StudyDetails {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label PatientAge;
+        
+        /// <summary>
+        /// Label5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
         /// PatientSex control.

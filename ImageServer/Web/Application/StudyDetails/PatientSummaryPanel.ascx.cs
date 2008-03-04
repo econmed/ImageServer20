@@ -77,34 +77,34 @@ namespace ClearCanvas.ImageServer.Web.Application.StudyDetails
                     TimeSpan age = DateTime.Now - bdate;
                     if (age > TimeSpan.FromDays(365))
                     {
-                        PatientAge.Text = String.Format("Age: {0:0} yrs old", age.TotalDays / 365);
+                        PatientAge.Text = String.Format("{0:0} yrs old", age.TotalDays / 365);
                     }
                     else if (age > TimeSpan.FromDays(30))
                     {
-                        PatientAge.Text = String.Format("Age: {0:0} month(s)", age.TotalDays / 30);
+                        PatientAge.Text = String.Format("{0:0} month(s)", age.TotalDays / 30);
                     }
                     else
                     {
-                        PatientAge.Text = String.Format("Age: {0:0} day(s)", age.TotalDays);
+                        PatientAge.Text = String.Format("{0:0} day(s)", age.TotalDays);
                     }
                 }
                 else
                 {
-                    PatientBirthDate.Text = "Birthdate: Unknown";
-                    PatientAge.Text = "Age: Unknown";                    
+                    PatientBirthDate.Text = "Unknown";
+                    PatientAge.Text = "Unknown";
                 }
 
-                
+
 
                 if (String.IsNullOrEmpty(_patientSummary.Sex))
-                    PatientSex.Text = "Gender: Unknown";
+                    PatientSex.Text = "Unknown";
                 else
                 {
-                    PatientSex.Text = String.Format("Gender: {0}", PatientSex.Text == "F" ? "Female" : "Male");
+                    PatientSex.Text = PatientSex.Text == "F" ? "Female" : "Male";
                 }
 
 
-                PatientId.Text = String.Format("Patient ID {0}: {1}", String.IsNullOrEmpty(_patientSummary.IssuerOfPatientId) ? "" : "(" + _patientSummary.IssuerOfPatientId + ")", _patientSummary.PatientId);
+                PatientId.Text = _patientSummary.PatientId;
 
             }
 
