@@ -33,6 +33,7 @@ using System;
 using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ClearCanvas.ImageServer.Web.Common.Utilities;
 
 namespace ClearCanvas.ImageServer.Web.Common.WebControls.UI
 {
@@ -51,6 +52,16 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls.UI
     /// 
     /// </remarks>
     /// <example>
+    /// The following example illustrate how to use <see cref="DateTimeLabel"/> to display a date in MMM/dd/yyyy format:
+    /// 
+    /// <code>
+    /// 
+    /// <%@ Register Assembly="ClearCanvas.ImageServer.Web.Common" Namespace="ClearCanvas.ImageServer.Web.Common.WebControls.UI" TagPrefix="clearcanvas" %>
+    /// ...
+    /// <clearcanvas:DateTimeLabel ID="Today" runat="server" ForeColor="white" Format="MMM/dd/yyyy" EmptyValueText="Unknown"></clearcanvas:DateTimeLabel>
+    /// 
+    /// 
+    /// </code>
     /// </example>
     [DefaultProperty("Value")]
     [ToolboxData("<{0}:DateTimeLabel runat=server></{0}:DateTimeLabel>")]
@@ -99,21 +110,21 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls.UI
         protected string GetRenderText()
         {
             if (String.IsNullOrEmpty(Text))
-                return GetValueRenderingText();
+                return GetRenderedDateTimeText();
             else
-                return String.Format(Text, GetValueRenderingText());
+                return String.Format(Text, GetRenderedDateTimeText());
         }
 
-        protected virtual string GetValueRenderingText()
+        protected virtual string GetRenderedDateTimeText()
         {
             DateTime? datetime= Value;
-            string datetimeString = "";
+
             if (datetime != null)
             {
-                if (String.IsNullOrEmpty(Format))
-                    return DateTimeFormatter.Format(datetime.Value);
+                if (!String.IsNullOrEmpty(Format))
+                    return DateTimeFormatter.Format(datetime.Value, Format);
                 else
-                    return datetime.Value.ToString(Format);
+                    return DateTimeFormatter.Format(datetime.Value);
             }
             else
                 return null;
