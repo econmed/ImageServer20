@@ -30,6 +30,7 @@
 #endregion
 
 using ClearCanvas.Common.Statistics;
+using ClearCanvas.ImageServer.Services.WorkQueue.WebDeleteStudy;
 
 namespace ClearCanvas.ImageServer.Services.WorkQueue.StudyProcess
 {
