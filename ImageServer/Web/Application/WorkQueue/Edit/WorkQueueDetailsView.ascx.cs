@@ -83,6 +83,8 @@ namespace ClearCanvas.ImageServer.Web.Application.WorkQueue.Edit
                 detailsList.Add(WorkQueueDetailsAssembler.CreateWorkQueueDetail(WorkQueue));
                 WorkQueueItemDetailsView.DataSource = detailsList;
             }
+            else
+                WorkQueueItemDetailsView.DataSource = null;
             
             base.DataBind();
         }
