@@ -32,6 +32,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Iesi.Collections.Generic;
 
 namespace ClearCanvas.Healthcare.Tests
 {
@@ -46,7 +47,8 @@ namespace ClearCanvas.Healthcare.Tests
                 null,   // billing
                 staffType,
                 null,
-                new Dictionary<string, string>());
+                new Dictionary<string, string>(),
+                new HashedSet<StaffGroup>());
         }
     }
 }
