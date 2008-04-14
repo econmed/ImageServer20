@@ -29,66 +29,28 @@
 
 #endregion
 
-using System;
 using ClearCanvas.Common;
 using ClearCanvas.Desktop;
-using ClearCanvas.Desktop.Tools;
 using ClearCanvas.Desktop.Actions;
-using ClearCanvas.Ris.Application.Common;
-using ClearCanvas.Ris.Client;
+using ClearCanvas.Desktop.Tools;
 
 namespace ClearCanvas.Ris.Client.Adt
 {
-    [ExtensionPoint]
-    public class RegistrationHomeFolderSystemToolExtensionPoint : ExtensionPoint<ITool>
-    {
-    }
+	[ExtensionPoint]
+	public class RegistrationHomeFolderSystemToolExtensionPoint : ExtensionPoint<ITool>
+	{
+	}
 
-    [MenuAction("launch", "global-menus/Go/Registration Home", "Launch")]
-    //[ButtonAction("launch", "global-toolbars/Go/Registration Home", "Launch")]
-    [Tooltip("launch", "Registration Home")]
+	[MenuAction("launch", "global-menus/Go/Registration Home", "Launch")]
+	//[ButtonAction("launch", "global-toolbars/Go/Registration Home", "Launch")]
+	[Tooltip("launch", "Registration Home")]
 	[IconSet("launch", IconScheme.Colour, "Icons.RegistrationHomeToolSmall.png", "Icons.RegistrationHomeToolMedium.png", "Icons.RegistrationHomeToolLarge.png")]
-    [ExtensionOf(typeof(DesktopToolExtensionPoint))]
-    public class RegistrationHomeTool : Tool<IDesktopToolContext>
-    {
-        private IWorkspace _workspace;
-
-        public void Launch()
-        {
-            if (_workspace == null)
-            {
-                try
-                {
-                    _workspace = ApplicationComponent.LaunchAsWorkspace(
-                        this.Context.DesktopWindow,
-                        BuildComponent(),
-                        SR.TitleRegistrationHome);
-                    _workspace.Closed += delegate { _workspace = null; };
-
-                }
-                catch (Exception e)
-                {
-                    ExceptionHandler.Report(e, this.Context.DesktopWindow);
-                }
-            }
-            else
-            {
-                _workspace.Activate();
-            }
-        }
-
-        private IApplicationComponent BuildComponent()
-        {
-            WorklistPreviewComponent previewComponent = new WorklistPreviewComponent();
-            HomePageContainer homePage = new HomePageContainer(new RegistrationHomeFolderSystemToolExtensionPoint(), previewComponent);
-
-            homePage.ContentsComponent.SelectedItemsChanged += delegate
-            {
-                WorklistItemSummaryBase item = homePage.ContentsComponent.SelectedItems.Item as WorklistItemSummaryBase;
-                previewComponent.WorklistItem = item;
-            };
-
-            return homePage;
-        }
-    }
+	[ExtensionOf(typeof(DesktopToolExtensionPoint))]
+	public class RegistrationHomeTool : WorklistPreviewHomeTool<RegistrationHomeFolderSystemToolExtensionPoint>
+	{
+		public override string Title
+		{
+			get { return SR.TitleRegistrationHome; }
+		}
+	}
 }
