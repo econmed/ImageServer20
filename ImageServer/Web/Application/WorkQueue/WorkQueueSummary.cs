@@ -56,6 +56,7 @@ namespace ClearCanvas.ImageServer.Web.Application.WorkQueue
         private WorkQueueStatusEnum _status;
         private WorkQueuePriorityEnum _priority;
         private DateTime _scheduledDateTime;
+        private string _notes;
 
         #endregion Private members
 
@@ -102,6 +103,12 @@ namespace ClearCanvas.ImageServer.Web.Application.WorkQueue
         {
             get { return _priority; }
             set { _priority = value; }
+        }
+
+        public string Notes
+        {
+            get { return _notes; }
+            set { _notes = value; }
         }
 
         #endregion Public Properties
