@@ -30,9 +30,9 @@ namespace ClearCanvas.Ris.Application.Services {
         [global::System.Configuration.SettingsDescriptionAttribute("Number of worklist items per page")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public int DefaultItemsPerPage {
+        public int ItemsPerPage {
             get {
-                return ((int)(this["DefaultItemsPerPage"]));
+                return ((int)(this["ItemsPerPage"]));
             }
         }
     }
