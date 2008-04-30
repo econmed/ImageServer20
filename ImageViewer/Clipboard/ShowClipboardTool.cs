@@ -29,13 +29,12 @@
 
 #endregion
 
-using System;
 using ClearCanvas.Common;
 using ClearCanvas.Desktop;
 using ClearCanvas.Desktop.Actions;
 using ClearCanvas.ImageViewer.BaseTools;
 
-namespace ClearCanvas.ImageViewer.Clipboard
+namespace ClearCanvas.ImageViewer.Clipboard.Tools
 {
 	[MenuAction("show", "global-menus/MenuView/MenuShowClipboard", "Show")]
 	[ButtonAction("show", "global-toolbars/ToolbarStandard/ToolbarShowClipboard", "Show")]

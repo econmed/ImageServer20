@@ -132,6 +132,12 @@
   <data name="DescriptionPng" xml:space="preserve">
     <value>Portable Network Graphics (PNG)</value>
   </data>
+  <data name="DescriptionSubsetCustom" xml:space="preserve">
+    <value>Subset (Custom)</value>
+  </data>
+  <data name="DescriptionSubsetRange" xml:space="preserve">
+    <value>Subset (Range)</value>
+  </data>
   <data name="DescriptionTiff" xml:space="preserve">
     <value>Tag Image File Format (TIFF)</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="MenuCopyImageToClipboard" xml:space="preserve">
     <value>Copy Image to Clipboard</value>
+  </data>
+  <data name="MenuCopySubsetToClipboard" xml:space="preserve">
+    <value>Copy Range of Images to Clipboard</value>
   </data>
   <data name="MenuDeleteAllClipboardItems" xml:space="preserve">
     <value>Delete All</value>
@@ -165,8 +174,17 @@
   <data name="MessageCancelled" xml:space="preserve">
     <value>Cancelled.</value>
   </data>
+  <data name="MessageCustomRangeInvalid" xml:space="preserve">
+    <value>The custom range is invalid.</value>
+  </data>
   <data name="MessageDirectoryDoesNotExist" xml:space="preserve">
     <value>The specified directory does not exist.</value>
+  </data>
+  <data name="MessageEndValueLargerThanStart" xml:space="preserve">
+    <value>The end value must be less than or equal to the start value.</value>
+  </data>
+  <data name="MessageEndValueOutOfRange" xml:space="preserve">
+    <value>The end value is out of range.</value>
   </data>
   <data name="MessageErrorLaunchingConfigurationComponent" xml:space="preserve">
     <value>An error has occurred while attempting to launch the configuration dialog.  Please check the log for more details.</value>
@@ -186,11 +204,20 @@
   <data name="MessageInvalidFilePath" xml:space="preserve">
     <value>The specified file path is invalid.</value>
   </data>
+  <data name="MessageRangeIntervalInvalid" xml:space="preserve">
+    <value>The interval value is invalid.</value>
+  </data>
+  <data name="MessageStartValueOutOfRange" xml:space="preserve">
+    <value>The start value is out of range.</value>
+  </data>
   <data name="MessageUnableToClearClipboardItems" xml:space="preserve">
     <value>At least one of the items could not be removed from the clipboard because it is in use.</value>
   </data>
   <data name="TitleClipboard" xml:space="preserve">
     <value>Clipboard</value>
+  </data>
+  <data name="TitleCopySubsetToClipboard" xml:space="preserve">
+    <value>Copy Images to Clipboard</value>
   </data>
   <data name="TitleExportImages" xml:space="preserve">
     <value>Export Images</value>
