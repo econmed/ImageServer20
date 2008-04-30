@@ -42,32 +42,42 @@ namespace ClearCanvas.ImageServer.Model.Parameters
 
         public ServerEntityKey ServerPartitionKey
         {
-            set { this.SubCriteria["ServerPartitionKey"] = new ProcedureParameter<ServerEntityKey>("ServerPartitionKey", value); }
+            set { SubCriteria["ServerPartitionKey"] = new ProcedureParameter<ServerEntityKey>("ServerPartitionKey", value); }
         }
 
         public ServerEntityKey StudyStorageKey
         {
-            set { this.SubCriteria["StudyStorageKey"] = new ProcedureParameter<ServerEntityKey>("StudyStorageKey", value); }
+            set { SubCriteria["StudyStorageKey"] = new ProcedureParameter<ServerEntityKey>("StudyStorageKey", value); }
         }
 
         public DateTime ExpirationTime
         {
-            set { this.SubCriteria["ExpirationTime"] = new ProcedureParameter<DateTime>("ExpirationTime", value); }
+            set { SubCriteria["ExpirationTime"] = new ProcedureParameter<DateTime>("ExpirationTime", value); }
         }
 
         public DateTime ScheduledTime
         {
-            set { this.SubCriteria["ScheduledTime"] = new ProcedureParameter<DateTime>("ScheduledTime", value); }
+            set { SubCriteria["ScheduledTime"] = new ProcedureParameter<DateTime>("ScheduledTime", value); }
         }
 
         public string SeriesInstanceUid
         {
-            set { this.SubCriteria["SeriesInstanceUid"] = new ProcedureParameter<string>("SeriesInstanceUid", value); }
+            set { SubCriteria["SeriesInstanceUid"] = new ProcedureParameter<string>("SeriesInstanceUid", value); }
         }
 
         public string SopInstanceUid
         {
-            set { this.SubCriteria["SopInstanceUid"] = new ProcedureParameter<string>("SopInstanceUid", value); }
+            set { SubCriteria["SopInstanceUid"] = new ProcedureParameter<string>("SopInstanceUid", value); }
+        }
+
+        public bool Duplicate
+        {
+            set { SubCriteria["Duplicate"] = new ProcedureParameter<bool>("Duplicate", value); }
+            
+        }
+        public string Extension
+        {
+            set { SubCriteria["Extension"] = new ProcedureParameter<string>("Extension", value); }           
         }
     }
 }
