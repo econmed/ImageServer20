@@ -31,26 +31,38 @@
 
 #pragma warning disable 1591
 
+using System;
 using System.Xml;
 
 namespace ClearCanvas.Common.Statistics
 {
     /// <summary>
-    /// Defines the interface of statistics classes.
+    /// Defines the interface of a statistics object.
     /// </summary>
     /// <remarks>
     /// </remarks>
-    public interface IStatistics
+    public interface IStatistics : ICloneable
     {
+        /// <summary>
+        /// Sets or gets the context of the statistics
+        /// </summary>
+        IStatisticsContext Context { set; get; }
+
         /// <summary>
         /// Gets the name of the statistics
         /// </summary>
-        string Name { get; }
+        string Name { get; set; }
 
         /// <summary>
         /// Gets the unit of the statistics value.
         /// </summary>
-        string Unit { get; }
+        string Unit { get; set; }
+
+
+        /// <summary>
+        /// Gets the formatted string representation of the value.
+        /// </summary>
+        string FormattedValue { get; }
 
         /// <summary>
         /// Gets the XML attribute representation of the statistics.
@@ -60,8 +72,9 @@ namespace ClearCanvas.Common.Statistics
         XmlAttribute[] GetXmlAttributes(XmlDocument doc);
 
         /// <summary>
-        /// Gets the formatted value of the statistics.
+        /// Gets a new statistics instance that can be used to generate and store the average of current statistics 
         /// </summary>
-        string FormattedValue { get; }
+        /// <returns></returns>
+        IAverageStatistics NewAverageStatistics();
     }
 }

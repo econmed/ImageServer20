@@ -42,7 +42,11 @@ namespace ClearCanvas.ImageServer.Rules
         #region Private members
         #endregion Private members
 
-        
+        public void Reset()
+        {
+            LoadTime.Reset();
+            ExecutionTime.Reset();
+        }
 
         #region Public Properties
         /// <summary>
@@ -52,9 +56,13 @@ namespace ClearCanvas.ImageServer.Rules
         {
             get
             {
+                if (this["ExecutionTime"] == null)
+                {
+                    this["ExecutionTime"] = new TimeSpanStatistics("ExecutionTime");
+                }
+
                 return (this["ExecutionTime"] as TimeSpanStatistics);
             }
-
         }
 
         /// <summary>
@@ -64,6 +72,8 @@ namespace ClearCanvas.ImageServer.Rules
         {
             get
             {
+                if (this["LoadTime"] == null)
+                    this["LoadTime"] = new TimeSpanStatistics("LoadTime");
                 return (this["LoadTime"] as TimeSpanStatistics);
             }
 
@@ -72,12 +82,17 @@ namespace ClearCanvas.ImageServer.Rules
         #endregion Public Properties
 
         #region Constructors
-        public RuleEngineStatistics(ServerRulesEngine engine)
-            : base(engine.RuleApplyTime.Description)
+
+        public RuleEngineStatistics()
+            : base()
         {
-            AddField(new TimeSpanStatistics("ExecutionTime"));
-            AddField(new TimeSpanStatistics("LoadTime"));
-        
+
+        }
+
+        public RuleEngineStatistics(string name, string description)
+            : base(name,description)
+        {
+            Context = new StatisticsContext(name);
         }
         #endregion
 
