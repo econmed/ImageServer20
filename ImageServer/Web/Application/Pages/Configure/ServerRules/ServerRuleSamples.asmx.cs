@@ -35,118 +35,69 @@ using System.Text;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Xml;
+using ClearCanvas.ImageServer.Rules;
 
-namespace ClearCanvas.ImageServer.Web.Application.Admin.Configuration.ServerRules
+namespace ClearCanvas.ImageServer.Web.Application.Pages.Configure.ServerRules
 {
-    /// <summary>
-    /// Summary description for ServerRuleSamples
-    /// </summary>
-    [WebService(Namespace = "http://www.clearcanvas.ca/ImageServer/ServerRuleSamples.asmx")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    [ScriptService]
-    public class ServerRuleSamples : WebService
-    {
-        [WebMethod]
-        public string GetXml(string type)
-        {
-            string inputString = Server.HtmlEncode(type);
-            if (String.IsNullOrEmpty(inputString))
-                inputString = "";
+	/// <summary>
+	/// Summary description for ServerRuleSamples
+	/// </summary>
+	[WebService(Namespace = "http://www.clearcanvas.ca/ImageServer/ServerRuleSamples.asmx")]
+	[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+	[ScriptService]
+	public class ServerRuleSamples : WebService
+	{
+		[WebMethod]
+		public string GetXml(string type)
+		{
+			XmlDocument doc = null;
 
-            XmlDocument doc = new XmlDocument();
-            XmlNode node = doc.CreateElement("rule");
-            doc.AppendChild(node);
-            XmlElement conditionNode = doc.CreateElement("condition");
-            node.AppendChild(conditionNode);
-            conditionNode.SetAttribute("expressionLanguage", "dicom");
-            XmlNode actionNode = doc.CreateElement("action");
-            node.AppendChild(actionNode);
+			string inputString = Server.HtmlEncode(type);
+			if (String.IsNullOrEmpty(inputString))
+				inputString = "";
 
-            switch (inputString)
-            {
-                case "SimpleAutoRoute":
-                    {
-                        XmlElement regexNode = doc.CreateElement("regex");
-                        regexNode.SetAttribute("test", "$StudyDescription");
-                        regexNode.SetAttribute("pattern", "chest");
-                        conditionNode.AppendChild(regexNode);
+			SampleRuleExtensionPoint ep = new SampleRuleExtensionPoint();
+			object[] extensions = ep.CreateExtensions();
 
-                        XmlElement autoRoute = doc.CreateElement("auto-route");
-                        autoRoute.SetAttribute("device", "CLEARCANVAS");
-                        actionNode.AppendChild(autoRoute);
-                    }
-                    break;
-                case "MultiTagAutoRoute":
-                    {
-                        XmlElement orNode = doc.CreateElement("or");
-                        conditionNode.AppendChild(orNode);
-                        XmlElement equalNode = doc.CreateElement("equal");
-                        equalNode.SetAttribute("test", "$Modality");
-                        equalNode.SetAttribute("refValue", "MR");
-                        orNode.AppendChild(equalNode);
-                        equalNode = doc.CreateElement("equal");
-                        equalNode.SetAttribute("test", "$Modality");
-                        equalNode.SetAttribute("refValue", "CT");
-                        orNode.AppendChild(equalNode);
+			foreach (ISampleRule extension in extensions)
+			{
+				if (extension.Name.Equals(inputString))
+				{
+					doc = extension.Rule;
+					break;
+				}
+			}
 
-                        XmlElement autoRoute = doc.CreateElement("auto-route");
-                        autoRoute.SetAttribute("device", "CLEARCANVAS");
-                        actionNode.AppendChild(autoRoute);
-                    }
-                    break;
-                case "AgeBasedDelete":
-                    {
-                        XmlElement dicomAgeNode = doc.CreateElement("dicom-age-less-than");
-                        dicomAgeNode.SetAttribute("test", "$PatientsBirthDate");
-                        dicomAgeNode.SetAttribute("units", "years");
-                        dicomAgeNode.SetAttribute("refValue", "21");
-                        conditionNode.AppendChild(dicomAgeNode);
+			if (doc == null)
+			{
+				doc = new XmlDocument();
+				XmlNode node = doc.CreateElement("rule");
+				doc.AppendChild(node);
+				XmlElement conditionNode = doc.CreateElement("condition");
+				node.AppendChild(conditionNode);
+				conditionNode.SetAttribute("expressionLanguage", "dicom");
+				XmlNode actionNode = doc.CreateElement("action");
+				node.AppendChild(actionNode);
+			}
 
-                        XmlElement studyDelete = doc.CreateElement("study-delete");
-                        studyDelete.SetAttribute("time", "21");
-                        studyDelete.SetAttribute("timeUnits", "patientAge");
-                        actionNode.AppendChild(studyDelete);
-                    }
-                    break;
-                case "TagBasedDelete":
-                    {
-                        XmlElement andNode = doc.CreateElement("and");
-                        conditionNode.AppendChild(andNode);
-                        XmlElement equalNode = doc.CreateElement("equal");
-                        equalNode.SetAttribute("test", "$Modality");
-                        equalNode.SetAttribute("refValue", "MR");
-                        andNode.AppendChild(equalNode);
-                        equalNode = doc.CreateElement("regex");
-                        equalNode.SetAttribute("test", "$PatientId");
-                        equalNode.SetAttribute("pattern", "1");
-                        andNode.AppendChild(equalNode);
+			StringWriter sw = new StringWriter();
 
-                        XmlElement studyDelete = doc.CreateElement("study-delete");
-                        studyDelete.SetAttribute("time", "10");
-                        studyDelete.SetAttribute("timeUnits", "weeks");
-                        actionNode.AppendChild(studyDelete);
-                    }
-                    break;
-            }
+			XmlWriterSettings xmlSettings = new XmlWriterSettings();
 
-            StringWriter sw = new StringWriter();
+			xmlSettings.Encoding = Encoding.UTF8;
+			xmlSettings.ConformanceLevel = ConformanceLevel.Fragment;
+			xmlSettings.Indent = true;
+			xmlSettings.NewLineOnAttributes = true;
+			xmlSettings.CheckCharacters = true;
+			xmlSettings.IndentChars = "  ";
 
-            XmlWriterSettings xmlSettings = new XmlWriterSettings();
+			XmlWriter tw = XmlWriter.Create(sw, xmlSettings);
 
-            xmlSettings.Encoding = Encoding.UTF8;
-            xmlSettings.ConformanceLevel = ConformanceLevel.Fragment;
-            xmlSettings.Indent = true;
-            xmlSettings.NewLineOnAttributes = true;
-            xmlSettings.CheckCharacters = true;
-            xmlSettings.IndentChars = "  ";
+			doc.WriteTo(tw);
 
-            XmlWriter tw = XmlWriter.Create(sw, xmlSettings);
+			tw.Close();
 
-            doc.WriteTo(tw);
-
-            tw.Close();
-
-            return sw.ToString();
-        }
-    }
+			return sw.ToString();
+		}
+	}
 }
