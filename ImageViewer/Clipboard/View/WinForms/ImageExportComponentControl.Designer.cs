@@ -66,9 +66,12 @@ namespace ClearCanvas.ImageViewer.Clipboard.View.WinForms
 			this._buttonOk = new System.Windows.Forms.Button();
 			this._buttonCancel = new System.Windows.Forms.Button();
 			this._groupOptions = new System.Windows.Forms.GroupBox();
-			this._checkOptionWysiwyg = new System.Windows.Forms.RadioButton();
 			this._checkOptionCompleteImage = new System.Windows.Forms.RadioButton();
+			this._checkOptionWysiwyg = new System.Windows.Forms.RadioButton();
+			this._scale = new ClearCanvas.Desktop.View.WinForms.NonEmptyNumericUpDown();
+			this.scaleLabel = new System.Windows.Forms.Label();
 			this._groupOptions.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this._scale)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// _imageExporters
@@ -119,7 +122,7 @@ namespace ClearCanvas.ImageViewer.Clipboard.View.WinForms
 			// 
 			// _buttonOk
 			// 
-			this._buttonOk.Location = new System.Drawing.Point(254, 150);
+			this._buttonOk.Location = new System.Drawing.Point(254, 226);
 			this._buttonOk.Name = "_buttonOk";
 			this._buttonOk.Size = new System.Drawing.Size(70, 23);
 			this._buttonOk.TabIndex = 5;
@@ -129,7 +132,7 @@ namespace ClearCanvas.ImageViewer.Clipboard.View.WinForms
 			// 
 			// _buttonCancel
 			// 
-			this._buttonCancel.Location = new System.Drawing.Point(330, 150);
+			this._buttonCancel.Location = new System.Drawing.Point(330, 226);
 			this._buttonCancel.Name = "_buttonCancel";
 			this._buttonCancel.Size = new System.Drawing.Size(70, 23);
 			this._buttonCancel.TabIndex = 6;
@@ -139,34 +142,73 @@ namespace ClearCanvas.ImageViewer.Clipboard.View.WinForms
 			// 
 			// _groupOptions
 			// 
+			this._groupOptions.Controls.Add(this._scale);
+			this._groupOptions.Controls.Add(this.scaleLabel);
 			this._groupOptions.Controls.Add(this._checkOptionCompleteImage);
 			this._groupOptions.Controls.Add(this._checkOptionWysiwyg);
 			this._groupOptions.Location = new System.Drawing.Point(10, 133);
 			this._groupOptions.Name = "_groupOptions";
-			this._groupOptions.Size = new System.Drawing.Size(210, 52);
+			this._groupOptions.Size = new System.Drawing.Size(315, 72);
 			this._groupOptions.TabIndex = 4;
 			this._groupOptions.TabStop = false;
 			this._groupOptions.Text = "Options";
 			// 
+			// _checkOptionCompleteImage
+			// 
+			this._checkOptionCompleteImage.AutoSize = true;
+			this._checkOptionCompleteImage.Location = new System.Drawing.Point(101, 35);
+			this._checkOptionCompleteImage.Name = "_checkOptionCompleteImage";
+			this._checkOptionCompleteImage.Size = new System.Drawing.Size(101, 17);
+			this._checkOptionCompleteImage.TabIndex = 1;
+			this._checkOptionCompleteImage.Text = "Complete Image";
+			this._checkOptionCompleteImage.UseVisualStyleBackColor = true;
+			// 
 			// _checkOptionWysiwyg
 			// 
 			this._checkOptionWysiwyg.AutoSize = true;
-			this._checkOptionWysiwyg.Location = new System.Drawing.Point(10, 20);
+			this._checkOptionWysiwyg.Location = new System.Drawing.Point(16, 35);
 			this._checkOptionWysiwyg.Name = "_checkOptionWysiwyg";
 			this._checkOptionWysiwyg.Size = new System.Drawing.Size(67, 17);
 			this._checkOptionWysiwyg.TabIndex = 0;
 			this._checkOptionWysiwyg.Text = "Wysiwyg";
 			this._checkOptionWysiwyg.UseVisualStyleBackColor = true;
 			// 
-			// _checkOptionCompleteImage
+			// _scale
 			// 
-			this._checkOptionCompleteImage.AutoSize = true;
-			this._checkOptionCompleteImage.Location = new System.Drawing.Point(95, 19);
-			this._checkOptionCompleteImage.Name = "_checkOptionCompleteImage";
-			this._checkOptionCompleteImage.Size = new System.Drawing.Size(101, 17);
-			this._checkOptionCompleteImage.TabIndex = 1;
-			this._checkOptionCompleteImage.Text = "Complete Image";
-			this._checkOptionCompleteImage.UseVisualStyleBackColor = true;
+			this._scale.DecimalPlaces = 1;
+			this._scale.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+			this._scale.Location = new System.Drawing.Point(222, 34);
+			this._scale.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+			this._scale.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+			this._scale.Name = "_scale";
+			this._scale.Size = new System.Drawing.Size(72, 20);
+			this._scale.TabIndex = 3;
+			this._scale.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			// 
+			// scaleLabel
+			// 
+			this.scaleLabel.AutoSize = true;
+			this.scaleLabel.Location = new System.Drawing.Point(219, 18);
+			this.scaleLabel.Name = "scaleLabel";
+			this.scaleLabel.Size = new System.Drawing.Size(34, 13);
+			this.scaleLabel.TabIndex = 2;
+			this.scaleLabel.Text = "Scale";
 			// 
 			// ImageExportComponentControl
 			// 
@@ -180,9 +222,10 @@ namespace ClearCanvas.ImageViewer.Clipboard.View.WinForms
 			this.Controls.Add(this._path);
 			this.Controls.Add(this._imageExporters);
 			this.Name = "ImageExportComponentControl";
-			this.Size = new System.Drawing.Size(414, 203);
+			this.Size = new System.Drawing.Size(414, 268);
 			this._groupOptions.ResumeLayout(false);
 			this._groupOptions.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this._scale)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -198,5 +241,7 @@ namespace ClearCanvas.ImageViewer.Clipboard.View.WinForms
 		private System.Windows.Forms.GroupBox _groupOptions;
 		private System.Windows.Forms.RadioButton _checkOptionCompleteImage;
 		private System.Windows.Forms.RadioButton _checkOptionWysiwyg;
+		private ClearCanvas.Desktop.View.WinForms.NonEmptyNumericUpDown _scale;
+		private System.Windows.Forms.Label scaleLabel;
     }
 }

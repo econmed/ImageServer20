@@ -30,11 +30,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 using ClearCanvas.Desktop.View.WinForms;
@@ -70,6 +65,10 @@ namespace ClearCanvas.ImageViewer.Clipboard.View.WinForms
 			
 			_checkOptionWysiwyg.DataBindings.Add("Checked", _component, "OptionWysiwyg", true, DataSourceUpdateMode.OnPropertyChanged);
 			_checkOptionCompleteImage.DataBindings.Add("Checked", _component, "OptionCompleteImage", true, DataSourceUpdateMode.OnPropertyChanged);
+
+			_scale.DataBindings.Add("Maximum", _component, "MaximumScale", true, DataSourceUpdateMode.OnPropertyChanged);
+			_scale.DataBindings.Add("Minimum", _component, "MinimumScale", true, DataSourceUpdateMode.OnPropertyChanged);
+			_scale.DataBindings.Add("Value", _component, "Scale", true, DataSourceUpdateMode.OnPropertyChanged);
 
 			_buttonConfigure.DataBindings.Add("Visible", _component, "ConfigureVisible", true, DataSourceUpdateMode.OnPropertyChanged);
 			_buttonConfigure.DataBindings.Add("Enabled", _component, "ConfigureEnabled", true, DataSourceUpdateMode.OnPropertyChanged);

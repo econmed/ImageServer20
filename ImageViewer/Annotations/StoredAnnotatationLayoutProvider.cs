@@ -37,6 +37,8 @@ namespace ClearCanvas.ImageViewer.Annotations
 {
 	internal abstract class StoredAnnotatationLayoutProvider : AnnotationLayoutProvider
 	{
+		private IAnnotationLayout _layout;
+
 		protected StoredAnnotatationLayoutProvider()
 		{
 		}
@@ -49,12 +51,14 @@ namespace ClearCanvas.ImageViewer.Annotations
 		{
 			get
 			{
-				IAnnotationLayout returnLayout;
+				if (_layout != null)
+					return _layout;
 
 				try
 				{
-					returnLayout = AnnotationLayoutStore.Instance.GetLayout(this.StoredLayoutId, this.AvailableAnnotationItems) ?? 
-						ClearCanvas.ImageViewer.Annotations.AnnotationLayout.Empty;
+					_layout = new SharedAnnotationLayoutProxy(
+						AnnotationLayoutStore.Instance.GetLayout(this.StoredLayoutId, this.AvailableAnnotationItems) ?? 
+						ClearCanvas.ImageViewer.Annotations.AnnotationLayout.Empty);
 				}
 				catch(Exception e)
 				{
@@ -72,10 +76,10 @@ namespace ClearCanvas.ImageViewer.Annotations
 					box.VerticalAlignment = AnnotationBox.VerticalAlignmentBehaviour.Bottom;
 
 					layout.AnnotationBoxGroups[0].AnnotationBoxes.Add(box);
-					returnLayout = layout;
+					_layout = layout;
 				}
 
-				return returnLayout;
+				return _layout;
 			}
 		}
 
