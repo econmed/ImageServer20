@@ -9,24 +9,22 @@ using System.Text;
 
 namespace ClearCanvas.Ris.Server
 {
-	class WSHttpConfiguration : IServiceConfiguration
+	class WSHttpConfiguration : IServiceHostConfiguration
 	{
-		private const int OneMegaByte = 1048576;
+		#region IServiceHostConfiguration Members
 
-		#region IServiceConfiguration Members
-
-		public void ConfigureServiceHost(ServiceHost host, Type serviceContract, Uri hostUri, bool authenticated)
+        public void ConfigureServiceHost(ServiceHost host, ServiceHostConfigurationParams args)
 		{
 			WSHttpBinding binding = new WSHttpBinding();
-			binding.MaxReceivedMessageSize = OneMegaByte;
-			binding.ReaderQuotas.MaxStringContentLength = OneMegaByte;
-			binding.ReaderQuotas.MaxArrayLength = OneMegaByte;
+			binding.MaxReceivedMessageSize = args.MaxReceivedMessageSize;
+            binding.ReaderQuotas.MaxStringContentLength = args.MaxReceivedMessageSize;
+            binding.ReaderQuotas.MaxArrayLength = args.MaxReceivedMessageSize;
 			binding.Security.Mode = SecurityMode.Message;
-			binding.Security.Message.ClientCredentialType = authenticated ?
+			binding.Security.Message.ClientCredentialType = args.Authenticated ?
 				MessageCredentialType.UserName : MessageCredentialType.None;
 
 			// establish endpoint
-			host.AddServiceEndpoint(serviceContract, binding, "");
+			host.AddServiceEndpoint(args.ServiceContract, binding, "");
 
 			// expose meta-data via HTTP GET
 			ServiceMetadataBehavior metadataBehavior = host.Description.Behaviors.Find<ServiceMetadataBehavior>();
@@ -39,9 +37,9 @@ namespace ClearCanvas.Ris.Server
 
 			// set up the certificate - required for WSHttpBinding
 			host.Credentials.ServiceCertificate.SetCertificate(
-				StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, hostUri.Host);
+				StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, args.HostUri.Host);
 
-			if (authenticated)
+            if (args.Authenticated)
 			{
 				// set up authentication model
 				host.Credentials.UserNameAuthentication.UserNamePasswordValidationMode = UserNamePasswordValidationMode.Custom;
