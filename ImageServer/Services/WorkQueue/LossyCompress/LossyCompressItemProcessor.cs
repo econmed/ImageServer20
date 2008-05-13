@@ -31,13 +31,20 @@
 
 using ClearCanvas.Common;
 using ClearCanvas.ImageServer.Model;
+using ClearCanvas.ImageServer.Rules;
 
 namespace ClearCanvas.ImageServer.Services.WorkQueue.LossyCompress
 {
-	class LossyCompressItemProcessor : BaseItemProcessor
+	public class LossyCompressItemProcessor : BaseCompressItemProcessor
 	{
 		protected override void ProcessItem(Model.WorkQueue item)
 		{
+			CompressionRulesEngine =
+				new ServerRulesEngine(ServerRuleApplyTimeEnum.GetEnum("CompressingStudy"),
+				                      ServerRuleTypeEnum.GetEnum("LossyCompressParameters"), item.ServerPartitionKey);
+
+			CompressionRulesEngine.Load();
+
 			LoadUids(item);
 			LoadStorageLocation(item);
 
@@ -51,9 +58,10 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.LossyCompress
 
 			Platform.Log(LogLevel.Info, "Lossy compressing study {0} on partition {1}", StorageLocation.StudyInstanceUid, ServerPartition.Load(item.ServerPartitionKey).AeTitle);
 
-
-			PostProcessing(item, WorkQueueUidList.Count, false);
-
+			if (!ProcessUidList(item))
+				PostProcessing(item, WorkQueueUidList.Count, true);
+			else
+				PostProcessing(item, WorkQueueUidList.Count, false);
 		}
 	}
 }
