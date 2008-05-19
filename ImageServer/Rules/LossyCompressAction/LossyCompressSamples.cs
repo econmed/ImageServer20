@@ -37,44 +37,50 @@ using ClearCanvas.ImageServer.Model;
 
 namespace ClearCanvas.ImageServer.Rules.LossyCompressAction
 {
-	[ExtensionOf(typeof(SampleRuleExtensionPoint))]
-	public class LossyCompressSample : ISampleRule
-	{
-		private readonly IList<ServerRuleApplyTimeEnum> _applyTime = new List<ServerRuleApplyTimeEnum>();
+    [ExtensionOf(typeof (SampleRuleExtensionPoint))]
+    public class LossyCompressSample : ISampleRule
+    {
+        private readonly IList<ServerRuleApplyTimeEnum> _applyTime = new List<ServerRuleApplyTimeEnum>();
 
-		public LossyCompressSample()
-		{
-			_applyTime.Add(ServerRuleApplyTimeEnum.GetEnum("StudyProcessed"));
-		}
-		public string Name
-		{
-			get { return "LossyCompressExempt"; }
-		}
-		public string Description
-		{
-			get { return "Lossy Compress Exempt Rule"; }
-		}
+        public LossyCompressSample()
+        {
+            _applyTime.Add(ServerRuleApplyTimeEnum.GetEnum("StudyProcessed"));
+        }
 
-		public ServerRuleTypeEnum Type
-		{
-			get { return ServerRuleTypeEnum.GetEnum("LossyCompressStudy"); }
-		}
+        #region ISampleRule Members
 
-		public IList<ServerRuleApplyTimeEnum> ApplyTimeList
-		{
-			get { return _applyTime; }
-		}
+        public string Name
+        {
+            get { return "LossyCompressExempt"; }
+        }
 
-		public XmlDocument Rule
-		{
-			get
-			{
-                Stream stream = this.GetType().Assembly.GetManifestResourceStream(GetType(), "Sample_LossyWithExempt.xml");
+        public string Description
+        {
+            get { return "Lossy Compress Exempt Rule"; }
+        }
+
+        public ServerRuleTypeEnum Type
+        {
+            get { return ServerRuleTypeEnum.GetEnum("LossyCompressStudy"); }
+        }
+
+        public IList<ServerRuleApplyTimeEnum> ApplyTimeList
+        {
+            get { return _applyTime; }
+        }
+
+        public XmlDocument Rule
+        {
+            get
+            {
+                Stream stream = GetType().Assembly.GetManifestResourceStream(GetType(), "Sample_LossyWithExempt.xml");
                 XmlDocument doc = new XmlDocument();
                 doc.Load(stream);
                 stream.Close();
                 return doc;
-			}
-		}
-	}
+            }
+        }
+
+        #endregion
+    }
 }

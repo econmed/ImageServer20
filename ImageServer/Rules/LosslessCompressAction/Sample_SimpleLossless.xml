@@ -1,7 +1,9 @@
-﻿<!-- -->
+﻿<!-- 
+This rule instructs the server to schedule lossless compression 
+to occur in 10 weeks for MR or CT studies.
+-->
 <rule>
-	<condition
-	  expressionLanguage="dicom">
+	<condition expressionLanguage="dicom">
 		<or>
 			<equal
 			  test="$Modality"
@@ -14,6 +16,6 @@
 	<action>
 		<lossless-compress
 		  time="10"
-		  timeUnits="weeks" />
+		  unit="weeks" />
 	</action>
 </rule>
