@@ -42,6 +42,10 @@ namespace ClearCanvas.Ris.Application.Common
     [DataContract]
     public class ProcedureTypeDetail : DataContractBase
     {
+		public ProcedureTypeDetail()
+		{
+		}
+
 		public ProcedureTypeDetail(EntityRef entityRef, string id, string name, ProcedureTypeSummary baseType, string planXml)
         {
             this.ProcedureTypeRef = entityRef;
