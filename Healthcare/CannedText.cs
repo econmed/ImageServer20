@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 
 using ClearCanvas.Enterprise.Core;
+using ClearCanvas.Enterprise.Core.Modelling;
 
 namespace ClearCanvas.Healthcare {
 
@@ -10,6 +11,7 @@ namespace ClearCanvas.Healthcare {
     /// <summary>
     /// CannedText entity
     /// </summary>
+	[UniqueKey("CannedTextId", new string[] { "CannedTextId.Name", "CannedTextId.Category", "CannedTextId.Staff", "CannedTextId.StaffGroup" })]
 	public partial class CannedText : ClearCanvas.Enterprise.Core.Entity
 	{
 	
@@ -19,14 +21,6 @@ namespace ClearCanvas.Healthcare {
 		/// </summary>
 		private void CustomInitialize()
 		{
-		}
-
-    	public CannedText(string name1, string path1, string text1)
-    		: this()
-		{
-			_name = name1;
-			_path = path1;
-			_text = text1;
 		}
 	}
 }
