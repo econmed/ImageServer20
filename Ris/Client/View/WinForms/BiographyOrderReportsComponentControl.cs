@@ -31,6 +31,7 @@
 
 using System;
 using System.Windows.Forms;
+using ClearCanvas.Desktop.Actions;
 using ClearCanvas.Desktop.View.WinForms;
 
 namespace ClearCanvas.Ris.Client.View.WinForms
@@ -41,6 +42,7 @@ namespace ClearCanvas.Ris.Client.View.WinForms
 	public partial class BiographyOrderReportsComponentControl : ApplicationComponentUserControl
 	{
 		private BiographyOrderReportsComponent _component;
+		private ActionModelNode _toolbarActionModel;
 
 		/// <summary>
 		/// Constructor.
@@ -58,6 +60,9 @@ namespace ClearCanvas.Ris.Client.View.WinForms
 			_reports.DataSource = _component.Reports;
 			_reports.DataBindings.Add("Value", _component, "SelectedReport", true, DataSourceUpdateMode.OnPropertyChanged);
 			_reports.Format += delegate(object sender, ListControlConvertEventArgs e) { e.Value = _component.FormatReportListItem(e.ListItem); };
+
+			_toolbarActionModel = _component.ActionModel;
+			ToolStripBuilder.BuildToolbar(_toolstrip.Items, _toolbarActionModel.ChildNodes, ToolStripItemDisplayStyle.Image);
 
 			_component.AllPropertiesChanged += AllPropertiesChangedEventHandler;
 		}

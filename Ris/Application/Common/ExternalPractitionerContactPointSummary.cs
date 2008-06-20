@@ -30,52 +30,54 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.Serialization;
 using ClearCanvas.Enterprise.Common;
 
 namespace ClearCanvas.Ris.Application.Common
 {
-    [DataContract]
-    public class ExternalPractitionerContactPointSummary : DataContractBase, ICloneable
-    {
-        public ExternalPractitionerContactPointSummary(EntityRef contactPointRef, string name, string description, bool isDefaultContactPoint)
-        {
-            this.ContactPointRef = contactPointRef;
-            this.Name = name;
-            this.Description = description;
-            this.IsDefaultContactPoint = isDefaultContactPoint;
-        }
+	[DataContract]
+	public class ExternalPractitionerContactPointSummary : DataContractBase, ICloneable
+	{
+		public ExternalPractitionerContactPointSummary(
+			EntityRef contactPointRef, 
+			string name, 
+			string description, 
+			bool isDefaultContactPoint)
+		{
+			this.ContactPointRef = contactPointRef;
+			this.Name = name;
+			this.Description = description;
+			this.IsDefaultContactPoint = isDefaultContactPoint;
+		}
 
-        public ExternalPractitionerContactPointSummary()
-        {
-        }
+		public ExternalPractitionerContactPointSummary()
+		{
+		}
 
-        [DataMember]
-        public EntityRef ContactPointRef;
+		[DataMember]
+		public EntityRef ContactPointRef;
 
-        [DataMember]
-        public string Name;
+		[DataMember]
+		public string Name;
 
-        [DataMember]
-        public string Description;
+		[DataMember]
+		public string Description;
 
-        [DataMember]
-        public bool IsDefaultContactPoint;
+		[DataMember]
+		public bool IsDefaultContactPoint;
 
-        #region ICloneable Members
+		#region ICloneable Members
 
-        public object Clone()
-        {
-            ExternalPractitionerContactPointSummary clone = new ExternalPractitionerContactPointSummary();
-            clone.ContactPointRef = this.ContactPointRef;
-            clone.Name = this.Name;
-            clone.Description = this.Description;
-            clone.IsDefaultContactPoint = this.IsDefaultContactPoint;
-            return clone;
-        }
+		public object Clone()
+		{
+			ExternalPractitionerContactPointSummary clone = new ExternalPractitionerContactPointSummary();
+			clone.ContactPointRef = this.ContactPointRef;
+			clone.Name = this.Name;
+			clone.Description = this.Description;
+			clone.IsDefaultContactPoint = this.IsDefaultContactPoint;
+			return clone;
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }
