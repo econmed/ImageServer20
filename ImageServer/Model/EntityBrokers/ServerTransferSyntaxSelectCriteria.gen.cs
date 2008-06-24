@@ -52,17 +52,6 @@ namespace ClearCanvas.ImageServer.Model.EntityBrokers
               return (ISearchCondition<System.String>)SubCriteria["Description"];
             } 
         }
-        public ISearchCondition<System.Boolean> Enabled
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("Enabled"))
-              {
-                 SubCriteria["Enabled"] = new SearchCondition<System.Boolean>("Enabled");
-              }
-              return (ISearchCondition<System.Boolean>)SubCriteria["Enabled"];
-            } 
-        }
         public ISearchCondition<System.Boolean> Lossless
         {
             get

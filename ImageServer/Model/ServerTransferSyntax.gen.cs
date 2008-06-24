@@ -49,7 +49,6 @@ namespace ClearCanvas.ImageServer.Model
 
         #region Private Members
         private System.String _description;
-        private System.Boolean _enabled;
         private System.Boolean _lossless;
         private System.String _uid;
         #endregion
@@ -60,12 +59,6 @@ namespace ClearCanvas.ImageServer.Model
         {
         get { return _description; }
         set { _description = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ServerTransferSyntax", ColumnName="Enabled")]
-        public System.Boolean Enabled
-        {
-        get { return _enabled; }
-        set { _enabled = value; }
         }
         [EntityFieldDatabaseMappingAttribute(TableName="ServerTransferSyntax", ColumnName="Lossless")]
         public System.Boolean Lossless
