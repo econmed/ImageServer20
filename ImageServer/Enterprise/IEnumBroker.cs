@@ -45,6 +45,6 @@ namespace ClearCanvas.ImageServer.Enterprise
         /// Retrieves all enums.
         /// </summary>
         /// <returns></returns>
-        IList<TOutput> Execute();
+        List<TOutput> Execute();
     }
 }
