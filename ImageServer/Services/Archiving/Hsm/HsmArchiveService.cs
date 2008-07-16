@@ -30,25 +30,23 @@
 #endregion
 
 using System.Collections.Generic;
+using ClearCanvas.Common;
 using ClearCanvas.Common.Utilities;
-using ClearCanvas.Enterprise.Core;
 using ClearCanvas.ImageServer.Common;
 using ClearCanvas.ImageServer.Model;
-using ClearCanvas.ImageServer.Model.Brokers;
-using ClearCanvas.ImageServer.Model.Parameters;
 
 namespace ClearCanvas.ImageServer.Services.Archiving.Hsm
 {
+	/// <summary>
+	/// Service thread for handling archivals.
+	/// </summary>
 	public class HsmArchiveService : ThreadedService
 	{
-		private PartitionArchive _archive;
-		private HsmArchive _hsmArchive;
-		private readonly IPersistentStore _store = PersistentStoreRegistry.GetDefaultStore();
+		private readonly HsmArchive _hsmArchive;
 		private readonly ItemProcessingThreadPool<ArchiveQueue> _threadPool;
 
-		public HsmArchiveService(string name, PartitionArchive archive, HsmArchive hsmArchive) : base(name)
+		public HsmArchiveService(string name, HsmArchive hsmArchive) : base(name)
 		{
-			_archive = archive;
 			_hsmArchive = hsmArchive;
 			_threadPool = new ItemProcessingThreadPool<ArchiveQueue>(HsmSettings.Default.ArchiveThreadCount);
 			_threadPool.ThreadPoolName = "HsmArchive Pool";
@@ -61,6 +59,9 @@ namespace ClearCanvas.ImageServer.Services.Archiving.Hsm
 				_threadPool.Start();
 		}
 
+		/// <summary>
+		/// Execute the service.
+		/// </summary>
 		protected override void Run()
 		{
 			while (true)
@@ -69,49 +70,41 @@ namespace ClearCanvas.ImageServer.Services.Archiving.Hsm
 
 				if ((_threadPool.QueueCount + _threadPool.ActiveCount) < _threadPool.Concurrency)
 				{
-					IList<ArchiveQueue> list;
-
-					using (IUpdateContext updateContext = _store.OpenUpdateContext(UpdateContextSyncMode.Flush))
-					{
-						QueryArchiveQueueParameters parms = new QueryArchiveQueueParameters();
-
-						parms.PartitionArchiveKey = _archive.GetKey();
-						parms.ProcessorId = ServiceTools.ProcessorId;
-
-						IQueryArchiveQueue broker = updateContext.GetBroker<IQueryArchiveQueue>();
-
-						list = broker.Execute(parms);
-
-						updateContext.Commit();
-					}
+					IList<ArchiveQueue> list = _hsmArchive.GetArchiveCandidates();
 
 					if (list.Count > 0)
 						foundResult = true;
 
 					foreach (ArchiveQueue queueListItem in list)
 					{
-						HsmStudyArchive archiver = new HsmStudyArchive(_archive);
+						HsmStudyArchive archiver = new HsmStudyArchive(_hsmArchive);
 						_threadPool.Enqueue(queueListItem, archiver.Run);
 					}
 
 					if (!foundResult)
-						if (CheckStop(100))
+						if (CheckStop(5000))
+						{
+							Platform.Log(LogLevel.Info, "Shutting down {0} archiving service.", _hsmArchive.PartitionArchive.Description);
 							return;
+						}
 				}
 				else
 				{
 					if (CheckStop(5000))
 					{
+						Platform.Log(LogLevel.Info, "Shutting down {0} archiving service.", _hsmArchive.PartitionArchive.Description);
 						return;
 					}
 				}
 			}
 		}
 
+		/// <summary>
+		/// Stop the service.
+		/// </summary>
 		protected override void Stop()
 		{
-		
-
+			// NO-OP
 		}
 	}
 }
