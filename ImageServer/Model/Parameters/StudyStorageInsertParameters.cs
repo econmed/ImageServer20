@@ -57,5 +57,9 @@ namespace ClearCanvas.ImageServer.Model.Parameters
         {
             set { this.SubCriteria["Folder"] = new ProcedureParameter<String>("Folder", value); }
         }
-    }
+		public String TransferSyntaxUid
+		{
+			set { this.SubCriteria["TransferSyntaxUid"] = new ProcedureParameter<String>("TransferSyntaxUid", value); }
+		}
+	}
 }
