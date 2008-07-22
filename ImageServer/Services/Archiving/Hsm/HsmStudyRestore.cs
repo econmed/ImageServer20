@@ -60,7 +60,7 @@ namespace ClearCanvas.ImageServer.Services.Archiving.Hsm
 		public void Run(RestoreQueue queueItem)
 		{
 			// Just reschedule
-			_hsmArchive.UpdateRestoreQueue(queueItem,RestoreQueueStatusEnum.Pending,Platform.Time);
+			_hsmArchive.UpdateRestoreQueue(queueItem,RestoreQueueStatusEnum.Pending,Platform.Time.AddSeconds(60));
 		}
 	}
 }
