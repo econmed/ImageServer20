@@ -47,5 +47,11 @@ namespace ClearCanvas.Ris.Application.Common.Admin.UserAdmin
 			:base(page)
 		{
 		}
+
+		[DataMember]
+		public string UserName;
+		
+		[DataMember]
+		public string DisplayName;
     }
 }

@@ -93,5 +93,12 @@ namespace ClearCanvas.Ris.Client.View.WinForms
         {
             _component.DoubleClickSelectedItem();
         }
+
+		private void _clearButton_Click(object sender, EventArgs e)
+		{
+			_firstName.Value = "";
+			_lastName.Value = "";
+			_component.Search();
+		}
     }
 }
