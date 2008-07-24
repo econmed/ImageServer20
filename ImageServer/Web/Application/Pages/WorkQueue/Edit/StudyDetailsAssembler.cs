@@ -65,9 +65,9 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.WorkQueue.Edit
                 criteria.ServerPartitionKey.EqualTo(study.ServerPartitionKey);
                 criteria.StudyInstanceUid.EqualTo(study.StudyInstanceUid);
 
-                IList<StudyStorage> storages = adaptor.Get(criteria);
-                if (storages != null && storages.Count > 0)
-                    details.Lock = storages[0].Lock;
+                StudyStorage storages = adaptor.GetFirst(criteria);
+                if (storages != null)
+                    details.Lock = storages.Lock;
             }
 
 

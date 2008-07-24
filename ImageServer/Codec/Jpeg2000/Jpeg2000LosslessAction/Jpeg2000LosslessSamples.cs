@@ -45,6 +45,8 @@ namespace ClearCanvas.ImageServer.Codec.Jpeg2000.Jpeg2000LosslessAction
                    "SampleJpeg2000Lossless.xml")
         {
 			ApplyTimeList.Add(ServerRuleApplyTimeEnum.StudyProcessed);
+			ApplyTimeList.Add(ServerRuleApplyTimeEnum.StudyArchived);
+			ApplyTimeList.Add(ServerRuleApplyTimeEnum.StudyRestored);
         }
     }
 
@@ -58,6 +60,8 @@ namespace ClearCanvas.ImageServer.Codec.Jpeg2000.Jpeg2000LosslessAction
 				   "SampleJpeg2000Combo.xml")
 		{
 			ApplyTimeList.Add(ServerRuleApplyTimeEnum.StudyProcessed);
+			ApplyTimeList.Add(ServerRuleApplyTimeEnum.StudyArchived);
+			ApplyTimeList.Add(ServerRuleApplyTimeEnum.StudyRestored);
 		}
 	}
 }
