@@ -37,5 +37,12 @@ namespace ClearCanvas.Ris.Application.Common.Admin.ProtocolAdmin
     [DataContract]
     public class UpdateProtocolCodeResponse : DataContractBase
     {
+		public UpdateProtocolCodeResponse(ProtocolCodeSummary summary)
+        {
+            ProtocolCode = summary;
+        }
+
+        [DataMember]
+		public ProtocolCodeSummary ProtocolCode;
     }
 }
