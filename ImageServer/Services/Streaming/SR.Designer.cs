@@ -81,6 +81,24 @@ namespace ClearCanvas.ImageServer.Services.Streaming {
         /// <summary>
         ///   Looks up a localized string similar to Provide DICOM header streaming service.
         /// </summary>
+        internal static string HeaderStreamingServerDescription {
+            get {
+                return ResourceManager.GetString("HeaderStreamingServerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Study header Streaming Server.
+        /// </summary>
+        internal static string HeaderStreamingServerDisplayName {
+            get {
+                return ResourceManager.GetString("HeaderStreamingServerDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provide DICOM header streaming service.
+        /// </summary>
         internal static string HeaderStreamingServiceDescription {
             get {
                 return ResourceManager.GetString("HeaderStreamingServiceDescription", resourceCulture);
@@ -93,6 +111,24 @@ namespace ClearCanvas.ImageServer.Services.Streaming {
         internal static string HeaderStreamingServiceDisplayName {
             get {
                 return ResourceManager.GetString("HeaderStreamingServiceDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image Streaming Server.
+        /// </summary>
+        internal static string ImageStreamingServerDescription {
+            get {
+                return ResourceManager.GetString("ImageStreamingServerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image Streaming Server.
+        /// </summary>
+        internal static string ImageStreamingServerDisplayName {
+            get {
+                return ResourceManager.GetString("ImageStreamingServerDisplayName", resourceCulture);
             }
         }
         
