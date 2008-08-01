@@ -61,6 +61,15 @@ namespace ClearCanvas.ImageServer.Web.Services.Shreds {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to start: {0}.
+        /// </summary>
+        internal static string AlertFilesystemUnableToStart {
+            get {
+                return ResourceManager.GetString("AlertFilesystemUnableToStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allows clients to determine the properties of a storage filesystem.
         /// </summary>
         internal static string FilesystemServiceDisplayDescription {
