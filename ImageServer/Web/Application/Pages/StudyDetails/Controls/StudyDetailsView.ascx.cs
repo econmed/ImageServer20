@@ -47,6 +47,8 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.StudyDetails.Controls
 
         private IList<Model.Study> _studies = new List<Model.Study>();
 
+        
+
         #endregion Private members
 
 
