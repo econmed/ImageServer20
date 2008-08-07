@@ -39,5 +39,13 @@ namespace ClearCanvas.Healthcare
 {
     public class ModalityPerformedProcedureStep : PerformedProcedureStep
     {
+    	public ModalityPerformedProcedureStep()
+    	{
+    	}
+
+    	public ModalityPerformedProcedureStep(Staff performingStaff, DateTime? startTime)
+			: base(performingStaff, startTime)
+    	{
+    	}
     }
 }
