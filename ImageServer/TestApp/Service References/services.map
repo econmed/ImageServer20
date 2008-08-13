@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceReference>
+	<ProxyGenerationParameters
+		ServiceReferenceUri="http://localhost:50221/HeaderStreaming"
+		Name="services"
+		NotifyPropertyChange="True"
+		UseObservableCollection="False">
+	</ProxyGenerationParameters>
+	<EndPoints>
+		<EndPoint
+			Address="http://localhost:50221/HeaderStreaming/HeaderStreaming"
+			BindingConfiguration="WSHttpBinding_IHeaderStreamingService"
+			Contract="ClearCanvas.ImageServer.TestApp.services.IHeaderStreamingService"
+			>
+		</EndPoint>
+	</EndPoints>
+</ServiceReference>
