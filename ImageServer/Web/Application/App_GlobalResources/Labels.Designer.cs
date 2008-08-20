@@ -86,5 +86,23 @@ namespace ClearCanvas.ImageServer.Web.Application.App_GlobalResources {
                 return ResourceManager.GetString("GridPagerArchiveQueueSingleItem", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items Found.
+        /// </summary>
+        internal static string GridPagerRestoreQueueMultipleItems {
+            get {
+                return ResourceManager.GetString("GridPagerRestoreQueueMultipleItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Found.
+        /// </summary>
+        internal static string GridPagerRestoreQueueSingleItem {
+            get {
+                return ResourceManager.GetString("GridPagerRestoreQueueSingleItem", resourceCulture);
+            }
+        }
     }
 }

@@ -126,4 +126,10 @@
   <data name="GridPagerArchiveQueueSingleItem" xml:space="preserve">
     <value>Item Found</value>
   </data>
+  <data name="GridPagerRestoreQueueMultipleItems" xml:space="preserve">
+    <value>Items Found</value>
+  </data>
+  <data name="GridPagerRestoreQueueSingleItem" xml:space="preserve">
+    <value>Item Found</value>
+  </data>
 </root>
