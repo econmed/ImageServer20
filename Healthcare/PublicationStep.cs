@@ -30,25 +30,32 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.Text;
-
-using ClearCanvas.Enterprise.Core;
+using ClearCanvas.Common;
 using ClearCanvas.Workflow;
 
-namespace ClearCanvas.Healthcare {
+namespace ClearCanvas.Healthcare
+{
 
 
-    /// <summary>
-    /// PublicationStep entity
-    /// </summary>
-	public partial class PublicationStep : ClearCanvas.Healthcare.ReportingProcedureStep
+	/// <summary>
+	/// PublicationStep entity
+	/// </summary>
+	public class PublicationStep : ReportingProcedureStep
 	{
-        public PublicationStep(ReportingProcedureStep previousStep)
-            :base(previousStep)
-        {
-        }
-	
+		private int _failureCount;
+		private DateTime? _lastFailureTime;
+
+		public PublicationStep()
+		{
+		}
+
+		public PublicationStep(ReportingProcedureStep previousStep)
+			: base(previousStep)
+		{
+			_failureCount = 0;
+			_lastFailureTime = null;
+		}
+
 		/// <summary>
 		/// This method is called from the constructor.  Use this method to implement any custom
 		/// object initialization.
@@ -57,20 +64,36 @@ namespace ClearCanvas.Healthcare {
 		{
 		}
 
-        public override string Name
-        {
-            get { return "Publication"; }
-        }
+		public override string Name
+		{
+			get { return "Publication"; }
+		}
 
-        protected override void OnStateChanged(ActivityStatus previousState, ActivityStatus newState)
-        {
-            // complete the report part when publication is complete
-            // (this.ReportPart != null) should always be true except perhaps during unit-tests
-            if (newState == ActivityStatus.CM && this.ReportPart != null)
-                this.ReportPart.Complete();
+		public virtual int FailureCount
+		{
+			get { return _failureCount; }
+		}
 
-            base.OnStateChanged(previousState, newState);
-        }
+		public virtual DateTime? LastFailureTime
+		{
+			get { return _lastFailureTime; }
+		}
+
+		public virtual void Fail()
+		{
+			_failureCount++;
+			_lastFailureTime = Platform.Time;
+		}
+
+		protected override void OnStateChanged(ActivityStatus previousState, ActivityStatus newState)
+		{
+			// complete the report part when publication is complete
+			// (this.ReportPart != null) should always be true except perhaps during unit-tests
+			if (newState == ActivityStatus.CM && this.ReportPart != null)
+				this.ReportPart.Complete();
+
+			base.OnStateChanged(previousState, newState);
+		}
 
 		protected override ProcedureStep CreateScheduledCopy()
 		{
