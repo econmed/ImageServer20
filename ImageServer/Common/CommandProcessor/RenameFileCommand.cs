@@ -60,7 +60,6 @@ namespace ClearCanvas.ImageServer.Common.CommandProcessor
 			if (File.Exists(_destinationFile))
 			{
 				File.Delete(_destinationFile);
-				return;
 			}
 
 			File.Move(_sourceFile, _destinationFile);
