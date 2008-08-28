@@ -37,7 +37,7 @@ using ClearCanvas.ImageServer.Model.Parameters;
 namespace ClearCanvas.ImageServer.Model.SqlServer2005.Brokers
 {
     [ExtensionOf(typeof(BrokerExtensionPoint))]
-    public class UpdateWorkQueue : ProcedureUpdateBroker<WorkQueueUpdateParameters>,IUpdateWorkQueue
+    public class UpdateWorkQueue : ProcedureUpdateBroker<UpdateWorkQueueParameters>,IUpdateWorkQueue
     {
         public UpdateWorkQueue()
             : base("UpdateWorkQueue")
