@@ -29,6 +29,7 @@
 
 #endregion
 
+using ClearCanvas.Common.Statistics;
 using ClearCanvas.Dicom;
 using ClearCanvas.Dicom.Codec;
 
@@ -44,6 +45,12 @@ namespace ClearCanvas.ImageServer.Common.CommandProcessor
 		private readonly DicomCodecParameters _parms;
 		private readonly TransferSyntax _syntax;
 		private bool _lossy;
+		private TimeSpanStatistics _timeSpan = new TimeSpanStatistics("CompressTime");
+
+		public TimeSpanStatistics CompressTime
+		{
+			get { return _timeSpan; }
+		}
 
 		public DicomCompressCommand(DicomMessageBase file, TransferSyntax syntax, IDicomCodec codec, DicomCodecParameters parms, bool lossy)
 			: base("DICOM Compress Command", true)
@@ -61,11 +68,15 @@ namespace ClearCanvas.ImageServer.Common.CommandProcessor
 			if (_file.TransferSyntax.Equals(_syntax))
 				return;
 
+			_timeSpan.Start();
+
 			// Check for decompression first
 			if (_file.TransferSyntax.Encapsulated)
 				_file.ChangeTransferSyntax(TransferSyntax.ExplicitVrLittleEndian);
 
 			_file.ChangeTransferSyntax(_syntax, _codec, _parms);
+
+			_timeSpan.End();
 		}
 
 		protected override void OnUndo()
