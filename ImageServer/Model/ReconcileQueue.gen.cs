@@ -34,7 +34,6 @@
 namespace ClearCanvas.ImageServer.Model
 {
     using System;
-    using ClearCanvas.Dicom;
     using ClearCanvas.Enterprise.Core;
     using ClearCanvas.ImageServer.Enterprise;
     using ClearCanvas.ImageServer.Model.EntityBrokers;
@@ -48,127 +47,25 @@ namespace ClearCanvas.ImageServer.Model
         #endregion
 
         #region Private Members
-        private System.String _accessionNumber;
-        private System.String _failureDescription;
-        private ClearCanvas.ImageServer.Enterprise.ServerEntityKey _filesystemKey;
         private System.DateTime _insertTime;
-        private System.String _issuerOfPatientId;
-        private System.DateTime _lastUpdateTime;
-        private System.String _patientID;
-        private System.String _patientsBirthdate;
-        private System.String _patientsName;
-        private System.String _patientsSex;
-        private ReconcileAssessmentStatusEnum _reconcileAssessmentStatusEnum;
-        private System.Xml.XmlDocument _reconcileData;
-        private ReconcileSchedulingStatusEnum _reconcileSchedulingStatusEnum;
-        private System.Int32 _retrialCount;
-        private System.DateTime _scheduledTime;
-        private System.String _schedulerID;
+        private ReconcileReasonEnum _reconcileReasonEnum;
         private ClearCanvas.ImageServer.Enterprise.ServerEntityKey _serverPartitionKey;
-        private System.String _studyInstanceUid;
+        private System.Xml.XmlDocument _studyData;
         private ClearCanvas.ImageServer.Enterprise.ServerEntityKey _studyStorageKey;
         #endregion
 
         #region Public Properties
-        [DicomField(DicomTags.AccessionNumber, DefaultValue = DicomFieldDefault.Null)]
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="AccessionNumber")]
-        public System.String AccessionNumber
-        {
-        get { return _accessionNumber; }
-        set { _accessionNumber = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="FailureDescription")]
-        public System.String FailureDescription
-        {
-        get { return _failureDescription; }
-        set { _failureDescription = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="FilesystemGUID")]
-        public ClearCanvas.ImageServer.Enterprise.ServerEntityKey FilesystemKey
-        {
-        get { return _filesystemKey; }
-        set { _filesystemKey = value; }
-        }
         [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="InsertTime")]
         public System.DateTime InsertTime
         {
         get { return _insertTime; }
         set { _insertTime = value; }
         }
-        [DicomField(DicomTags.IssuerOfPatientId, DefaultValue = DicomFieldDefault.Null)]
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="IssuerOfPatientId")]
-        public System.String IssuerOfPatientId
+        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="ReconcileReasonEnum")]
+        public ReconcileReasonEnum ReconcileReasonEnum
         {
-        get { return _issuerOfPatientId; }
-        set { _issuerOfPatientId = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="LastUpdateTime")]
-        public System.DateTime LastUpdateTime
-        {
-        get { return _lastUpdateTime; }
-        set { _lastUpdateTime = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="PatientID")]
-        public System.String PatientID
-        {
-        get { return _patientID; }
-        set { _patientID = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="PatientsBirthdate")]
-        public System.String PatientsBirthdate
-        {
-        get { return _patientsBirthdate; }
-        set { _patientsBirthdate = value; }
-        }
-        [DicomField(DicomTags.PatientsName, DefaultValue = DicomFieldDefault.Null)]
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="PatientsName")]
-        public System.String PatientsName
-        {
-        get { return _patientsName; }
-        set { _patientsName = value; }
-        }
-        [DicomField(DicomTags.PatientsSex, DefaultValue = DicomFieldDefault.Null)]
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="PatientsSex")]
-        public System.String PatientsSex
-        {
-        get { return _patientsSex; }
-        set { _patientsSex = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="ReconcileAssessmentStatusEnum")]
-        public ReconcileAssessmentStatusEnum ReconcileAssessmentStatusEnum
-        {
-        get { return _reconcileAssessmentStatusEnum; }
-        set { _reconcileAssessmentStatusEnum = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="ReconcileData")]
-        public System.Xml.XmlDocument ReconcileData
-        {
-        get { return _reconcileData; }
-        set { _reconcileData = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="ReconcileSchedulingStatusEnum")]
-        public ReconcileSchedulingStatusEnum ReconcileSchedulingStatusEnum
-        {
-        get { return _reconcileSchedulingStatusEnum; }
-        set { _reconcileSchedulingStatusEnum = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="RetrialCount")]
-        public System.Int32 RetrialCount
-        {
-        get { return _retrialCount; }
-        set { _retrialCount = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="ScheduledTime")]
-        public System.DateTime ScheduledTime
-        {
-        get { return _scheduledTime; }
-        set { _scheduledTime = value; }
-        }
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="SchedulerID")]
-        public System.String SchedulerID
-        {
-        get { return _schedulerID; }
-        set { _schedulerID = value; }
+        get { return _reconcileReasonEnum; }
+        set { _reconcileReasonEnum = value; }
         }
         [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="ServerPartitionGUID")]
         public ClearCanvas.ImageServer.Enterprise.ServerEntityKey ServerPartitionKey
@@ -176,12 +73,11 @@ namespace ClearCanvas.ImageServer.Model
         get { return _serverPartitionKey; }
         set { _serverPartitionKey = value; }
         }
-        [DicomField(DicomTags.StudyInstanceUid, DefaultValue = DicomFieldDefault.Null)]
-        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="StudyInstanceUid")]
-        public System.String StudyInstanceUid
+        [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="StudyData")]
+        public System.Xml.XmlDocument StudyData
         {
-        get { return _studyInstanceUid; }
-        set { _studyInstanceUid = value; }
+        get { return _studyData; }
+        set { _studyData = value; }
         }
         [EntityFieldDatabaseMappingAttribute(TableName="ReconcileQueue", ColumnName="StudyStorageGUID")]
         public ClearCanvas.ImageServer.Enterprise.ServerEntityKey StudyStorageKey

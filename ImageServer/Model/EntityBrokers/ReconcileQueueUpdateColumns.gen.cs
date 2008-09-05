@@ -33,7 +33,6 @@
 
 namespace ClearCanvas.ImageServer.Model.EntityBrokers
 {
-    using ClearCanvas.Dicom;
     using ClearCanvas.ImageServer.Enterprise;
 
    public class ReconcileQueueUpdateColumns : EntityUpdateColumns
@@ -41,82 +40,21 @@ namespace ClearCanvas.ImageServer.Model.EntityBrokers
        public ReconcileQueueUpdateColumns()
        : base("ReconcileQueue")
        {}
-       [DicomField(DicomTags.AccessionNumber, DefaultValue = DicomFieldDefault.Null)]
-        public System.String AccessionNumber
-        {
-            set { SubParameters["AccessionNumber"] = new EntityUpdateColumn<System.String>("AccessionNumber", value); }
-        }
-        public System.String FailureDescription
-        {
-            set { SubParameters["FailureDescription"] = new EntityUpdateColumn<System.String>("FailureDescription", value); }
-        }
-        public ClearCanvas.ImageServer.Enterprise.ServerEntityKey FilesystemKey
-        {
-            set { SubParameters["FilesystemKey"] = new EntityUpdateColumn<ClearCanvas.ImageServer.Enterprise.ServerEntityKey>("FilesystemKey", value); }
-        }
         public System.DateTime InsertTime
         {
             set { SubParameters["InsertTime"] = new EntityUpdateColumn<System.DateTime>("InsertTime", value); }
         }
-       [DicomField(DicomTags.IssuerOfPatientId, DefaultValue = DicomFieldDefault.Null)]
-        public System.String IssuerOfPatientId
+        public ReconcileReasonEnum ReconcileReasonEnum
         {
-            set { SubParameters["IssuerOfPatientId"] = new EntityUpdateColumn<System.String>("IssuerOfPatientId", value); }
-        }
-        public System.DateTime LastUpdateTime
-        {
-            set { SubParameters["LastUpdateTime"] = new EntityUpdateColumn<System.DateTime>("LastUpdateTime", value); }
-        }
-        public System.String PatientID
-        {
-            set { SubParameters["PatientID"] = new EntityUpdateColumn<System.String>("PatientID", value); }
-        }
-        public System.String PatientsBirthdate
-        {
-            set { SubParameters["PatientsBirthdate"] = new EntityUpdateColumn<System.String>("PatientsBirthdate", value); }
-        }
-       [DicomField(DicomTags.PatientsName, DefaultValue = DicomFieldDefault.Null)]
-        public System.String PatientsName
-        {
-            set { SubParameters["PatientsName"] = new EntityUpdateColumn<System.String>("PatientsName", value); }
-        }
-       [DicomField(DicomTags.PatientsSex, DefaultValue = DicomFieldDefault.Null)]
-        public System.String PatientsSex
-        {
-            set { SubParameters["PatientsSex"] = new EntityUpdateColumn<System.String>("PatientsSex", value); }
-        }
-        public ReconcileAssessmentStatusEnum ReconcileAssessmentStatusEnum
-        {
-            set { SubParameters["ReconcileAssessmentStatusEnum"] = new EntityUpdateColumn<ReconcileAssessmentStatusEnum>("ReconcileAssessmentStatusEnum", value); }
-        }
-        public System.Xml.XmlDocument ReconcileData
-        {
-            set { SubParameters["ReconcileData"] = new EntityUpdateColumn<System.Xml.XmlDocument>("ReconcileData", value); }
-        }
-        public ReconcileSchedulingStatusEnum ReconcileSchedulingStatusEnum
-        {
-            set { SubParameters["ReconcileSchedulingStatusEnum"] = new EntityUpdateColumn<ReconcileSchedulingStatusEnum>("ReconcileSchedulingStatusEnum", value); }
-        }
-        public System.Int32 RetrialCount
-        {
-            set { SubParameters["RetrialCount"] = new EntityUpdateColumn<System.Int32>("RetrialCount", value); }
-        }
-        public System.DateTime ScheduledTime
-        {
-            set { SubParameters["ScheduledTime"] = new EntityUpdateColumn<System.DateTime>("ScheduledTime", value); }
-        }
-        public System.String SchedulerID
-        {
-            set { SubParameters["SchedulerID"] = new EntityUpdateColumn<System.String>("SchedulerID", value); }
+            set { SubParameters["ReconcileReasonEnum"] = new EntityUpdateColumn<ReconcileReasonEnum>("ReconcileReasonEnum", value); }
         }
         public ClearCanvas.ImageServer.Enterprise.ServerEntityKey ServerPartitionKey
         {
             set { SubParameters["ServerPartitionKey"] = new EntityUpdateColumn<ClearCanvas.ImageServer.Enterprise.ServerEntityKey>("ServerPartitionKey", value); }
         }
-       [DicomField(DicomTags.StudyInstanceUid, DefaultValue = DicomFieldDefault.Null)]
-        public System.String StudyInstanceUid
+        public System.Xml.XmlDocument StudyData
         {
-            set { SubParameters["StudyInstanceUid"] = new EntityUpdateColumn<System.String>("StudyInstanceUid", value); }
+            set { SubParameters["StudyData"] = new EntityUpdateColumn<System.Xml.XmlDocument>("StudyData", value); }
         }
         public ClearCanvas.ImageServer.Enterprise.ServerEntityKey StudyStorageKey
         {

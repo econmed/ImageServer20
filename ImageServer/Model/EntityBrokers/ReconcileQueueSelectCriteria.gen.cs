@@ -41,39 +41,6 @@ namespace ClearCanvas.ImageServer.Model.EntityBrokers
         public ReconcileQueueSelectCriteria()
         : base("ReconcileQueue")
         {}
-        public ISearchCondition<System.String> AccessionNumber
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("AccessionNumber"))
-              {
-                 SubCriteria["AccessionNumber"] = new SearchCondition<System.String>("AccessionNumber");
-              }
-              return (ISearchCondition<System.String>)SubCriteria["AccessionNumber"];
-            } 
-        }
-        public ISearchCondition<System.String> FailureDescription
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("FailureDescription"))
-              {
-                 SubCriteria["FailureDescription"] = new SearchCondition<System.String>("FailureDescription");
-              }
-              return (ISearchCondition<System.String>)SubCriteria["FailureDescription"];
-            } 
-        }
-        public ISearchCondition<ClearCanvas.ImageServer.Enterprise.ServerEntityKey> FilesystemKey
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("FilesystemKey"))
-              {
-                 SubCriteria["FilesystemKey"] = new SearchCondition<ClearCanvas.ImageServer.Enterprise.ServerEntityKey>("FilesystemKey");
-              }
-              return (ISearchCondition<ClearCanvas.ImageServer.Enterprise.ServerEntityKey>)SubCriteria["FilesystemKey"];
-            } 
-        }
         public ISearchCondition<System.DateTime> InsertTime
         {
             get
@@ -85,136 +52,15 @@ namespace ClearCanvas.ImageServer.Model.EntityBrokers
               return (ISearchCondition<System.DateTime>)SubCriteria["InsertTime"];
             } 
         }
-        public ISearchCondition<System.String> IssuerOfPatientId
+        public ISearchCondition<ReconcileReasonEnum> ReconcileReasonEnum
         {
             get
             {
-              if (!SubCriteria.ContainsKey("IssuerOfPatientId"))
+              if (!SubCriteria.ContainsKey("ReconcileReasonEnum"))
               {
-                 SubCriteria["IssuerOfPatientId"] = new SearchCondition<System.String>("IssuerOfPatientId");
+                 SubCriteria["ReconcileReasonEnum"] = new SearchCondition<ReconcileReasonEnum>("ReconcileReasonEnum");
               }
-              return (ISearchCondition<System.String>)SubCriteria["IssuerOfPatientId"];
-            } 
-        }
-        public ISearchCondition<System.DateTime> LastUpdateTime
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("LastUpdateTime"))
-              {
-                 SubCriteria["LastUpdateTime"] = new SearchCondition<System.DateTime>("LastUpdateTime");
-              }
-              return (ISearchCondition<System.DateTime>)SubCriteria["LastUpdateTime"];
-            } 
-        }
-        public ISearchCondition<System.String> PatientID
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("PatientID"))
-              {
-                 SubCriteria["PatientID"] = new SearchCondition<System.String>("PatientID");
-              }
-              return (ISearchCondition<System.String>)SubCriteria["PatientID"];
-            } 
-        }
-        public ISearchCondition<System.String> PatientsBirthdate
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("PatientsBirthdate"))
-              {
-                 SubCriteria["PatientsBirthdate"] = new SearchCondition<System.String>("PatientsBirthdate");
-              }
-              return (ISearchCondition<System.String>)SubCriteria["PatientsBirthdate"];
-            } 
-        }
-        public ISearchCondition<System.String> PatientsName
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("PatientsName"))
-              {
-                 SubCriteria["PatientsName"] = new SearchCondition<System.String>("PatientsName");
-              }
-              return (ISearchCondition<System.String>)SubCriteria["PatientsName"];
-            } 
-        }
-        public ISearchCondition<System.String> PatientsSex
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("PatientsSex"))
-              {
-                 SubCriteria["PatientsSex"] = new SearchCondition<System.String>("PatientsSex");
-              }
-              return (ISearchCondition<System.String>)SubCriteria["PatientsSex"];
-            } 
-        }
-        public ISearchCondition<ReconcileAssessmentStatusEnum> ReconcileAssessmentStatusEnum
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("ReconcileAssessmentStatusEnum"))
-              {
-                 SubCriteria["ReconcileAssessmentStatusEnum"] = new SearchCondition<ReconcileAssessmentStatusEnum>("ReconcileAssessmentStatusEnum");
-              }
-              return (ISearchCondition<ReconcileAssessmentStatusEnum>)SubCriteria["ReconcileAssessmentStatusEnum"];
-            } 
-        }
-        public ISearchCondition<System.Xml.XmlDocument> ReconcileData
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("ReconcileData"))
-              {
-                 SubCriteria["ReconcileData"] = new SearchCondition<System.Xml.XmlDocument>("ReconcileData");
-              }
-              return (ISearchCondition<System.Xml.XmlDocument>)SubCriteria["ReconcileData"];
-            } 
-        }
-        public ISearchCondition<ReconcileSchedulingStatusEnum> ReconcileSchedulingStatusEnum
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("ReconcileSchedulingStatusEnum"))
-              {
-                 SubCriteria["ReconcileSchedulingStatusEnum"] = new SearchCondition<ReconcileSchedulingStatusEnum>("ReconcileSchedulingStatusEnum");
-              }
-              return (ISearchCondition<ReconcileSchedulingStatusEnum>)SubCriteria["ReconcileSchedulingStatusEnum"];
-            } 
-        }
-        public ISearchCondition<System.Int32> RetrialCount
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("RetrialCount"))
-              {
-                 SubCriteria["RetrialCount"] = new SearchCondition<System.Int32>("RetrialCount");
-              }
-              return (ISearchCondition<System.Int32>)SubCriteria["RetrialCount"];
-            } 
-        }
-        public ISearchCondition<System.DateTime> ScheduledTime
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("ScheduledTime"))
-              {
-                 SubCriteria["ScheduledTime"] = new SearchCondition<System.DateTime>("ScheduledTime");
-              }
-              return (ISearchCondition<System.DateTime>)SubCriteria["ScheduledTime"];
-            } 
-        }
-        public ISearchCondition<System.String> SchedulerID
-        {
-            get
-            {
-              if (!SubCriteria.ContainsKey("SchedulerID"))
-              {
-                 SubCriteria["SchedulerID"] = new SearchCondition<System.String>("SchedulerID");
-              }
-              return (ISearchCondition<System.String>)SubCriteria["SchedulerID"];
+              return (ISearchCondition<ReconcileReasonEnum>)SubCriteria["ReconcileReasonEnum"];
             } 
         }
         public ISearchCondition<ClearCanvas.ImageServer.Enterprise.ServerEntityKey> ServerPartitionKey
@@ -228,15 +74,15 @@ namespace ClearCanvas.ImageServer.Model.EntityBrokers
               return (ISearchCondition<ClearCanvas.ImageServer.Enterprise.ServerEntityKey>)SubCriteria["ServerPartitionKey"];
             } 
         }
-        public ISearchCondition<System.String> StudyInstanceUid
+        public ISearchCondition<System.Xml.XmlDocument> StudyData
         {
             get
             {
-              if (!SubCriteria.ContainsKey("StudyInstanceUid"))
+              if (!SubCriteria.ContainsKey("StudyData"))
               {
-                 SubCriteria["StudyInstanceUid"] = new SearchCondition<System.String>("StudyInstanceUid");
+                 SubCriteria["StudyData"] = new SearchCondition<System.Xml.XmlDocument>("StudyData");
               }
-              return (ISearchCondition<System.String>)SubCriteria["StudyInstanceUid"];
+              return (ISearchCondition<System.Xml.XmlDocument>)SubCriteria["StudyData"];
             } 
         }
         public ISearchCondition<ClearCanvas.ImageServer.Enterprise.ServerEntityKey> StudyStorageKey
