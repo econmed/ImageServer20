@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MessageFormatStudyLoadFailures" xml:space="preserve">
+    <value>{0} studies failed to load.</value>
+  </data>
+  <data name="MessagePartialStudyLoadFailures" xml:space="preserve">
+    <value>{0} studies had one or more images that failed to load.</value>
+  </data>
+  <data name="MessagePleaseSeeLogs" xml:space="preserve">
+    <value>Please see the logs for more details.</value>
+  </data>
 </root>
