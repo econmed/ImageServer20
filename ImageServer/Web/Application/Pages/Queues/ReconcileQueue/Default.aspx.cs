@@ -33,6 +33,7 @@ using System;
 using ClearCanvas.ImageServer.Model;
 using ClearCanvas.ImageServer.Web.Application.Controls;
 using ClearCanvas.ImageServer.Web.Application.Pages.Common;
+using ClearCanvas.ImageServer.Web.Common.Data;
 
 namespace ClearCanvas.ImageServer.Web.Application.Pages.Queues.ReconcileQueue
 {
@@ -56,6 +57,13 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Queues.ReconcileQueue
                                                                panel.ID = "SearchPanel_" + partition.AeTitle;
                                                                return panel;
                                                            });
+        }
+
+        public void OnReconcileItem(ReconcileDetails details)
+        {
+            ReconcileDialog.ReconcileDetails = details;
+            ReconcileDialog.ReconcileQueueItem = details.ReconcileQueueItem;
+            ReconcileDialog.Show();
         }
     }
 }
