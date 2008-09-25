@@ -34,7 +34,7 @@ using ClearCanvas.ImageServer.Model.Parameters;
 
 namespace ClearCanvas.ImageServer.Model.Brokers
 {
-	public interface IWebQueryReconcileQueue : IProcedureQueryBroker<WebQueryReconcileQueueParameters, ReconcileQueue>
+	public interface IWebQueryStudyIntegrityQueue : IProcedureQueryBroker<WebQueryStudyIntegrityQueueParameters, StudyIntegrityQueue>
     {
     }
 }
