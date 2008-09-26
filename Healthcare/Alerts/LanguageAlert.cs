@@ -29,14 +29,10 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 using ClearCanvas.Common;
-using ClearCanvas.Enterprise;
 using ClearCanvas.Healthcare;
 using ClearCanvas.Enterprise.Core;
-using ClearCanvas.Healthcare.Brokers;
 
 namespace ClearCanvas.Healthcare.Alerts
 {
@@ -45,7 +41,12 @@ namespace ClearCanvas.Healthcare.Alerts
     {
         public override AlertNotification Test(PatientProfile profile, IPersistenceContext context)
         {
-            if (profile.PrimaryLanguage != null && profile.PrimaryLanguage.Code != "en")
+			AlertsSettings settings = new AlertsSettings();
+            List<string> defaultLanguages = string.IsNullOrEmpty(settings.DefaultLanguages)
+                ? new List<string>()
+                : new List<string>(settings.DefaultLanguages.Replace(" ", "").Split(','));
+
+            if (profile.PrimaryLanguage != null && !defaultLanguages.Contains(profile.PrimaryLanguage.Code))
             {
                 return new AlertNotification(this.GetType(), new string[] { profile.PrimaryLanguage.Value });
             }
