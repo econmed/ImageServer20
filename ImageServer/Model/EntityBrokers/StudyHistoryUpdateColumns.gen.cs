@@ -44,6 +44,10 @@ namespace ClearCanvas.ImageServer.Model.EntityBrokers
         {
             set { SubParameters["ChangeDescription"] = new EntityUpdateColumn<System.Xml.XmlDocument>("ChangeDescription", value); }
         }
+        public ClearCanvas.ImageServer.Enterprise.ServerEntityKey DestStudyStorageKey
+        {
+            set { SubParameters["DestStudyStorageKey"] = new EntityUpdateColumn<ClearCanvas.ImageServer.Enterprise.ServerEntityKey>("DestStudyStorageKey", value); }
+        }
         public System.DateTime InsertTime
         {
             set { SubParameters["InsertTime"] = new EntityUpdateColumn<System.DateTime>("InsertTime", value); }
@@ -51,6 +55,10 @@ namespace ClearCanvas.ImageServer.Model.EntityBrokers
         public System.Xml.XmlDocument StudyData
         {
             set { SubParameters["StudyData"] = new EntityUpdateColumn<System.Xml.XmlDocument>("StudyData", value); }
+        }
+        public StudyHistoryTypeEnum StudyHistoryTypeEnum
+        {
+            set { SubParameters["StudyHistoryTypeEnum"] = new EntityUpdateColumn<StudyHistoryTypeEnum>("StudyHistoryTypeEnum", value); }
         }
         public ClearCanvas.ImageServer.Enterprise.ServerEntityKey StudyStorageKey
         {
