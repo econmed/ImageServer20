@@ -17,7 +17,8 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Queues.WorkQueue.Edit {
     /// <remarks>
     /// Auto-generated class.
     /// </remarks>
-    public partial class GeneralWorkQueueDetailsView {
+    public partial class GeneralWorkQueueDetailsView
+    {
         
         /// <summary>
         /// GeneralInfoDetailsView control.
