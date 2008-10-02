@@ -4,6 +4,7 @@ using namespace System::Reflection;
 using namespace System::Runtime::CompilerServices;
 using namespace System::Runtime::InteropServices;
 using namespace System::Security::Permissions;
+using namespace ClearCanvas::Common;
 
 //
 // General Information about an assembly is controlled through the following
@@ -13,7 +14,7 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyTitleAttribute("ClearCanvas.Dicom.Codec.Jpeg")];
 [assembly:AssemblyDescriptionAttribute("")];
 [assembly:AssemblyConfigurationAttribute("")];
-[assembly:AssemblyCompanyAttribute("")];
+[assembly:AssemblyCompanyAttribute("ClearCanvas Inc.")];
 [assembly:AssemblyProductAttribute("ClearCanvas.Dicom.Codec.Jpeg")];
 [assembly:AssemblyCopyrightAttribute("Copyright (c)  2008")];
 [assembly:AssemblyTrademarkAttribute("")];
@@ -34,6 +35,6 @@ using namespace System::Security::Permissions;
 
 [assembly:ComVisible(false)];
 
-[assembly:CLSCompliantAttribute(true)];
+//[assembly:CLSCompliantAttribute(true)];
 
-[assembly:SecurityPermission(SecurityAction::RequestMinimum, UnmanagedCode = true)];
+//[assembly:SecurityPermission(SecurityAction::RequestMinimum, UnmanagedCode = true)];
