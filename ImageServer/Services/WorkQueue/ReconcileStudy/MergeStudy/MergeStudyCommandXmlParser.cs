@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Text;
 using System.Xml;
-using ClearCanvas.Common;
-using ClearCanvas.Dicom;
 using ClearCanvas.ImageServer.Common.CommandProcessor;
-using ClearCanvas.ImageServer.Services.WorkQueue.ReconcileStudy.CreateStudy;
 
 namespace ClearCanvas.ImageServer.Services.WorkQueue.ReconcileStudy.MergeStudy
 {
+    /// <summary>
+    /// "MergeStudy" xml parser.
+    /// </summary>
     class MergeStudyCommandXmlParser
     {
+        /// <summary>
+        /// Retrieves the list of <see cref="IImageLevelUpdateCommand"/> specified in the xml.
+        /// </summary>
+        /// <param name="createStudyNode"></param>
+        /// <returns></returns>
         public IList<IImageLevelUpdateCommand> ParseImageLevelCommands(XmlNode createStudyNode)
         {
             List<IImageLevelUpdateCommand> _commands = new List<IImageLevelUpdateCommand>();
@@ -21,6 +23,7 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.ReconcileStudy.MergeStudy
             {
                 if (! (subNode is XmlComment))
                 {
+                    //TODO: Use plugin?
                     if (subNode.Name == "SetTag")
                     {
                         UpdateTagCommandParser parser = new UpdateTagCommandParser();
@@ -28,7 +31,7 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.ReconcileStudy.MergeStudy
                     }
                     else
                     {
-                        throw new NotSupportedException(subNode.Name);
+                        throw new NotSupportedException(String.Format("Unsupported operator {0}", subNode.Name));
                     }
                 }
                 
