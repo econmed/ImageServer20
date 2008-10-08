@@ -126,9 +126,6 @@
   <data name="LicenseNotFound" xml:space="preserve">
     <value>Could not find license file.</value>
   </data>
-  <data name="MenuCheckForUpdates" xml:space="preserve">
-    <value>Check For Updates</value>
-  </data>
   <data name="MenuLicense" xml:space="preserve">
     <value>Show License</value>
   </data>
@@ -137,16 +134,6 @@
   </data>
   <data name="MenuWebsite" xml:space="preserve">
     <value>ClearCanvas.ca</value>
-  </data>
-  <data name="MessageNoUpdate" xml:space="preserve">
-    <value>No update is available at this time.</value>
-  </data>
-  <data name="MessageUpdateAvailable" xml:space="preserve">
-    <value>{0} {1} is now available!</value>
-  </data>
-  <data name="MessageUpdateRequestFailed" xml:space="preserve">
-    <value>The request for update information failed.
-Please see the logs for more details.</value>
   </data>
   <data name="URLNotFound" xml:space="preserve">
     <value>Could not reach URL</value>
