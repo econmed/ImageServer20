@@ -42,6 +42,7 @@ namespace ClearCanvas.ImageServer.Services.Archiving.Hsm
 	{
 		private readonly string _zipFile;
 		private readonly string _destinationFolder;
+		private readonly bool _overwrite;
 
 		/// <summary>
 		/// Constructor.
@@ -52,6 +53,7 @@ namespace ClearCanvas.ImageServer.Services.Archiving.Hsm
 		{
 			_zipFile = zip;
 			_destinationFolder = destinationFolder;
+			_overwrite = false;
 		}
 
 		/// <summary>
@@ -61,7 +63,7 @@ namespace ClearCanvas.ImageServer.Services.Archiving.Hsm
 		{
 			using (ZipFile zip = new ZipFile(_zipFile))
 			{
-				zip.ExtractAll(_destinationFolder);
+				zip.ExtractAll(_destinationFolder,_overwrite);
 			}
 		}
 
