@@ -29,6 +29,7 @@
 
 #endregion
 
+using System;
 using ClearCanvas.Desktop;
 using ClearCanvas.Enterprise.Common;
 using ClearCanvas.Ris.Application.Common.ReportingWorkflow;
