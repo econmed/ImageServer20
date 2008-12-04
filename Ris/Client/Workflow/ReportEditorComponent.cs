@@ -31,8 +31,6 @@
 
 using ClearCanvas.Common;
 using ClearCanvas.Desktop;
-using ClearCanvas.Enterprise.Common;
-using ClearCanvas.Ris.Application.Common;
 
 namespace ClearCanvas.Ris.Client.Workflow
 {
@@ -44,202 +42,17 @@ namespace ClearCanvas.Ris.Client.Workflow
 	{
 	}
 
-	/// <summary>
-	/// Default ReportEditorComponent class
-	/// </summary>
 	[AssociateView(typeof(ReportEditorComponentViewExtensionPoint))]
-	public class ReportEditorComponent : ApplicationComponent, IReportEditor
+	public class ReportEditorComponent : ReportEditorComponentBase<IReportEditorContext, ReportEditorCloseReason>, IReportEditor
 	{
-		#region EditingComponent
-
-		/// <summary>
-		/// A DHMTL component that allows editing of the report content.
-		/// </summary>
-		public class EditingComponent : DHtmlComponent
-		{
-			private readonly ReportEditorComponent _owner;
-
-			public EditingComponent(ReportEditorComponent owner)
-			{
-				_owner = owner;
-			}
-
-			public void Refresh()
-			{
-				NotifyAllPropertiesChanged();
-			}
-
-			protected override string GetTag(string tag)
-			{
-				if (tag == ReportPartDetail.ReportContentKey)
-					return _owner.ReportContent;
-
-				return base.GetTag(tag);
-			}
-
-			protected override void SetTag(string tag, string data)
-			{
-				if (tag == ReportPartDetail.ReportContentKey)
-					_owner.ReportContent = data;
-				else
-					base.SetTag(tag, data);
-			}
-
-			protected override DataContractBase GetHealthcareContext()
-			{
-				return _owner._reportEditorContext.WorklistItem;
-			}
-		}
-
-		#endregion
-
-		#region PreviewComponent
-
-		/// <summary>
-		/// A DHMTL component that shows a preview of the existing report parts.
-		/// </summary>
-		public class PreviewComponent : DHtmlComponent
-		{
-			private readonly ReportEditorComponent _owner;
-
-			public PreviewComponent(ReportEditorComponent owner)
-			{
-				_owner = owner;
-			}
-
-			public void Refresh()
-			{
-				NotifyAllPropertiesChanged();
-			}
-
-			protected override DataContractBase GetHealthcareContext()
-			{
-				return _owner._reportEditorContext.Report;
-			}
-		}
-
-		#endregion
-
-		private readonly EditingComponent _editingComponent;
-		private ChildComponentHost _editingHost;
-
-		private readonly PreviewComponent _previewComponent;
-		private ChildComponentHost _previewHost;
-
-		private readonly IReportEditorContext _reportEditorContext;
-
-
 		public ReportEditorComponent(IReportEditorContext context)
+			: base(context)
 		{
-			_reportEditorContext = context;
-			_editingComponent = new EditingComponent(this);
-			_previewComponent = new PreviewComponent(this);
 		}
 
-		public override void Start()
+		protected override string PreviewUrl
 		{
-			_editingComponent.SetUrl(this.EditorUrl);
-			_editingHost = new ChildComponentHost(this.Host, _editingComponent);
-			_editingHost.StartComponent();
-
-			_previewComponent.SetUrl(this.PreviewUrl);
-			_previewHost = new ChildComponentHost(this.Host, _previewComponent);
-			_previewHost.StartComponent();
-
-			_reportEditorContext.WorklistItemChanged += WorklistItemChangedEventHandler;
-
-			base.Start();
+			get { return WebResourcesSettings.Default.ReportPreviewPageUrl; }
 		}
-
-        public override void Stop()
-        {
-            _reportEditorContext.WorklistItemChanged -= WorklistItemChangedEventHandler;
-
-            if (_editingHost != null)
-            {
-                _editingHost.StopComponent();
-                _editingHost = null;
-            }
-
-            if (_previewHost != null)
-            {
-                _previewHost.StopComponent();
-                _previewHost = null;
-            }
-
-            base.Stop();
-        }
-
-		#region IReportEditor Members
-
-		IApplicationComponent IReportEditor.GetComponent()
-		{
-			return this;
-		}
-
-		bool IReportEditor.Save(ReportEditorCloseReason reason)
-		{
-			_editingComponent.SaveData();
-			return true;
-		}
-
-		#endregion
-
-		#region Presentation Model
-
-		public virtual bool PreviewVisible
-		{
-			get { return IsAddendum; }
-		}
-
-		public ApplicationComponentHost ReportEditorHost
-		{
-			get { return _editingHost; }
-		}
-
-		public ApplicationComponentHost ReportPreviewHost
-		{
-			get { return _previewHost; }
-		}
-
-		public string ReportContent
-		{
-			get { return _reportEditorContext.ReportContent; }
-			set { _reportEditorContext.ReportContent = value; }
-		}
-
-		#endregion
-
-		private string EditorUrl
-		{
-			get
-			{
-				return IsAddendum
-						? WebResourcesSettings.Default.DefaultAddendumEditorPageUrl
-						: WebResourcesSettings.Default.DefaultReportEditorPageUrl;
-			}
-		}
-
-		private string PreviewUrl
-		{
-			get
-			{
-				return IsAddendum ? WebResourcesSettings.Default.ReportPreviewPageUrl : "about:blank";
-			}
-		}
-
-		private bool IsAddendum
-		{
-			get { return _reportEditorContext.ActiveReportPartIndex > 0; }
-		}
-
-		private void WorklistItemChangedEventHandler(object sender, System.EventArgs e)
-		{
-			_editingComponent.Refresh();
-			_previewComponent.Refresh();
-			NotifyAllPropertiesChanged();
-		}
-
-
 	}
 }
