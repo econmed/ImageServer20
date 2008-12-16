@@ -135,6 +135,9 @@
   <data name="ExceptionContainerNeverStarted" xml:space="preserve">
     <value>Container was never started.</value>
   </data>
+  <data name="ExceptionLocalDataStoreNotFound" xml:space="preserve">
+    <value>The local data store service does not appear to be running.</value>
+  </data>
   <data name="FormatStudyComposerGenericImageLabelCaption" xml:space="preserve">
     <value>An Image</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Properties</value>
+  </data>
+  <data name="SelectDestination" xml:space="preserve">
+    <value>Select Destination</value>
   </data>
   <data name="StudyComposer" xml:space="preserve">
     <value>Study Composer</value>
