@@ -120,6 +120,9 @@
   <data name="ExceptionModalitiesInStudyCannotPerformMultipleWildcardQueries" xml:space="preserve">
     <value>Multiple wildcard queries cannot be performed on the ModalitiesInStudy tag.</value>
   </data>
+  <data name="MessageFormatAssociationRejected" xml:space="preserve">
+    <value>Association rejected ({0}).</value>
+  </data>
   <data name="MessageFormatConnectionFailed" xml:space="preserve">
     <value>Connection failed ({0}).</value>
   </data>
@@ -131,5 +134,11 @@
   </data>
   <data name="MessageFormatRemoteServerCancelledFind" xml:space="preserve">
     <value>The remote server cancelled the query ({0}).</value>
+  </data>
+  <data name="MessageUnexpectedMessage" xml:space="preserve">
+    <value>An unexpected message was received; aborted association.</value>
+  </data>
+  <data name="MessageUnexpectedNetworkError" xml:space="preserve">
+    <value>An unexpected network error has occurred.</value>
   </data>
 </root>

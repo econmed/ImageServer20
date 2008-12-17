@@ -37,6 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DecodeOnlyCodecProxy.cs" />
     <Compile Include="JpegBaselineFactory.cs" />
     <Compile Include="JpegExtendedProcess24Factory.cs" />
     <Compile Include="JpegLosslessNonHierarchicalProcess14SV1Factory.cs" />
