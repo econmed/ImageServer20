@@ -129,6 +129,9 @@
   <data name="OpenDicomFilesVerbose" xml:space="preserve">
     <value>Open Dicom Files</value>
   </data>
+  <data name="OpenMprFilesVerbose" xml:space="preserve">
+    <value>Open MPR</value>
+  </data>
   <data name="TitleImageViewer" xml:space="preserve">
     <value>Image</value>
   </data>
