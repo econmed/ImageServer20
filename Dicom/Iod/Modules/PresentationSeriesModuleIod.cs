@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using ClearCanvas.Dicom.Iod.Macros;
 using ClearCanvas.Dicom.Utilities;
 
@@ -70,6 +71,15 @@ namespace ClearCanvas.Dicom.Iod.Modules
 				if (value != Modality.PR)
 					throw new ArgumentOutOfRangeException("value", "Modality must be PR.");
 				SetAttributeFromEnum(base.DicomAttributeProvider[DicomTags.Modality], value);
+			}
+		}
+
+		/// <summary>
+		/// Gets an enumeration of <see cref="DicomTag"/>s used by this module.
+		/// </summary>
+		public static IEnumerable<uint> DefinedTags {
+			get {
+				yield return DicomTags.Modality;
 			}
 		}
 	}
