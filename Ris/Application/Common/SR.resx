@@ -123,4 +123,7 @@
   <data name="ExceptionEnablementMethodNotFound" xml:space="preserve">
     <value>Cannot find enablement method {0} for {1}</value>
   </data>
+  <data name="ExceptionSupervisorRequired" xml:space="preserve">
+    <value>A supervising radiologist must be supplied in order to complete this action</value>
+  </data>
 </root>

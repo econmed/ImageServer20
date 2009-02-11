@@ -43,8 +43,8 @@ namespace ClearCanvas.Ris.Application.Common.ProtocollingWorkflow
 		{
 		}
 
-		public AcceptProtocolRequest(EntityRef protocolAssignmentStepRef)
-			: this(protocolAssignmentStepRef, null, null)
+		public AcceptProtocolRequest(EntityRef protocolAssignmentStepRef, EntityRef supervisorRef)
+			: base(protocolAssignmentStepRef, supervisorRef)
 		{
 		}
 	}
