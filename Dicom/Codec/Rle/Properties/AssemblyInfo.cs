@@ -30,18 +30,19 @@
 #endregion
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
+[assembly: ClearCanvas.Common.Plugin]
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Rle")]
+[assembly: AssemblyTitle("ClearCanvas.Dicom.Codec.Rle")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Rle")]
-[assembly: AssemblyCopyright("Copyright (c) 2006-2008")]
+[assembly: AssemblyCompany("ClearCanvas, Inc.")]
+[assembly: AssemblyProduct("ClearCanvas.Dicom.Codec.Rle")]
+[assembly: AssemblyCopyright("Copyright (c) 2006-2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
