@@ -41,7 +41,17 @@ namespace ClearCanvas.Desktop.Tables
 	public class DateTimeTableColumn<TItem> : TableColumn<TItem, DateTime?>
 	{
         /// <summary>
-        /// Constructs a read-only single-cellrow table column with specific width factor but no comparison delegate.
+        /// Constructs a read-only single-cellrow DateTime table column.
+        /// </summary>
+        /// <param name="columnName">The name of the column.</param>
+        /// <param name="valueGetter">A delegate that accepts an item and pulls the column value from the item.</param>
+		public DateTimeTableColumn(string columnName, GetColumnValueDelegate<TItem, DateTime?> valueGetter)
+            : this(columnName, valueGetter, 1.0f)
+        {
+		}
+
+        /// <summary>
+        /// Constructs a read-only single-cellrow DateTime table column with specific width factor.
         /// </summary>
         /// <param name="columnName">The name of the column.</param>
         /// <param name="valueGetter">A delegate that accepts an item and pulls the column value from the item.</param>
@@ -51,6 +61,6 @@ namespace ClearCanvas.Desktop.Tables
         {
 			this.ValueFormatter = delegate(DateTime? value) { return Format.DateTime(value); };
 			this.Comparison = delegate(TItem item1, TItem item2) { return Nullable.Compare(valueGetter(item1), valueGetter(item2)); };
-        }
+		}
 	}
 }
