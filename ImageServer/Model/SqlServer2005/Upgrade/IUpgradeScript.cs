@@ -38,6 +38,7 @@ namespace ClearCanvas.ImageServer.Model.SqlServer2005.Upgrade
 	public interface IUpgradeScript
 	{
 		string GetScript();
-		DatabaseVersion GetVersion();
+		DatabaseVersion UpgradeFromVersion { get; }
+		DatabaseVersion UpgradeToVersion { get; }
 	}
 }
