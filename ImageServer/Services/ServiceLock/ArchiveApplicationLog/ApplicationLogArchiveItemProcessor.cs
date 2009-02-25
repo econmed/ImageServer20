@@ -137,7 +137,7 @@ namespace ClearCanvas.ImageServer.Services.ServiceLock.ArchiveApplicationLog
 
 			IApplicationLogEntityBroker broker = ReadContext.GetBroker<IApplicationLogEntityBroker>();
 
-			ArchivalLogWriter writer = new ArchivalLogWriter(archivePath);
+			ImageServerLogWriter<ApplicationLog> writer = new ImageServerLogWriter<ApplicationLog>(archivePath, "ApplicationLog");
 			List<ServerEntityKey> keyList = new List<ServerEntityKey>(500);
 			try
 			{
@@ -145,7 +145,7 @@ namespace ClearCanvas.ImageServer.Services.ServiceLock.ArchiveApplicationLog
 				                      	{
 				                      		keyList.Add(result.Key);
 
-				                      		if (writer.WriteLog(result))
+				                      		if (writer.WriteLog(result,result.Timestamp))
 				                      		{
 												// The logs been flushed, delete the log entries cached.
 				                      			using (
