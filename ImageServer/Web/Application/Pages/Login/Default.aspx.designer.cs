@@ -90,5 +90,14 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Login {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ClearCanvas.ImageServer.Web.Application.Pages.Login.ChangePasswordDialog ChangePasswordDialog;
+        
+        /// <summary>
+        /// PasswordExpiredDialog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ClearCanvas.ImageServer.Web.Application.Pages.Login.PasswordExpiredDialog PasswordExpiredDialog;
     }
 }

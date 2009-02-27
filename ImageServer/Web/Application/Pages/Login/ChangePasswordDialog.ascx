@@ -24,7 +24,7 @@
                     <tr>
                         <td align="right">
                             <asp:Panel ID="Panel2" runat="server" CssClass="DefaultModalDialogButtonPanel">
-                                <ccUI:ToolbarButton ID="OKButton" runat="server" SkinID="AddButton" OnClick="ChangePassword_Click" />
+                                <ccUI:ToolbarButton ID="OKButton" runat="server" SkinID="OKButton" OnClick="ChangePassword_Click" />
                                 <ccUI:ToolbarButton ID="CancelButton" runat="server" SkinID="CancelButton" OnClick="Cancel_Click"/>
                             </asp:Panel>
                         </td>
