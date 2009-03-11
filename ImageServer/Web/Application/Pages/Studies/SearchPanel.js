@@ -196,7 +196,7 @@ if (window.__registeredTypes['ClearCanvas.ImageServer.Web.Application.Pages.Stud
                         }
                     }
                     // load in the current window 
-                    window.location = url;
+                    window.open(url, 'movewindow', 'toolbar=no,location=no,directories=no,status=no,menubar=no');
                 }
             }
         },
