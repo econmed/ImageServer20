@@ -38,7 +38,7 @@ namespace ClearCanvas.ImageServer.Services.ServiceLock.FilesystemReinventory
     /// Plugin for creating processors for 'FilesystemReinventory' <see cref="Model.ServiceLock"/> items.
     /// </summary>
     [ExtensionOf(typeof(ServiceLockFactoryExtensionPoint))]
-    class FilesystemReinventoryFactoryExtension : IServiceLockProcessorFactory
+    public class FilesystemReinventoryFactoryExtension : IServiceLockProcessorFactory
     {
         #region IServiceLockProcessorFactory Members
 
