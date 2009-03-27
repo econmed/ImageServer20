@@ -34,6 +34,7 @@ using ClearCanvas.Common;
 using ClearCanvas.Dicom;
 using ClearCanvas.ImageViewer.StudyManagement;
 using ClearCanvas.Dicom.DataStore;
+using System;
 
 namespace ClearCanvas.ImageViewer.StudyLoaders.LocalDataStore
 {
@@ -49,9 +50,14 @@ namespace ClearCanvas.ImageViewer.StudyLoaders.LocalDataStore
 
     	public override int OnStart(StudyLoaderArgs studyLoaderArgs)
 		{
+    		_sops = null;
+
 			using (IDataStoreReader reader = DataAccessLayer.GetIDataStoreReader())
 			{
 				IStudy study = reader.GetStudy(studyLoaderArgs.StudyInstanceUid);
+				if (study == null)
+					throw new Exception("The specified study does not exist.");
+
 				_sops = study.GetSopInstances().GetEnumerator();
 				return study.NumberOfStudyRelatedInstances;
 			}
@@ -59,8 +65,14 @@ namespace ClearCanvas.ImageViewer.StudyLoaders.LocalDataStore
 
 		protected override SopDataSource LoadNextSopDataSource()
         {
-			if (!_sops.MoveNext())
+			if (_sops == null)
 				return null;
+
+			if (!_sops.MoveNext())
+			{
+				_sops = null;
+				return null;
+			}
 
 			return new LocalDataStoreSopDataSource(_sops.Current);
         }
