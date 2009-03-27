@@ -33,6 +33,9 @@ using ClearCanvas.Common;
 
 namespace ClearCanvas.Dicom.Audit
 {
+	/// <summary>
+	/// Enum for use with <see cref="ApplicationActivityAuditHelper"/>.
+	/// </summary>
 	public enum ApplicationActivityType
 	{
 		ApplicationStarted,
@@ -42,42 +45,53 @@ namespace ClearCanvas.Dicom.Audit
 	/// <summary>
 	/// Helper for Application Activity Audit Log
 	/// </summary>
+	/// <remarks>
+	/// This audit message describes the event of an Application Entity starting or stoping.
+	/// </remarks>
 	public class ApplicationActivityAuditHelper : DicomAuditHelper
 	{
-		public ApplicationActivityAuditHelper(EventIdentificationTypeEventOutcomeIndicator outcome, ApplicationActivityType type)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="auditSource"></param>
+		/// <param name="outcome"></param>
+		/// <param name="type"></param>
+		/// <param name="idOfApplicationStarted">Add the ID of the Application Started, should be called once.</param>
+		public ApplicationActivityAuditHelper(DicomAuditSource auditSource,
+			EventIdentificationTypeEventOutcomeIndicator outcome, 
+			ApplicationActivityType type,
+			AuditProcessActiveParticipant idOfApplicationStarted)
 		{
 			AuditMessage.EventIdentification = new EventIdentificationType();
 			AuditMessage.EventIdentification.EventID = CodedValueType.ApplicationActivity;
 			AuditMessage.EventIdentification.EventActionCode = EventIdentificationTypeEventActionCode.E;
 			AuditMessage.EventIdentification.EventDateTime = Platform.Time.ToUniversalTime();
 			AuditMessage.EventIdentification.EventOutcomeIndicator = outcome;
-			
+
+			InternalAddAuditSource(auditSource);
+
 			if (type == ApplicationActivityType.ApplicationStarted)
 				AuditMessage.EventIdentification.EventTypeCode = new CodedValueType[] { CodedValueType.ApplicationStart };
 			else
 				AuditMessage.EventIdentification.EventTypeCode = new CodedValueType[] { CodedValueType.ApplicationStop };
-		}
-		/// <summary>
-		/// Add the ID of the Application Started, should be called once.
-		/// </summary>
-		/// <param name="aeTitle">A comma delimited list of AE titles started</param>
-		/// <remarks>
-		/// Note that this routine should only be called once.
-		/// </remarks>
-		public void AddApplicationStartStopId(string aeTitle)
-		{
-			_participantList.Add(
-				new AuditMessageActiveParticipant(CodedValueType.Application, ProcessId, aeTitle, null, null, null, false));
+
+			idOfApplicationStarted.UserIsRequestor = false;
+			idOfApplicationStarted.RoleIdCode = CodedValueType.Application;
+
+			InternalAddActiveParticipant(idOfApplicationStarted);
+
 		}
 
 		/// <summary>
 		/// Add the ID of person or process that started or stopped the Application.  Can be called multiple times.
 		/// </summary>
-		/// <param name="userId">The user ID</param>
-		/// <param name="userName">The user name</param>
-		public void AddParticipant(string userId, string userName)
+		/// <param name="participant">The participant.</param>
+		public void AddUserParticipant(AuditActiveParticipant participant)
 		{
-			InternalAddActiveParticipant(null, userId, null, userName);
+			participant.RoleIdCode = CodedValueType.ApplicationLauncher;
+			participant.UserIsRequestor = true;
+
+			InternalAddActiveParticipant(participant);
 		}
 	}
 }
