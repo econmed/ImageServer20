@@ -123,6 +123,9 @@
   <data name="Directory" xml:space="preserve">
     <value>Directory</value>
   </data>
+  <data name="EditFilters" xml:space="preserve">
+    <value>Edit Filters</value>
+  </data>
   <data name="Extension" xml:space="preserve">
     <value>Extension</value>
   </data>
