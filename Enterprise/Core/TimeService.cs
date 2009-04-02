@@ -32,7 +32,7 @@
 using System;
 
 using ClearCanvas.Common;
-using ClearCanvas.Enterprise.Common;
+using ClearCanvas.Enterprise.Common.Time;
 
 namespace ClearCanvas.Enterprise.Core
 {
@@ -42,9 +42,9 @@ namespace ClearCanvas.Enterprise.Core
     {
         #region ITimeService Members
 
-        public DateTime GetTime()
+		public GetTimeResponse GetTime(GetTimeRequest request)
         {
-            return DateTime.Now;
+            return new GetTimeResponse(DateTime.Now);
         }
 
         #endregion
