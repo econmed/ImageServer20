@@ -39,11 +39,11 @@ namespace ClearCanvas.ImageViewer.Annotations
 	public interface IAnnotationLayoutProvider
 	{
 		/// <summary>
-		/// Gets an <see cref="IAnnotationLayout"/>.
+		/// Gets or sets the <see cref="IAnnotationLayout"/>.
 		/// </summary>
 		/// <remarks>
 		/// Like other provider interfaces, it is not recommended that this property return null.
 		/// </remarks>
-		IAnnotationLayout AnnotationLayout { get; }
+		IAnnotationLayout AnnotationLayout { get; set; }
 	}
 }
