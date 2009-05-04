@@ -61,6 +61,7 @@ namespace ClearCanvas.Desktop.Configuration.Tools
 			List<IConfigurationPage> listPages = new List<IConfigurationPage>();
 
 			listPages.Add(new ConfigurationPage<DateFormatApplicationComponent>("TitleDateFormat"));
+			listPages.Add(new ConfigurationPage<ToolStripConfigComponent>("TitleToolbar"));
 		
 			return listPages.AsReadOnly();
 		}
