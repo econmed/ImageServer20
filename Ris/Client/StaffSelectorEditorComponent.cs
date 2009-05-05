@@ -36,6 +36,9 @@ using ClearCanvas.Ris.Application.Common;
 
 namespace ClearCanvas.Ris.Client
 {
+	/// <summary>
+	/// A specialize Staff SelectorEditComponent that includes the current user.
+	/// </summary>
 	public class StaffSelectorEditorComponent : SelectorEditorComponent<StaffSummary, StaffSelectorTable>
 	{
 		public class DummyItem : StaffSummary
@@ -62,7 +65,7 @@ namespace ClearCanvas.Ris.Client
 
 		public StaffSelectorEditorComponent(IEnumerable<StaffSummary> allItems, IEnumerable<StaffSummary> selectedItems, bool includeCurrentUser)
 			: base(
-				CollectionAndCurrentUser(allItems), 
+				CollectionAndCurrentUser(allItems),
 				includeCurrentUser ? CollectionAndCurrentUser(selectedItems) : selectedItems, 
 				delegate(StaffSummary s) { return s.StaffRef; })
 		{
