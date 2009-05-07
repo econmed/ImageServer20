@@ -68,8 +68,11 @@ namespace ClearCanvas.ImageViewer.Utilities.StudyFilters.Tools
 				return;
 			}
 
-			LaunchImageViewerArgs launchArgs = new LaunchImageViewerArgs(WindowBehaviour.Auto);
-			ImageViewerComponent.Launch(viewer, launchArgs);
+			try
+			{
+				LaunchImageViewerArgs launchArgs = new LaunchImageViewerArgs(WindowBehaviour.Auto);
+				ImageViewerComponent.Launch(viewer, launchArgs);
+			}catch(Exception ex) {}
 		}
 	}
 }

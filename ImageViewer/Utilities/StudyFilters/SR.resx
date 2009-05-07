@@ -126,6 +126,9 @@
   <data name="EditFilters" xml:space="preserve">
     <value>Edit Filters</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="Extension" xml:space="preserve">
     <value>Extension</value>
   </data>
@@ -180,6 +183,9 @@
   <data name="MessageInvalidPath" xml:space="preserve">
     <value>Invalid path or filename: {0}</value>
   </data>
+  <data name="MessageSelectOutputLocation" xml:space="preserve">
+    <value>Select output location:</value>
+  </data>
   <data name="Path" xml:space="preserve">
     <value>Path</value>
   </data>
@@ -189,11 +195,20 @@
   <data name="ToolbarAddRemoveColumns" xml:space="preserve">
     <value>Add/Remove Columns</value>
   </data>
+  <data name="ToolbarAnonymizeExport" xml:space="preserve">
+    <value>Export...</value>
+  </data>
+  <data name="ToolbarEditFilters" xml:space="preserve">
+    <value>Edit Filters</value>
+  </data>
   <data name="ToolbarFilter" xml:space="preserve">
     <value>Filter</value>
   </data>
   <data name="ToolbarLaunchInViewer" xml:space="preserve">
     <value>Launch in Viewer</value>
+  </data>
+  <data name="ToolbarSaveTo" xml:space="preserve">
+    <value>Save To...</value>
   </data>
   <data name="TooltipOpenInStudyFilters" xml:space="preserve">
     <value>Opens the selected DICOM files in a table for filtering purposes</value>
