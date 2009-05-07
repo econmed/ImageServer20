@@ -34,8 +34,8 @@ using ClearCanvas.Common;
 using ClearCanvas.Common.Utilities;
 using ClearCanvas.Desktop;
 using ClearCanvas.Desktop.Actions;
-using ClearCanvas.ImageViewer.DicomGraphics;
 using ClearCanvas.ImageViewer.Graphics;
+using ClearCanvas.ImageViewer.PresentationStates.Dicom;
 
 namespace ClearCanvas.ImageViewer.Tools.Standard
 {
@@ -57,21 +57,13 @@ namespace ClearCanvas.ImageViewer.Tools.Standard
 		{
 		}
 
-		private static IEnumerable<ShuttersGraphic> GetShuttersGraphics(IDicomPresentationImage image)
-		{
-			foreach (ShuttersGraphic shuttersGraphic in CollectionUtils.Select(image.DicomGraphics,
-				delegate(IGraphic graphic) { return graphic is ShuttersGraphic; }))
-			{
-				yield return shuttersGraphic;
-			}
-		}
-
 		protected override void UpdateVisibility(IPresentationImage image, bool visible)
 		{
 			if (image is IDicomPresentationImage)
 			{
-				foreach (ShuttersGraphic shuttersGraphic in GetShuttersGraphics(image as IDicomPresentationImage))
-					shuttersGraphic.Visible = Checked;
+				DicomGraphicsPlane dicomGraphics = DicomGraphicsPlane.GetDicomGraphicsPlane(image as IDicomPresentationImage, false);
+				if (dicomGraphics != null)
+					dicomGraphics.Shutters.Enabled = Checked;
 			}
 		}
 	}
