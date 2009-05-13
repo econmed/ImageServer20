@@ -49,7 +49,9 @@ namespace ClearCanvas.Dicom.ServiceModel.Streaming
         /// <returns>The stream containing the study header information in compressed XML format</returns>
         /// <seealso cref="HeaderStreamingParameters"></seealso>
         [OperationContract]
-        [FaultContract(typeof(String))]
+        [FaultContract(typeof(StudyIsInUseFault))]
+        [FaultContract(typeof(StudyIsNearlineFault))]
+        [FaultContract(typeof(StudyNotFoundFault))]
         Stream GetStudyHeader(string callingAETitle, HeaderStreamingParameters parameters);
     }
 }
