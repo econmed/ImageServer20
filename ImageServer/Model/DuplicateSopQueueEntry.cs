@@ -44,7 +44,7 @@ namespace ClearCanvas.ImageServer.Model
             return new DuplicateSopReceivedQueue(StudyIntegrityQueue.Load(context, key));
         }
 
-        public string GetReceivedDuplicateSopFolder()
+        public string GetFolderPath()
         {
             if (_location ==null)
             {
@@ -63,8 +63,17 @@ namespace ClearCanvas.ImageServer.Model
 
             String path = Path.Combine(_location.FilesystemPath, _location.PartitionFolder);
             path = Path.Combine(path, "Reconcile");
-            path = Path.Combine(path, this.GroupID);
+            path = Path.Combine(path, GroupID);
             path = Path.Combine(path, _location.StudyInstanceUid);
+
+            return path;
+        }
+
+        public string GetSopPath(string seriesInstanceUid, string sopInstancecUid)
+        {
+            string path = Path.Combine(GetFolderPath(), seriesInstanceUid);
+            path = Path.Combine(path, sopInstancecUid);
+            path += ".dup";
 
             return path;
         }
