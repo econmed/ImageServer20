@@ -29,6 +29,7 @@
 
 #endregion
 
+using System;
 using System.Xml.Serialization;
 using ClearCanvas.Dicom;
 
@@ -61,6 +62,9 @@ namespace ClearCanvas.ImageServer.Core.Data
 				SeriesDescription = attributeProvider[DicomTags.SeriesDescription].ToString();
 			if (attributeProvider[DicomTags.Modality] != null)
 				Modality = attributeProvider[DicomTags.Modality].ToString();
+
+            if (attributeProvider[DicomTags.NumberOfSeriesRelatedInstances] != null)
+                Int32.TryParse(attributeProvider[DicomTags.NumberOfSeriesRelatedInstances].ToString(), out _numberOfInstances);
 
 		}
 
