@@ -81,7 +81,14 @@ namespace ClearCanvas.ImageViewer.Graphics
 		public Color Color
 		{
 			get { return _color; }
-			set { _color = value; }
+			set
+			{
+				if (_color != value)
+				{
+					_color = value;
+					base.NotifyVisualStateChanged("Color");
+				}
+			}
 		}
 
 		/// <summary>
@@ -90,7 +97,14 @@ namespace ClearCanvas.ImageViewer.Graphics
 		public LineStyle LineStyle
 		{
 			get { return _lineStyle; }
-			set { _lineStyle = value; }
+			set
+			{
+				if (_lineStyle != value)
+				{
+					_lineStyle = value;
+					base.NotifyVisualStateChanged("LineStyle");
+				}
+			}
 		}
 	}
 }
