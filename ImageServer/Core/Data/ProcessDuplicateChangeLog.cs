@@ -33,7 +33,6 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using ClearCanvas.Common;
-using ClearCanvas.Dicom;
 using ClearCanvas.ImageServer.Common.Utilities;
 using ClearCanvas.ImageServer.Core.Data;
 using ClearCanvas.ImageServer.Core.Edit;
