@@ -37,7 +37,6 @@ using ClearCanvas.ImageServer.Common.Utilities;
 
 namespace ClearCanvas.ImageServer.Common.CommandProcessor
 {
-
     /// <summary>
     /// A ServerCommand derived class for moving a directory.
     /// </summary>
@@ -57,7 +56,7 @@ namespace ClearCanvas.ImageServer.Common.CommandProcessor
         #endregion
 
         public MoveDirectoryCommand(string src, string dest, DirectoryUtility.CopyProcessCallback callback)
-            : base("MoveDirectory", true)
+            : base(String.Format("MoveDirectory {0}", src), true)
         {
             Platform.CheckForNullReference(src, "src");
             Platform.CheckForNullReference(dest, "dest");
