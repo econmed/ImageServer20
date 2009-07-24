@@ -29,6 +29,7 @@
 
 #endregion
 
+using System;
 using ClearCanvas.Common;
 using ClearCanvas.ImageViewer.Graphics;
 
@@ -76,6 +77,19 @@ namespace ClearCanvas.ImageViewer.Imaging
 		public void ToggleInvert()
 		{
 			_grayscaleImageGraphic.Invert = !_grayscaleImageGraphic.Invert;
+		}
+
+		/// <summary>
+		/// This property is not relevant to this class.
+		/// </summary>
+		/// <remarks>
+		/// LUTs are always enabled on this class. Attempting to set this property will throw a <see cref="NotSupportedException"/>.
+		/// </remarks>
+		/// <exception cref="NotSupportedException">Thrown if the set accessor is called.</exception>
+		bool IVoiLutManager.Enabled
+		{
+			get { return true; }
+			set { throw new NotSupportedException();}
 		}
 
 		#endregion
