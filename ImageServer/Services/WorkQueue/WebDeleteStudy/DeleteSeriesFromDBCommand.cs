@@ -40,23 +40,33 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.WebDeleteStudy
     internal class DeleteSeriesFromDBCommand : ServerDatabaseCommand
     {
         private readonly StudyStorageLocation _location;
-        private readonly string _seriesUid;
+        private readonly Series _series;
 
-        public DeleteSeriesFromDBCommand(StudyStorageLocation location, string seriesUid)
-            : base(String.Format("Delete Series In DB {0}", seriesUid), true)
+        public DeleteSeriesFromDBCommand(StudyStorageLocation location, Series series)
+            : base(String.Format("Delete Series In DB {0}", series.SeriesInstanceUid), true)
         {
             _location = location;
-            _seriesUid = seriesUid;
+            _series = series;
         }
+
+        public Series Series
+        {
+            get { return _series; }
+        }
+
 
         protected override void OnExecute(ClearCanvas.Enterprise.Core.IUpdateContext updateContext)
         {
             IDeleteSeries broker = updateContext.GetBroker<IDeleteSeries>();
             DeleteSeriesParameters criteria = new DeleteSeriesParameters();
             criteria.StudyStorageKey = _location.Key;
-            criteria.SeriesInstanceUid = _seriesUid;
+            criteria.SeriesInstanceUid = _series.SeriesInstanceUid;
             if (!broker.Execute(criteria))
                 throw new ApplicationException("Error occurred when calling DeleteSeries");
         }
+    }
+
+    internal class DeleteSeriesFromDBCommandEventArgs:EventArgs
+    {
     }
 }
