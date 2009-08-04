@@ -63,6 +63,6 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.WebEditStudy
         void OnStudyEdited(WebEditStudyContext context);
     }
 
-    class WebEditStudyProcessorExtensionPoint:ExtensionPoint<IWebEditStudyProcessorExtension>
+    public class WebEditStudyProcessorExtensionPoint:ExtensionPoint<IWebEditStudyProcessorExtension>
     {}
 }
