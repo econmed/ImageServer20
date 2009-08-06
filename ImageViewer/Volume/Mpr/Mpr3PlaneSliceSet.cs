@@ -30,7 +30,6 @@
 #endregion
 
 using ClearCanvas.Dicom;
-using ClearCanvas.ImageViewer.StudyManagement;
 
 namespace ClearCanvas.ImageViewer.Volume.Mpr
 {
@@ -49,20 +48,28 @@ namespace ClearCanvas.ImageViewer.Volume.Mpr
 
 		private void Reslice()
 		{
-			base.ClearAndDisposeSops();
-
-			int instanceNumber = 0;
-			foreach (IVolumeSlicerParams slicerParams in _planes)
+			base.SuspendSliceSopsChangedEvent();
+			try
 			{
-				using (VolumeSlicer slicer = new VolumeSlicer(base.Volume, slicerParams, base.Uid))
+				base.ClearAndDisposeSops();
+
+				int instanceNumber = 0;
+				foreach (IVolumeSlicerParams slicerParams in _planes)
 				{
-					foreach (ISliceSopDataSource dataSource in slicer.CreateSlices())
+					using (VolumeSlicer slicer = new VolumeSlicer(base.Volume, slicerParams, base.Uid))
 					{
-						// we're appending multiple slicings, so override the instance number that the slicer generates
-						dataSource[DicomTags.InstanceNumber].SetInt32(0, ++instanceNumber);
-						base.SliceSops.Add(new ImageSop(dataSource));
+						foreach (ISliceSopDataSource dataSource in slicer.CreateSlices())
+						{
+							// we're appending multiple slicings, so override the instance number that the slicer generates
+							dataSource[DicomTags.InstanceNumber].SetInt32(0, ++instanceNumber);
+							base.SliceSops.Add(new MprSliceSop(dataSource));
+						}
 					}
 				}
+			}
+			finally
+			{
+				base.ResumeSliceSopsChangedEvent(true);
 			}
 		}
 	}
