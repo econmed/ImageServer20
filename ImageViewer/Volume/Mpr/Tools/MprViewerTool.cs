@@ -38,12 +38,18 @@ namespace ClearCanvas.ImageViewer.Volume.Mpr.Tools
 	[ExtensionPoint]
 	public sealed class MprViewerToolExtensionPoint : ExtensionPoint<ITool> {}
 
+	public interface IMprViewerTool : ITool
+	{
+		MprViewerComponent ImageViewer { get; }
+		IMprViewerToolContext Context { get; }
+	}
+
 	public interface IMprViewerToolContext : IImageViewerToolContext
 	{
 		new MprViewerComponent Viewer { get; }
 	}
 
-	public abstract class MprViewerTool : MouseImageViewerTool
+	public abstract class MprViewerTool : ImageViewerTool, IMprViewerTool
 	{
 		protected MprViewerTool() {}
 
@@ -56,10 +62,20 @@ namespace ClearCanvas.ImageViewer.Volume.Mpr.Tools
 		{
 			get { return (IMprViewerToolContext) base.Context; }
 		}
+	}
 
-		public bool IsMprImage(IPresentationImage image)
+	public abstract class MouseMprViewerTool : MouseImageViewerTool, IMprViewerTool
+	{
+		protected MouseMprViewerTool() {}
+
+		public new MprViewerComponent ImageViewer
 		{
-			return image.ParentDisplaySet is MprDisplaySet;
+			get { return (MprViewerComponent) base.ImageViewer; }
+		}
+
+		public new IMprViewerToolContext Context
+		{
+			get { return (IMprViewerToolContext) base.Context; }
 		}
 	}
 }
