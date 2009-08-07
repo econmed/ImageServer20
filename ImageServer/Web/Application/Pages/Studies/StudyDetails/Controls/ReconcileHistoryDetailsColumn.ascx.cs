@@ -31,8 +31,8 @@
 
 using System;
 using ClearCanvas.ImageServer.Core.Data;
+using ClearCanvas.ImageServer.Core.Reconcile;
 using ClearCanvas.ImageServer.Model;
-using ClearCanvas.ImageServer.Services.WorkQueue.ReconcileStudy;
 
 namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Controls
 {
