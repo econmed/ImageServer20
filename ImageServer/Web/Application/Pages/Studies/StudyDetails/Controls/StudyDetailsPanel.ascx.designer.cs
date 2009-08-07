@@ -20,7 +20,7 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Con
     public partial class StudyDetailsPanel {
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// SearchUpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -38,15 +38,6 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Con
         protected global::ClearCanvas.ImageServer.Web.Common.WebControls.UI.ToolbarButton EditStudyButton;
         
         /// <summary>
-        /// ReprocessStudyButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ClearCanvas.ImageServer.Web.Common.WebControls.UI.ToolbarButton ReprocessStudyButton;
-
-        /// <summary>
         /// DeleteStudyButton control.
         /// </summary>
         /// <remarks>
@@ -55,7 +46,15 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Con
         /// </remarks>
         protected global::ClearCanvas.ImageServer.Web.Common.WebControls.UI.ToolbarButton DeleteStudyButton;
         
-
+        /// <summary>
+        /// ReprocessStudyButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ClearCanvas.ImageServer.Web.Common.WebControls.UI.ToolbarButton ReprocessStudyButton;
+        
         /// <summary>
         /// StudyStateAlertPanel control.
         /// </summary>
