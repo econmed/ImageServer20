@@ -32,34 +32,38 @@
 using System.Collections.Generic;
 using ClearCanvas.Common;
 using ClearCanvas.ImageViewer.Annotations;
-using ClearCanvas.ImageViewer.Graphics;
 
-namespace ClearCanvas.ImageViewer.Volume.Mpr.Anno
+namespace ClearCanvas.ImageViewer.Volume.Mpr
 {
 	[ExtensionOf(typeof (AnnotationItemProviderExtensionPoint))]
 	public class MprAnnotationItemProvider : AnnotationItemProvider
 	{
-		private readonly PlaneGlyphAnnotationItem _planeGlyph = new PlaneGlyphAnnotationItem();
+		private readonly MprDisplaySetIdentifierAnnotationItem _mprDisplaySetIdentifier = new MprDisplaySetIdentifierAnnotationItem();
 
 		public MprAnnotationItemProvider()
 			: base("AnnotationItemProviders.Mpr", new AnnotationResourceResolver(typeof (MprAnnotationItemProvider).Assembly)) {}
 
 		public override IEnumerable<IAnnotationItem> GetAnnotationItems()
 		{
-			yield return _planeGlyph;
+			yield return _mprDisplaySetIdentifier;
 		}
 
-		private sealed class PlaneGlyphAnnotationItem : AnnotationItem
+		private sealed class MprDisplaySetIdentifierAnnotationItem : AnnotationItem
 		{
-			public PlaneGlyphAnnotationItem()
-				: base("Mpr.Glyph", new AnnotationResourceResolver(typeof(PlaneGlyphAnnotationItem).Assembly)) { }
+			public MprDisplaySetIdentifierAnnotationItem()
+				: base("Mpr.Glyph", new AnnotationResourceResolver(typeof (MprDisplaySetIdentifierAnnotationItem).Assembly)) {}
 
 			public override string GetAnnotationText(IPresentationImage presentationImage)
 			{
-				if (presentationImage == null)
-					return string.Empty;
-
-				return "glyph";
+				if (presentationImage != null)
+				{
+					MprDisplaySet displaySet = presentationImage.ParentDisplaySet as MprDisplaySet;
+					if (displaySet != null && displaySet.SliceSet is IMprStandardSliceSet)
+					{
+						return displaySet.SliceSet.Description;
+					}
+				}
+				return null;
 			}
 		}
 	}
