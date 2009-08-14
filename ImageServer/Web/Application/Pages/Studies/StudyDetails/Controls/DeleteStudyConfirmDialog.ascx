@@ -112,7 +112,7 @@
                             <table cellpadding="0" cellspacing="0">
                                 <tr valign="top">
                                     <td>
-                                        <asp:TextBox  Width="400px" Rows="3" ID="Reason" runat="server" TextMode="MultiLine" />                                            
+                                        <asp:TextBox  Width="400px" Rows="3" ID="Reason" runat="server" TextMode="MultiLine" style="font-family: Arial, Sans-Serif; font-size: 14px;"/>                                            
                                     </td>
                                     <td>
                                         <ccAsp:InvalidInputIndicator ID="InvalidReasonIndicator" runat="server" SkinID="InvalidInputIndicator" />
@@ -120,9 +120,9 @@
                                     <td>
                                         <asp:Button runat="server" ID="PredefinedReasonButton" OnClientClick="return false;" Text="..." ></asp:Button>
                                         <asp:Panel runat="server" ID="ReasonForDeletionDropDownPanel" CssClass="ReasonForDeletionDropDownPanel">
-                                        <asp:Label ID="Label2" runat="server" ForeColor="#16425D" Font-Size="Smaller"
+                                        <asp:Label ID="Label2" runat="server" ForeColor="#16425D" style="font-family: Arial, Sans-Serif; font-size: 14px;"
                                                 Text="Pre-defined Reasons:"></asp:Label><br />                            
-                                        <asp:DropDownList runat="server" ID="ReasonListBox"/>                                        
+                                        <asp:DropDownList runat="server" ID="ReasonListBox" style="font-family: Arial, Sans-Serif; font-size: 14px;"/>                                        
                                         </asp:Panel>                                        
                                     </td>
                                 </tr>
@@ -138,7 +138,7 @@
                                  
                         </td>
                         <td>
-                            <asp:TextBox runat="server" ID="SaveReasonAsName" />
+                            <asp:TextBox runat="server" ID="SaveReasonAsName" style="font-family: Arial, Sans-Serif; font-size: 14px;"/>
                         </td>
                 </tr>
                 </table>
@@ -150,8 +150,7 @@
                 <td>
                     <asp:Panel ID="Panel1" runat="server" CssClass="DefaultModalDialogButtonPanel">
                         <ccUI:ToolbarButton ID="DeleteButton" runat="server" SkinID="OKButton" 
-                            ValidationGroup="<%= ClientID %>"
-                            OnClick="DeleteButton_Clicked" />
+                            OnClick="DeleteButton_Clicked" ValidationGroup="<%= ClientID %>"/>
                         <ccUI:ToolbarButton ID="CancelButton" runat="server" SkinID="CancelButton"
                             OnClick="CancelButton_Clicked" />
                     </asp:Panel>

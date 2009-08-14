@@ -74,15 +74,6 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails {
         protected global::ClearCanvas.ImageServer.Web.Application.Controls.MessageBox MessageDialog;
         
         /// <summary>
-        /// DeleteConfirmDialog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ClearCanvas.ImageServer.Web.Application.Controls.MessageBox DeleteConfirmDialog;
-        
-        /// <summary>
         /// ReprocessConfirmationDialog control.
         /// </summary>
         /// <remarks>
@@ -91,7 +82,6 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails {
         /// </remarks>
         protected global::ClearCanvas.ImageServer.Web.Application.Controls.MessageBox ReprocessConfirmationDialog;
         
-
         /// <summary>
         /// DeleteStudyConfirmDialog control.
         /// </summary>
@@ -100,5 +90,14 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Controls.DeleteStudyConfirmDialog DeleteStudyConfirmDialog;
+        
+        /// <summary>
+        /// DeleteSeriesConfirmDialog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Controls.DeleteSeriesConfirmDialog DeleteSeriesConfirmDialog;
     }
 }
