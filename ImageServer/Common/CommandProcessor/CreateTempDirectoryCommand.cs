@@ -55,7 +55,7 @@ namespace ClearCanvas.ImageServer.Common.CommandProcessor
 		    _directory = Path.Combine(ServerPlatform.TempDirectory, "Archive");
 		}
 
-		protected override void OnExecute()
+		protected override void OnExecute(ServerCommandProcessor theProcessor)
 		{
 			if (Directory.Exists(_directory))
 			{
