@@ -212,6 +212,8 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Admin.Alerts
                 ContainerTable.Height = _height;
 
             AlertGridView.DataSource = AlertDataSourceObject;
+
+
         }
 
         protected void AlertGridView_DataBound(object sender, EventArgs e)
@@ -221,17 +223,6 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Admin.Alerts
             {
                 AlertGridView.SelectedIndex = AlertItems.RowIndexOf(SelectedAlertKey, AlertGridView);
             }
-        }
-
-        protected void AlertGridView_PageIndexChanged(object sender, EventArgs e)
-        {
-            DataBind();
-        }
-
-        protected void AlertGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            AlertGridView.PageIndex = e.NewPageIndex;
-            DataBind();
         }
 
         protected void AlertGridView_RowDataBound(object sender, GridViewRowEventArgs e)
