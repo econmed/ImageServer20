@@ -34,7 +34,7 @@ using ClearCanvas.Common;
 using ClearCanvas.Common.Utilities;
 using ClearCanvas.Enterprise.Common;
 using ClearCanvas.Enterprise.Core;
-using ClearCanvas.ImageServer.Common;
+using ClearCanvas.ImageServer.Common.ServiceModel;
 using ClearCanvas.ImageServer.Enterprise;
 
 namespace ClearCanvas.ImageServer.Services.Common.Alert
@@ -42,6 +42,7 @@ namespace ClearCanvas.ImageServer.Services.Common.Alert
     /// <summary>
     /// Alert record service
     /// </summary>
+    [ServiceImplementsContract(typeof(IAlertService))]
     [ExtensionOf(typeof(ApplicationServiceExtensionPoint))]
     public class AlertService : IApplicationServiceLayer, IAlertService
     {

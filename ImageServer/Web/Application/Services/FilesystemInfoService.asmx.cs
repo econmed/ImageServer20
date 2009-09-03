@@ -29,16 +29,11 @@
 
 #endregion
 
-using System;
-using System.Data;
-using System.ServiceModel;
-using System.Web;
-using System.Collections;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Web.Services.Protocols;
 using System.ComponentModel;
-using ClearCanvas.Common;
+using ClearCanvas.ImageServer.Common.Utilities;
+using ClearCanvas.ImageServer.Web.Common.Utilities;
 
 namespace ClearCanvas.ImageServer.Web.Application.Services
 {
@@ -53,25 +48,9 @@ namespace ClearCanvas.ImageServer.Web.Application.Services
     {
 
         [WebMethod]
-        public FilesystemServiceProxy.FilesystemInfo GetFilesystemInfo(string path)
+        public FilesystemInfo GetFilesystemInfo(string path)
         {
-
-            FilesystemServiceProxy.FilesystemInfo fsInfo = null;
-            FilesystemServiceProxy.FilesystemServiceClient client = new FilesystemServiceProxy.FilesystemServiceClient();
-            try
-            {
-                fsInfo = client.GetFilesystemInfo(path);
-            }
-            catch (Exception e)
-            {
-                Platform.Log(LogLevel.Error, e.StackTrace);
-            }
-            finally
-            {
-                if (client.State == CommunicationState.Opened)
-                    client.Close();
-            }
-            return fsInfo;
+            return ServerUtility.GetFilesystemInfo(path);
         }
     }
 }
