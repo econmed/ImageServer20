@@ -63,5 +63,19 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Con
                 return _description;
             }
         }
+
+        public string GetReason(string reasonString)
+        {
+            if (string.IsNullOrEmpty(reasonString)) return "None Specified";
+            string[] reason = reasonString.Split(ImageServerConstants.ReasonCommentSeparator, StringSplitOptions.None);
+            return reason[0];
+        }
+
+        public string GetComment(string reasonString)
+        {
+            if (string.IsNullOrEmpty(reasonString)) return "None Specified";
+            string[] reason = reasonString.Split(ImageServerConstants.ReasonCommentSeparator, StringSplitOptions.None);
+            return reason[1];
+        }
     }
 }
