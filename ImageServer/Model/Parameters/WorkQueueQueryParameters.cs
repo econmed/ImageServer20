@@ -39,9 +39,9 @@ namespace ClearCanvas.ImageServer.Model.Parameters
             : base("QueryWorkQueue")
         { }
 
-        public string WorkQueueTypeEnumList
+		public bool MemoryLimited
         {
-			set { SubCriteria["WorkQueueTypeEnumList"] = new ProcedureParameter<string>("WorkQueueTypeEnumList", value); }
+			set { SubCriteria["MemoryLimited"] = new ProcedureParameter<bool>("MemoryLimited", value); }
         }
 
         public string ProcessorID
