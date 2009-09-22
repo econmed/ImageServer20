@@ -52,7 +52,8 @@ namespace ClearCanvas.ImageServer.Core.Reconcile
 		/// Initializes the processor with the specified context
 		/// </summary>
 		/// <param name="context"></param>
-		void Initialize(ReconcileStudyProcessorContext context);
+		/// <param name="complete"></param>
+		void Initialize(ReconcileStudyProcessorContext context, bool complete);
 
 		/// <summary>
 		/// Executes the processor
