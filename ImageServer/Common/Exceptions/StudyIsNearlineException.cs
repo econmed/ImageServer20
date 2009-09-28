@@ -47,5 +47,11 @@ namespace ClearCanvas.ImageServer.Common.Exceptions
         {
             get { return _restoreRequested; }
         }
+
+		/// <summary>
+        /// The study instance UID of the study that is nearline.
+        /// </summary>		
+        public string StudyInstanceUid { get; set; }
+
     }
 }
