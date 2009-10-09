@@ -52,6 +52,8 @@ namespace ClearCanvas.ImageServer.Core.Reconcile.ProcessAsIs
 			Context = context;
 			Context.DestStorageLocation = context.WorkQueueItemStudyStorage;
 
+            EnsureStudyCanBeUpdated();
+
 			ProcessAsIsCommand.CommandParameters parms = new ProcessAsIsCommand.CommandParameters();
 			ProcessAsIsCommand command = new ProcessAsIsCommand(Context, parms);
 
