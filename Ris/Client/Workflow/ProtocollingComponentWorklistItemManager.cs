@@ -55,9 +55,9 @@ namespace ClearCanvas.Ris.Client.Workflow
 
 	public static class ProtocollingComponentModes
 	{
-		public static AssignProtocolMode Assign = new AssignProtocolMode();
-		public static EditProtocolMode Edit = new EditProtocolMode();
-		public static ReviewProtocolMode Review = new ReviewProtocolMode();
+		public static IContinuousWorkflowComponentMode Assign = new AssignProtocolMode();
+		public static IContinuousWorkflowComponentMode Edit = new EditProtocolMode();
+		public static IContinuousWorkflowComponentMode Review = new ReviewProtocolMode();
 	}
 
 	public class AssignProtocolMode : ContinuousWorkflowComponentMode
