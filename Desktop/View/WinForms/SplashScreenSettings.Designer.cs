@@ -13,7 +13,7 @@ namespace ClearCanvas.Desktop.View.WinForms {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
-    internal sealed partial class SplashScreenSettings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class SplashScreenSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static SplashScreenSettings defaultInstance = ((SplashScreenSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new SplashScreenSettings())));
         
@@ -151,7 +151,7 @@ namespace ClearCanvas.Desktop.View.WinForms {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
         public global::System.Drawing.Color CopyrightForeColor {
             get {
                 return ((global::System.Drawing.Color)(this["CopyrightForeColor"]));
@@ -173,15 +173,6 @@ namespace ClearCanvas.Desktop.View.WinForms {
         public global::System.Drawing.ContentAlignment CopyrightTextAlign {
             get {
                 return ((global::System.Drawing.ContentAlignment)(this["CopyrightTextAlign"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Copyright 2009 ClearCanvas Inc. All rights reserved.")]
-        public string CopyrightText {
-            get {
-                return ((string)(this["CopyrightText"]));
             }
         }
         
@@ -250,19 +241,10 @@ namespace ClearCanvas.Desktop.View.WinForms {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Version {0} Alpha")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Version {0}")]
         public string VersionTextFormat {
             get {
                 return ((string)(this["VersionTextFormat"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ClearCanvas.Desktop.View.WinForms")]
-        public string VersionAssemblyName {
-            get {
-                return ((string)(this["VersionAssemblyName"]));
             }
         }
         
@@ -326,15 +308,6 @@ namespace ClearCanvas.Desktop.View.WinForms {
         public global::System.Drawing.ContentAlignment LicenseTextAlign {
             get {
                 return ((global::System.Drawing.ContentAlignment)(this["LicenseTextAlign"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LicenseText {
-            get {
-                return ((string)(this["LicenseText"]));
             }
         }
         

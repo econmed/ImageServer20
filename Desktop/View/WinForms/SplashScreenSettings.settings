@@ -45,16 +45,13 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CopyrightForeColor" Type="System.Drawing.Color" Scope="Application">
-      <Value Profile="(Default)">White</Value>
+      <Value Profile="(Default)">Black</Value>
     </Setting>
     <Setting Name="CopyrightFontBold" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CopyrightTextAlign" Type="System.Drawing.ContentAlignment" Scope="Application">
       <Value Profile="(Default)">TopLeft</Value>
-    </Setting>
-    <Setting Name="CopyrightText" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Copyright 2009 ClearCanvas Inc. All rights reserved.</Value>
     </Setting>
     <Setting Name="VersionVisible" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
@@ -78,10 +75,7 @@
       <Value Profile="(Default)">TopLeft</Value>
     </Setting>
     <Setting Name="VersionTextFormat" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Version {0} Alpha</Value>
-    </Setting>
-    <Setting Name="VersionAssemblyName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">ClearCanvas.Desktop.View.WinForms</Value>
+      <Value Profile="(Default)">Version {0}</Value>
     </Setting>
     <Setting Name="LicenseVisible" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
@@ -103,9 +97,6 @@
     </Setting>
     <Setting Name="LicenseTextAlign" Type="System.Drawing.ContentAlignment" Scope="Application">
       <Value Profile="(Default)">TopLeft</Value>
-    </Setting>
-    <Setting Name="LicenseText" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="PluginIconsVisible" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
