@@ -66,11 +66,9 @@ namespace ClearCanvas.ImageServer.Model
         /// <returns></returns>
         public List<WorkQueue> GetAllCurrentMoveEntries(IPersistenceContext context)
         {
-            IWorkQueueEntityBroker broker = context.GetBroker<IWorkQueueEntityBroker>();
-            WorkQueueSelectCriteria criteria = new WorkQueueSelectCriteria();
-            criteria.DeviceKey.EqualTo(Key);
-            criteria.WorkQueueTypeEnum.In(new[] {WorkQueueTypeEnum.AutoRoute, WorkQueueTypeEnum.WebMoveStudy});
-            criteria.WorkQueueStatusEnum.EqualTo(WorkQueueStatusEnum.InProgress);
+            IQueryCurrentStudyMove broker = context.GetBroker<IQueryCurrentStudyMove>();
+            QueryCurrentStudyMoveParameters criteria = new QueryCurrentStudyMoveParameters();
+            criteria.DeviceKey = Key;
             return new List<WorkQueue>(broker.Find(criteria));
         }
     }
