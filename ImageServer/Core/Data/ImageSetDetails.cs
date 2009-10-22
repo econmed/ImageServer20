@@ -40,11 +40,6 @@ namespace ClearCanvas.ImageServer.Core.Data
 	[XmlRoot("Details")]
 	public class ImageSetDetails
 	{
-		#region Private Fields
-		private StudyInformation _studyInfo;
-		private int _sopCount;
-		#endregion
-
 		#region Constructors
 
 		public ImageSetDetails()
@@ -60,20 +55,12 @@ namespace ClearCanvas.ImageServer.Core.Data
 
 		#region Public Properties
 
-		public int SopInstanceCount
-		{
-			get { return _sopCount; }
-			set { _sopCount = value; }
-		}
+		public int SopInstanceCount { get; set; }
 
 		/// <summary>
 		/// Gets or sets the <see cref="StudyInformation"/> of the image set.
 		/// </summary>
-		public StudyInformation StudyInfo
-		{
-			get{ return _studyInfo;}
-			set { _studyInfo = value; }
-		}
+		public StudyInformation StudyInfo { get; set; }
 
 		#endregion
 
