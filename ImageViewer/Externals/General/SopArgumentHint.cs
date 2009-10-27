@@ -51,17 +51,17 @@ namespace ClearCanvas.ImageViewer.Externals.General
 			_dataSource = null;
 		}
 
-		public string this[string key]
+		public ArgumentHintValue this[string key]
 		{
 			get
 			{
 				uint tag;
 				if (!uint.TryParse(key, NumberStyles.AllowHexSpecifier, CultureInfo.CurrentCulture.NumberFormat, out tag))
-					return null;
+					return ArgumentHintValue.Empty;
 				DicomAttribute attribute = _dataSource[tag];
 				if (attribute.IsEmpty)
-					return null;
-				return attribute.ToString();
+					return ArgumentHintValue.Empty;
+				return new ArgumentHintValue(attribute.ToString());
 			}
 		}
 	}
