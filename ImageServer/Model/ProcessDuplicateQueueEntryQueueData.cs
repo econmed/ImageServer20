@@ -37,22 +37,8 @@ namespace ClearCanvas.ImageServer.Model
     /// </summary>
     public class ProcessDuplicateQueueEntryQueueData
     {
-        #region Private Members
-        private ProcessDuplicateAction _action;
-        private string _duplicateSopFolder;
+        public ProcessDuplicateAction Action { get; set; }
 
-        #endregion
-
-        public ProcessDuplicateAction Action
-        {
-            get { return _action; }
-            set { _action = value; }
-        }
-
-        public string DuplicateSopFolder
-        {
-            get { return _duplicateSopFolder; }
-            set { _duplicateSopFolder = value; }
-        }
+        public string DuplicateSopFolder { get; set; }
     }
 }
