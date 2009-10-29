@@ -44,6 +44,7 @@ namespace ClearCanvas.ImageServer.Core.Data
 
 		public ImageSetDetails()
 		{
+		    StudyInfo = new StudyInformation();
 		}
 
 		public ImageSetDetails(IDicomAttributeProvider attributeProvider)
