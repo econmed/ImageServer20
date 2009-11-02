@@ -32,8 +32,6 @@
 using System.IO;
 using ClearCanvas.ImageServer.Common.CommandProcessor;
 using ClearCanvas.ImageServer.Core.Reconcile.CreateStudy;
-using ClearCanvas.ImageServer.Model;
-using ClearCanvas.ImageServer.Rules;
 
 namespace ClearCanvas.ImageServer.Core.Reconcile
 {
