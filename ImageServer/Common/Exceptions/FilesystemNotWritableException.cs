@@ -39,7 +39,7 @@ namespace ClearCanvas.ImageServer.Common.Exceptions
     public class FilesystemNotWritableException : SopInstanceProcessingException
     {
 
-        public string Path { get; private set; }
+        public string Path { get; set; }
         public string Reason { get; set; }
 
         public FilesystemNotWritableException()
