@@ -1,0 +1,21 @@
+﻿<TemplateDefinitions hash="true">
+  <Templates array="true">
+    <item hash="true">
+      <DisplayName>Review Required</DisplayName>
+      <OnBehalfOfGroup>Radiology Department</OnBehalfOfGroup>
+      <Recipients array="true">
+        <item hash="true">
+          <Type>Group</Type>
+          <Id>ER Physician</Id>
+          <Mandatory>true</Mandatory>
+        </item>
+      </Recipients>
+      <NoteContent>Review Required</NoteContent>
+    </item>
+    <item hash="true">
+      <DisplayName>No Review Required</DisplayName>
+      <OnBehalfOfGroup>Radiology Department</OnBehalfOfGroup>
+      <NoteContent>No Review Required</NoteContent>
+    </item>
+  </Templates>
+</TemplateDefinitions>

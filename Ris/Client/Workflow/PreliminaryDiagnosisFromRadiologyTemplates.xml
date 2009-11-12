@@ -1,12 +1,13 @@
 ﻿<TemplateDefinitions hash="true">
   <Templates array="true">
     <item hash="true">
-      <DisplayName>To Emergency</DisplayName>
+      <DisplayName>Notify ER</DisplayName>
       <OnBehalfOfGroup>Radiology Department</OnBehalfOfGroup>
       <Recipients array="true">
         <item hash="true">
           <Type>Group</Type>
           <Id>ER Physician</Id>
+          <Mandatory>true</Mandatory>
         </item>
       </Recipients>
       <SoftKeys/>
