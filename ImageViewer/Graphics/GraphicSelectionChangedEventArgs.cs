@@ -38,28 +38,22 @@ namespace ClearCanvas.ImageViewer.Graphics
 	/// </summary>
 	public class GraphicSelectionChangedEventArgs : EventArgs
 	{
-		private ISelectableGraphic _selectedGraphic;
-		private ISelectableGraphic _deselectedGraphic;
+		private readonly ISelectableGraphic _selectedGraphic;
+		private readonly ISelectableGraphic _deselectedGraphic;
 
 		/// <summary>
 		/// Intializes a new instance of <see cref="GraphicSelectionChangedEventArgs"/>.
 		/// </summary>
-		/// <param name="selectedGraphic">The graphic that was selected. Can
-		/// be <b>null</b> if 
-		/// </param>
-		/// <param name="deselectedGraphic"></param>
-		internal GraphicSelectionChangedEventArgs(
-			ISelectableGraphic selectedGraphic,
-			ISelectableGraphic deselectedGraphic)
+		/// <param name="selectedGraphic">The graphic that was selected. Can be <b>null</b> if there is no currently selected graphic.</param>
+		/// <param name="deselectedGraphic">The graphic that was previously selected. Can be <b>null</b> if there was previously no selected graphic.</param>
+		internal GraphicSelectionChangedEventArgs(ISelectableGraphic selectedGraphic, ISelectableGraphic deselectedGraphic)
 		{
-
-
 			_selectedGraphic = selectedGraphic;
 			_deselectedGraphic = deselectedGraphic;
 		}
 
 		/// <summary>
-		/// Gets the selected <see cref="IGraphic"/>.
+		/// Gets the selected <see cref="IGraphic"/>. Can be <b>null</b> if there is no currently selected graphic.
 		/// </summary>
 		public ISelectableGraphic SelectedGraphic
 		{
@@ -67,7 +61,7 @@ namespace ClearCanvas.ImageViewer.Graphics
 		}
 
 		/// <summary>
-		/// Gets the deselected <see cref="IGraphic"/>.
+		/// Gets the deselected <see cref="IGraphic"/>. Can be <b>null</b> if there was previously no selected graphic.
 		/// </summary>
 		public ISelectableGraphic DeselectedGraphic
 		{
