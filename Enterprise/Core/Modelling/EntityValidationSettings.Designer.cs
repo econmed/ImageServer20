@@ -23,19 +23,6 @@ namespace ClearCanvas.Enterprise.Core.Modelling {
             }
         }
         
-        /// <summary>
-        /// XML document containing custom entity validation rulesets
-        /// </summary>
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Configuration.SettingsDescriptionAttribute("XML document containing custom entity validation rulesets")]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CustomEntityValidationRules.xml")]
-        public string CustomRulesXml {
-            get {
-                return ((string)(this["CustomRulesXml"]));
-            }
-        }
-        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("60")]
