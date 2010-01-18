@@ -74,6 +74,8 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Queues.WorkQueue.Edit
 
         public string StorageLocationPath { get; set; }
 
+        public string DuplicateStorageLocationPath { get; set; }
+
         #endregion Public Properties
     }
 }
