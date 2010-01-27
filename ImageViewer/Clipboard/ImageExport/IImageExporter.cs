@@ -43,6 +43,15 @@ namespace ClearCanvas.ImageViewer.Clipboard.ImageExport
 		CompleteImage = 1
 	}
 
+	/// <summary>
+	/// Enumeration specifying the image export sizing mode.
+	/// </summary>
+	public enum SizeMode
+	{
+		Scale,
+		Fixed
+	}
+
 	public class ExportImageParams
 	{
 		public ExportImageParams()
@@ -51,7 +60,10 @@ namespace ClearCanvas.ImageViewer.Clipboard.ImageExport
 
 		public ExportOption ExportOption = ImageExport.ExportOption.Wysiwyg;
 		public Rectangle DisplayRectangle;
+		public SizeMode SizeMode = SizeMode.Scale;
 		public float Scale = 1F;
+		public Size OutputSize;
+		public Color BackgroundColor;
 	}
 
 	public interface IImageExporter
