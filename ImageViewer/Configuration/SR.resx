@@ -185,6 +185,9 @@ Please choose another Server Group Name.</value>
   <data name="MonitorConfiguration" xml:space="preserve">
     <value>Window Configuration</value>
   </data>
+  <data name="PathContextMenuConfiguration" xml:space="preserve">
+    <value>Context Menu (Image)</value>
+  </data>
   <data name="TitleAddNewServer" xml:space="preserve">
     <value>Add New Server</value>
   </data>
