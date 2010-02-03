@@ -41,9 +41,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.TotalScanned = new System.Windows.Forms.Label();
+            this.ScanFailed = new System.Windows.Forms.Label();
             this.ShowBackupFilesOnlyCases = new System.Windows.Forms.Button();
             this.Skipped = new System.Windows.Forms.Label();
             this.ShowStudyWasDeletedCases = new System.Windows.Forms.Button();
@@ -74,8 +76,6 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ScanFailed = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.SummaryTab.SuspendLayout();
             this.ResultsTab.SuspendLayout();
@@ -246,6 +246,16 @@
             this.label15.Text = "Possible Cause:  folder was not cleaned up properly by the server. in previous re" +
                 "leases";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(419, 47);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(93, 20);
+            this.label19.TabIndex = 6;
+            this.label19.Text = "Scan Failed";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -274,6 +284,16 @@
             this.TotalScanned.Size = new System.Drawing.Size(21, 20);
             this.TotalScanned.TabIndex = 7;
             this.TotalScanned.Text = "...";
+            // 
+            // ScanFailed
+            // 
+            this.ScanFailed.AutoSize = true;
+            this.ScanFailed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScanFailed.Location = new System.Drawing.Point(515, 47);
+            this.ScanFailed.Name = "ScanFailed";
+            this.ScanFailed.Size = new System.Drawing.Size(21, 20);
+            this.ScanFailed.TabIndex = 7;
+            this.ScanFailed.Text = "...";
             // 
             // ShowBackupFilesOnlyCases
             // 
@@ -487,9 +507,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(85, 436);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(98, 20);
+            this.label8.Size = new System.Drawing.Size(110, 20);
             this.label8.TabIndex = 6;
-            this.label8.Text = "Undetermed";
+            this.label8.Text = "Undetermined";
             // 
             // label3
             // 
@@ -591,26 +611,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(827, 80);
             this.panel1.TabIndex = 0;
-            // 
-            // ScanFailed
-            // 
-            this.ScanFailed.AutoSize = true;
-            this.ScanFailed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScanFailed.Location = new System.Drawing.Point(515, 47);
-            this.ScanFailed.Name = "ScanFailed";
-            this.ScanFailed.Size = new System.Drawing.Size(21, 20);
-            this.ScanFailed.TabIndex = 7;
-            this.ScanFailed.Text = "...";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(419, 47);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(93, 20);
-            this.label19.TabIndex = 6;
-            this.label19.Text = "Scan Failed";
             // 
             // MainForm
             // 
