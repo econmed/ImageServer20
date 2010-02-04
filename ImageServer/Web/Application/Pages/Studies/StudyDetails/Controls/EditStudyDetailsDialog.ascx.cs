@@ -435,9 +435,12 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Con
         {
             if (Page.IsValid)
             {
+                string reason = ReasonListBox.SelectedItem.Text;
+
                 if (!String.IsNullOrEmpty(SaveReasonAsName.Text))
                 {
                     SaveCustomReason();
+                    reason = SaveReasonAsName.Text;
                 }
                 
                 if (StudyEdited != null)
@@ -446,7 +449,7 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Con
                     if (modifiedFields!=null && modifiedFields.Count > 0)
                     {
                         var studyController = new StudyController();
-                        studyController.EditStudy(Study, modifiedFields, ReasonListBox.SelectedItem.Text + "::" + Reason.Text);
+                        studyController.EditStudy(Study, modifiedFields, reason + "::" + Reason.Text);
                         AuditLog(Study, modifiedFields);
                         StudyEdited();
                     }
