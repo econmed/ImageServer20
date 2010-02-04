@@ -72,10 +72,7 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.ProcessDuplicate
         {
             get
             {
-                string path = Path.Combine(StorageLocation.FilesystemPath, StorageLocation.PartitionFolder);
-                path = Path.Combine(path, ServerPlatform.ReconcileStorageFolder);
-                path = Path.Combine(path, WorkQueueItem.GroupID);
-                return path;
+                return ServerPlatform.GetDuplicateGroupPath(StorageLocation, WorkQueueItem);
             }
         }
 
