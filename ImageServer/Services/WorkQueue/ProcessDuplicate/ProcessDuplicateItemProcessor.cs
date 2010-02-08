@@ -280,11 +280,12 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.ProcessDuplicate
                                                                {
                                                                    Action = _processDuplicateEntry.QueueData.Action,
                                                                    DuplicateSopFolder = _processDuplicateEntry.QueueData.DuplicateSopFolder,
+                                                                   UserName = _processDuplicateEntry.QueueData.UserName,
                                                                    State = new ProcessDuplicateQueueState
                                                                                {
                                                                                    HistoryLogged = HistoryLogged,
                                                                                    ExistingStudyUpdated = _processDuplicateEntry.QueueData.State.ExistingStudyUpdated
-                                                                               }
+                                                                               }                                                                               
                                                                };
                 
                 // update the queue data in db
@@ -371,7 +372,8 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.ProcessDuplicate
                                                   		Action = _processDuplicateEntry.QueueData.Action,
                                                         DuplicateDetails = details,
                                                   		StudySnapShot = _currentStudyInfo,
-                                                  		StudyUpdateCommands = _studyUpdateCommands
+                                                  		StudyUpdateCommands = _studyUpdateCommands,
+                                                        UserName = _processDuplicateEntry.QueueData.UserName
                                                   	};
         	XmlDocument doc = XmlUtils.SerializeAsXmlDoc(changeLog);
             columns.ChangeDescription = doc;
