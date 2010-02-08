@@ -35,6 +35,7 @@ using ClearCanvas.Common;
 using ClearCanvas.Enterprise.Core;
 using ClearCanvas.ImageServer.Common;
 using ClearCanvas.ImageServer.Common.Utilities;
+using ClearCanvas.ImageServer.Core;
 using ClearCanvas.ImageServer.Enterprise;
 using ClearCanvas.ImageServer.Model;
 using ClearCanvas.ImageServer.Model.Brokers;
@@ -66,7 +67,8 @@ namespace ClearCanvas.ImageServer.Web.Common.Data
                 ProcessDuplicateQueueEntryQueueData data = new ProcessDuplicateQueueEntryQueueData
                 {
                     Action = action,
-                    DuplicateSopFolder = entry.GetFolderPath(context)
+                    DuplicateSopFolder = entry.GetFolderPath(context),
+                    UserName = ServerHelper.CurrentUserName,                                                              		
                 }; 
                 
                 LockStudyParameters lockParms = new LockStudyParameters
