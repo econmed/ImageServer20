@@ -86,10 +86,10 @@ namespace ClearCanvas.ImageServer.Services.WorkQueue.ProcessDuplicate
         {
             // If the study is not in processing state, attempt to push it into this state
             // If it fails, postpone the processing instead of failing
-            if (StorageLocation.QueueStudyStateEnum != QueueStudyStateEnum.ProcessingScheduled)
+            if (StorageLocation.QueueStudyStateEnum != QueueStudyStateEnum.ReconcileScheduled)
             {
             	string failureReason;
-                if (!ServerHelper.LockStudy(WorkQueueItem.StudyStorageKey, QueueStudyStateEnum.ProcessingScheduled, out failureReason))
+                if (!ServerHelper.LockStudy(WorkQueueItem.StudyStorageKey, QueueStudyStateEnum.ReconcileScheduled, out failureReason))
                 {
                     Platform.Log(LogLevel.Debug,
                                  "ProcessDuplicate cannot start at this point. Study is being locked by another processor. WriteLock Failure reason={0}",
