@@ -1,7 +1,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditStudyDetailsDialog.ascx.cs" Inherits="ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Controls.EditStudyDetailsDialog" %>
 <%@ Import Namespace="System.Globalization"%>
 
-<ccAsp:ModalDialog ID="EditStudyModalDialog" runat="server" Width="775px" Title="EditStudyDialog">
+<ccAsp:ModalDialog ID="EditStudyModalDialog" runat="server" Width="775px" Title='<%$ Resources:Titles, EditStudyDialog %>'>
 <ContentTemplate>
 
         <script language="javascript" type="text/javascript">
