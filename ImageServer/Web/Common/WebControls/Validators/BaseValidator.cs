@@ -290,7 +290,7 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls.Validators
                 // Restore the input background color
                 InputControl.BackColor = InputNormalColor;
                 InputControl.BorderColor = InputNormalBorderColor;
-                InputControl.Attributes["class"] = InputNormalCSS;
+                InputControl.CssClass = InputNormalCSS;
             }
 
             if (EnableClientScript)
@@ -363,7 +363,8 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls.Validators
                     {
                         InvalidInputIndicator.Hide();
                     }
-
+                    if (InputControl.CssClass.Contains(InvalidInputCSS))
+                        InputControl.CssClass = InputControl.CssClass.Replace(InvalidInputCSS,"");
                     return true;
                 }
 
@@ -376,8 +377,8 @@ namespace ClearCanvas.ImageServer.Web.Common.WebControls.Validators
                 }
                 else
                 {
-                    if (!InputControl.Attributes["class"].Equals(InvalidInputCSS))
-                        InputControl.Attributes["class"] = InvalidInputCSS;
+                    if (!InputControl.CssClass.Contains(InvalidInputCSS))
+                        InputControl.CssClass += " "+ InvalidInputCSS;
                 }
 
                 if (InvalidInputIndicator != null)
