@@ -256,7 +256,7 @@ INSERT INTO [ImageServer].[dbo].[WorkQueueTypeProperties]
            [PostponeDelaySeconds],[ExpireDelaySeconds],[MaxBatchSize], [QueueStudyStateEnum], [QueueStudyStateOrder],
            [ReadLock],[WriteLock])
      VALUES
-           (114,200,1,1,3,60,180,60,120,120,300,105,4,0,1)
+           (114,200,1,1,3,60,180,60,120,120,300,107,4,0,1)
 GO
   -- CleanupDuplicate
 INSERT INTO [ImageServer].[dbo].[WorkQueueTypeProperties]
