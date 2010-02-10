@@ -1077,25 +1077,30 @@ INSERT INTO [ImageServer].[dbo].[StudyHistoryTypeEnum]
            (newid(),203,'SeriesDeleted','One or more series was deleted','One or more series was deleted manually.')
 GO
 
-
 -- Canned Text
 INSERT INTO [ImageServer].[dbo].[CannedText]([GUID],[Label],[Category],[Text])
      VALUES(newid(), 'Corrupted study', 'DeleteStudyReason', 'Study is corrupted.')
+GO
 
 INSERT INTO [ImageServer].[dbo].[CannedText]([GUID],[Label],[Category],[Text])
      VALUES(newid(), 'Invalid data', 'DeleteStudyReason', 'Study contains some invalid data.')
+GO
      
 INSERT INTO [ImageServer].[dbo].[CannedText]([GUID],[Label],[Category],[Text])
      VALUES(newid(), 'Corrupted series', 'DeleteSeriesReason', 'Series is corrupted.')
+GO
      
 INSERT INTO [ImageServer].[dbo].[CannedText]([GUID],[Label],[Category],[Text])
      VALUES(newid(), 'Invalid series data', 'DeleteSeriesReason', 'Series contains some invalid data.')          
+GO
      
 INSERT INTO [ImageServer].[dbo].[CannedText]([GUID],[Label],[Category],[Text])
      VALUES(newid(), 'Data is incorrect', 'EditStudyReason', 'Data is incorrect.')
+GO
      
 INSERT INTO [ImageServer].[dbo].[CannedText]([GUID],[Label],[Category],[Text])
      VALUES(newid(), 'Data is missing', 'EditStudyReason', 'Data is missing.')               
+GO
      
 -- Device Types     
 INSERT INTO [ImageServer].[dbo].[DeviceTypeEnum]
