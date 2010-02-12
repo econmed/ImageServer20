@@ -194,10 +194,11 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Studies.StudyDetails.Con
 
         protected override void OnPreRender(EventArgs e)
         {
+            string reason;
             int[] selectedSeriesIndices = SeriesGridView.SeriesListControl.SelectedIndices;
             ViewSeriesButton.Enabled = selectedSeriesIndices != null && selectedSeriesIndices.Length > 0;
             MoveSeriesButton.Enabled = selectedSeriesIndices != null && selectedSeriesIndices.Length > 0;
-            DeleteSeriesButton.Enabled = selectedSeriesIndices != null && selectedSeriesIndices.Length > 0;
+            DeleteSeriesButton.Enabled = selectedSeriesIndices != null && selectedSeriesIndices.Length > 0 && _study.CanScheduleSeriesDelete(out reason);
 
             base.OnPreRender(e);
         }
