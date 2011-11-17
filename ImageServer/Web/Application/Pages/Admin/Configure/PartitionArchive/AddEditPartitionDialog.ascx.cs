@@ -130,9 +130,12 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Admin.Configure.Partitio
 
             }
 
+            if (0 != ArchiveTypeDropDownList.Items.Count) { return; }
             ArchiveTypeDropDownList.Items.Clear();
-            ArchiveTypeDropDownList.Items.Add(new ListItem("HSM Archive", "HsmArchive"));
-
+			foreach(ArchiveTypeEnum ate in ArchiveTypeEnum.GetAll())
+			{
+				ArchiveTypeDropDownList.Items.Add(new ListItem(ate.Description, ate.Lookup));
+			}
         }
 
 
@@ -233,7 +236,7 @@ namespace ClearCanvas.ImageServer.Web.Application.Pages.Admin.Configure.Partitio
             
             PartitionArchive.Enabled = EnabledCheckBox.Checked;
             PartitionArchive.ReadOnly = ReadOnlyCheckBox.Checked;
-            PartitionArchive.ArchiveTypeEnum = ArchiveTypeEnum.HsmArchive;                    
+            PartitionArchive.ArchiveTypeEnum = ArchiveTypeEnum.GetEnum(ArchiveTypeDropDownList.SelectedValue);
         }
 
         #endregion Private Methods
