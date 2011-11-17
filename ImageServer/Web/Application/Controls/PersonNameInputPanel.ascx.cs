@@ -168,6 +168,7 @@ namespace ClearCanvas.ImageServer.Web.Application.Controls
                 PersonMiddleName.Text = _personName.MiddleName;
                 PersonGivenName.Text = _personName.FirstName;
                 PersonTitle.Text = _personName.Title;
+                PersonSuffix.Text = _personName.SingleByte.Suffix;
 
                 if (_personName.Phonetic.IsEmpty)
                 {
