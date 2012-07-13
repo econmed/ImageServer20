@@ -1,35 +1,4 @@
-﻿#region License
-
-// Copyright (c) 2009, ClearCanvas Inc.
-// All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without modification, 
-// are permitted provided that the following conditions are met:
-//
-//    * Redistributions of source code must retain the above copyright notice, 
-//      this list of conditions and the following disclaimer.
-//    * Redistributions in binary form must reproduce the above copyright notice, 
-//      this list of conditions and the following disclaimer in the documentation 
-//      and/or other materials provided with the distribution.
-//    * Neither the name of ClearCanvas Inc. nor the names of its contributors 
-//      may be used to endorse or promote products derived from this software without 
-//      specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
-// PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR 
-// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
-// OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
-// GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
-// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-// STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
-// ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
-// OF SUCH DAMAGE.
-
-#endregion
-
-#region Copyright & License
+﻿#region License (non-CC)
 //
 // Copyright 2001-2006 The Apache Software Foundation
 //
@@ -392,22 +361,22 @@ namespace ClearCanvas.Common.log4net
 
                             try
                             {
-								if (m_realStream.Position > m_realStream.Length) 
-								{
-									// if the file is rolled in another thread, our stream sees the updated stream length but the position IS NOT CHANGED
-									// any further attempts to set the position causes an exception because the current position is beyond the end of the
-									// file, so we must reopen the stream (which will put the cursor at the end of the file anyway)
-									Reopen();
-								}
-								else 
-								{
-									if (m_realStream.CanSeek)
-										m_realStream.Seek(0, SeekOrigin.End);
-								}
+                                if (m_realStream.Position > m_realStream.Length)
+                                {
+                                    // if the file is rolled in another thread, our stream sees the updated stream length but the position IS NOT CHANGED
+                                    // any further attempts to set the position causes an exception because the current position is beyond the end of the
+                                    // file, so we must reopen the stream (which will put the cursor at the end of the file anyway)
+                                    Reopen();
+                                }
+                                else
+                                {
+                                    if (m_realStream.CanSeek)
+                                        m_realStream.Seek(0, SeekOrigin.End);
+                                }
                             }
                             catch (Exception e)
                             {
-                                LogLog.Error("FileAppender: INTERNAL ERROR.  Unable to see file: " + e.Message);
+                                LogLog.Error(typeof(FileAppender), "FileAppender: INTERNAL ERROR.  Unable to see file: " + e.Message);
                             }
 
                             ret = true;
@@ -562,6 +531,8 @@ namespace ClearCanvas.Common.log4net
             private bool m_append;
             private bool m_mutexLocked = false;
             private Stream m_stream = null;
+
+            // TODO (CR Jun 2012) this should use the ExcluseLock class instead
             private Mutex m_mutex;
 
             /// <summary>
@@ -593,7 +564,7 @@ namespace ClearCanvas.Common.log4net
                 canonicalName = canonicalName.Replace('/', '_');
                 canonicalName = canonicalName.Replace(':', '_');
 
-                return "filelock-mutex-" + canonicalName;
+                return "Global\\filelock-mutex-" + canonicalName;
             }
 
             /// <summary>
@@ -716,7 +687,7 @@ namespace ClearCanvas.Common.log4net
 
             private Mutex CreateMutex()
             {
-            	m_mutexname = GetMutexName(m_filename);
+                m_mutexname = GetMutexName(m_filename);
 
                 try
                 {
@@ -733,13 +704,13 @@ namespace ClearCanvas.Common.log4net
                         MutexRights.FullControl, AccessControlType.Allow);
                     mSec.AddAccessRule(rule);
 
-                	bool mutexWasCreated;
-                	m_mutex = new Mutex(false, m_mutexname, out mutexWasCreated, mSec);
+                    bool mutexWasCreated;
+                    m_mutex = new Mutex(false, m_mutexname, out mutexWasCreated, mSec);
                 }
                 catch (UnauthorizedAccessException)
                 {
                     // The named mutex exists, but the user does not have the security access required to use it.
-                    LogLog.Warn("The named mutex exists, but the user does not have the security access required to use it.");
+                    LogLog.Warn(typeof(FileAppender), "The named mutex exists, but the user does not have the security access required to use it.");
                     try
                     {
                         m_mutex = Mutex.OpenExisting(m_mutexname, MutexRights.ReadPermissions | MutexRights.ChangePermissions);
@@ -749,21 +720,21 @@ namespace ClearCanvas.Common.log4net
 
                         // Now grant the user the correct rights.
                         MutexAccessRule rule = new MutexAccessRule(
-                            new SecurityIdentifier(WellKnownSidType.WorldSid, null), 
+                            new SecurityIdentifier(WellKnownSidType.WorldSid, null),
                             MutexRights.FullControl, AccessControlType.Allow);
                         mSec.AddAccessRule(rule);
 
                         // Update the ACL. This requires MutexRights.ChangePermissions.
                         m_mutex.SetAccessControl(mSec);
 
-                        LogLog.Debug("Updated mutex security.");
+                        LogLog.Debug(typeof(FileAppender), "Updated mutex security.");
 
-                       m_mutex = Mutex.OpenExisting(m_mutexname);
+                        m_mutex = Mutex.OpenExisting(m_mutexname);
 
                     }
                     catch (UnauthorizedAccessException ex)
                     {
-                        LogLog.Error("Unable to change permissions on mutex.", ex);
+                        LogLog.Error(typeof(FileAppender), "Unable to change permissions on mutex.", ex);
                         m_mutex = new Mutex(false, m_mutexname);
                     }
                 }
@@ -1018,8 +989,8 @@ namespace ClearCanvas.Common.log4net
             }
             else
             {
-                LogLog.Warn("FileAppender: File option not set for appender [" + Name + "].");
-                LogLog.Warn("FileAppender: Are you using FileAppender instead of ConsoleAppender?");
+                LogLog.Warn(typeof(FileAppender), "FileAppender: File option not set for appender [" + Name + "].");
+                LogLog.Warn(typeof(FileAppender), "FileAppender: Are you using FileAppender instead of ConsoleAppender?");
             }
         }
 
@@ -1271,7 +1242,7 @@ namespace ClearCanvas.Common.log4net
                 }
                 if (!isPathRooted)
                 {
-                    LogLog.Error("FileAppender: INTERNAL ERROR. OpenFile(" + fileName + "): File name is not fully qualified.");
+                    LogLog.Error(typeof(FileAppender), "FileAppender: INTERNAL ERROR. OpenFile(" + fileName + "): File name is not fully qualified.");
                 }
             }
 
@@ -1279,7 +1250,7 @@ namespace ClearCanvas.Common.log4net
             {
                 Reset();
 
-                LogLog.Debug("FileAppender: Opening file for writing [" + fileName + "] append [" + append + "]");
+                LogLog.Debug(typeof(FileAppender), "FileAppender: Opening file for writing [" + fileName + "] append [" + append + "]");
 
                 // Save these for later, allowing retries if file open fails
                 m_fileName = fileName;
