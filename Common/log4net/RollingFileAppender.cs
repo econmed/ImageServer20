@@ -1,35 +1,4 @@
-﻿#region License
-
-// Copyright (c) 2009, ClearCanvas Inc.
-// All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without modification, 
-// are permitted provided that the following conditions are met:
-//
-//    * Redistributions of source code must retain the above copyright notice, 
-//      this list of conditions and the following disclaimer.
-//    * Redistributions in binary form must reproduce the above copyright notice, 
-//      this list of conditions and the following disclaimer in the documentation 
-//      and/or other materials provided with the distribution.
-//    * Neither the name of ClearCanvas Inc. nor the names of its contributors 
-//      may be used to endorse or promote products derived from this software without 
-//      specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
-// PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR 
-// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
-// OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
-// GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
-// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-// STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
-// ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
-// OF SUCH DAMAGE.
-
-#endregion
-
-#region Copyright & License
+﻿#region License (non-CC)
 //
 // Copyright 2001-2006 The Apache Software Foundation
 //
@@ -249,12 +218,38 @@ namespace ClearCanvas.Common.log4net
         /// </remarks>
         public RollingFileAppender()
         {
-            m_dateTime = new DefaultDateTime();
         }
 
         #endregion Public Instance Constructors
 
         #region Public Instance Properties
+
+        /// <summary>
+        /// Gets or sets the strategy for determining the current date and time. The default
+        /// implementation is to use LocalDateTime which internally calls through to DateTime.Now. 
+        /// DateTime.UtcNow may be used by specifying
+        /// <see cref="RollingFileAppender.UniversalDateTime"/>.
+        /// </summary>
+        /// <value>
+        /// An implementation of the <see cref="RollingFileAppender.IDateTime"/> interface which returns the current date and time.
+        /// </value>
+        /// <remarks>
+        /// <para>
+        /// Gets or sets the <see cref="RollingFileAppender.IDateTime"/> used to return the current date and time.
+        /// </para>
+        /// <para>
+        /// There are two built strategies for determining the current date and time, 
+        /// <see cref="RollingFileAppender.LocalDateTime"/> and <see cref="RollingFileAppender.UniversalDateTime"/>.
+        /// </para>
+        /// <para>
+        /// The default strategy is <see cref="RollingFileAppender.LocalDateTime"/>.
+        /// </para>
+        /// </remarks>
+        public IDateTime DateTimeStrategy
+        {
+            get { return m_dateTime; }
+            set { m_dateTime = value; }
+        }
 
         /// <summary>
         /// Gets or sets the date pattern to be used for generating file names
@@ -265,6 +260,10 @@ namespace ClearCanvas.Common.log4net
         /// over on date.
         /// </value>
         /// <remarks>
+        /// <para>
+        /// Takes a string in the same format as expected by 
+        /// <see cref="log4net.DateFormatter.SimpleDateFormatter" />.
+        /// </para>
         /// <para>
         /// This property determines the rollover schedule when rolling over
         /// on date.
@@ -328,15 +327,6 @@ namespace ClearCanvas.Common.log4net
         {
             get { return m_maxFileSize; }
             set { m_maxFileSize = value; }
-        }
-
-        /// <summary>
-        /// Extension for the log file.
-        /// </summary>
-        public string LogFileExtension
-        {
-            get { return m_logFileExtension; }
-            set { m_logFileExtension = value; }
         }
 
         /// <summary>
@@ -449,6 +439,26 @@ namespace ClearCanvas.Common.log4net
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to preserve the file name extension when rolling.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the file name extension should be preserved.
+        /// </value>
+        /// <remarks>
+        /// <para>
+        /// By default file.log is rolled to file.log.yyyy-MM-dd or file.log.curSizeRollBackup.
+        /// However, under Windows the new file name will loose any program associations as the
+        /// extension is changed. Optionally file.log can be renamed to file.yyyy-MM-dd.log or
+        /// file.curSizeRollBackup.log to maintain any program associations.
+        /// </para>
+        /// </remarks>
+        public bool PreserveLogFileNameExtension
+        {
+            get { return m_preserveLogFileNameExtension; }
+            set { m_preserveLogFileNameExtension = value; }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to always log to
         /// the same file.
         /// </summary>
@@ -474,6 +484,19 @@ namespace ClearCanvas.Common.log4net
         }
 
         #endregion Public Instance Properties
+
+        #region Private Static Fields
+
+        /// <summary>
+        /// The fully qualified type of the RollingFileAppender class.
+        /// </summary>
+        /// <remarks>
+        /// Used by the internal logger to record the Type of the
+        /// log message.
+        /// </remarks>
+        private readonly static Type declaringType = typeof(RollingFileAppender);
+
+        #endregion Private Static Fields
 
         #region Override implementation of FileAppender
 
@@ -629,7 +652,7 @@ namespace ClearCanvas.Common.log4net
                         // The only exception is if we are not allowed to roll the existing file away.
                         if (m_maxSizeRollBackups != 0 && FileExists(fileName))
                         {
-                            LogLog.Error("RollingFileAppender: INTERNAL ERROR. Append is False but OutputFile [" + fileName + "] already exists.");
+                            LogLog.Error(typeof(RollingFileAppender), "RollingFileAppender: INTERNAL ERROR. Append is False but OutputFile [" + fileName + "] already exists.");
                         }
                     }
                 }
@@ -667,12 +690,12 @@ namespace ClearCanvas.Common.log4net
 
                 if (m_rollDate)
                 {
-                    fileName = fileName + m_now.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo);
+                    fileName = CombinePath(fileName, m_now.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo));
                 }
 
                 if (m_countDirection >= 0)
                 {
-                    fileName = fileName + '.' + m_curSizeRollBackups;
+                    fileName = CombinePath(fileName, "." + m_curSizeRollBackups);
                 }
             }
 
@@ -702,7 +725,7 @@ namespace ClearCanvas.Common.log4net
             ArrayList arrayFiles = GetExistingFiles(fullPath);
             InitializeRollBackups(fileName, arrayFiles);
 
-            LogLog.Debug("RollingFileAppender: curSizeRollBackups starts at [" + m_curSizeRollBackups + "]");
+            LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: curSizeRollBackups starts at [" + m_curSizeRollBackups + "]");
         }
 
         /// <summary>
@@ -713,11 +736,14 @@ namespace ClearCanvas.Common.log4net
         /// <returns></returns>
         private string GetWildcardPatternForFile(string baseFileName)
         {
-            string file = baseFileName;
-            if (file.EndsWith(m_logFileExtension))
-                file = baseFileName.Remove(baseFileName.LastIndexOf(m_logFileExtension));
-
-            return file + '*';
+            if (m_preserveLogFileNameExtension)
+            {
+                return Path.GetFileNameWithoutExtension(baseFileName) + ".*" + Path.GetExtension(baseFileName);
+            }
+            else
+            {
+                return baseFileName + '*';
+            }
         }
 
         /// <summary>
@@ -748,7 +774,7 @@ namespace ClearCanvas.Common.log4net
                         for (int i = 0; i < files.Length; i++)
                         {
                             string curFileName = Path.GetFileName(files[i]);
-                            if (curFileName.StartsWith(baseFileName))
+                            if (curFileName.StartsWith(Path.GetFileNameWithoutExtension(baseFileName)))
                             {
                                 alFiles.Add(curFileName);
                             }
@@ -756,7 +782,7 @@ namespace ClearCanvas.Common.log4net
                     }
                 }
             }
-            LogLog.Debug("RollingFileAppender: Searched for existing files in [" + directory + "]");
+            LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: Searched for existing files in [" + directory + "]");
             return alFiles;
         }
 
@@ -772,16 +798,23 @@ namespace ClearCanvas.Common.log4net
                     DateTime last;
                     using (SecurityContext.Impersonate(this))
                     {
-                        last = System.IO.File.GetLastWriteTime(m_baseFileName);
+                        if (DateTimeStrategy is UniversalDateTime)
+                        {
+                            last = System.IO.File.GetLastWriteTimeUtc(m_baseFileName);
+                        }
+                        else
+                        {
+                            last = System.IO.File.GetLastWriteTime(m_baseFileName);
+                        }
                     }
-                    LogLog.Debug("RollingFileAppender: [" + last.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo) + "] vs. [" + m_now.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo) + "]");
+                    LogLog.Debug(typeof(RollingFileAppender), "[" + last.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo) + "] vs. [" + m_now.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo) + "]");
 
-                    if (!(last.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo).Equals(m_now.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo))))
+                    if (!(last.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo).Equals(m_now.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo))))
                     {
-                        m_scheduledFilename = m_baseFileName + last.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo);
-                        LogLog.Debug("RollingFileAppender: Initial roll over to [" + m_scheduledFilename + "]");
+                        m_scheduledFilename = m_baseFileName + last.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                        LogLog.Debug(typeof(RollingFileAppender), "Initial roll over to [" + m_scheduledFilename + "]");
                         RollOverTime(false);
-                        LogLog.Debug("RollingFileAppender: curSizeRollBackups after rollOver at [" + m_curSizeRollBackups + "]");
+                        LogLog.Debug(typeof(RollingFileAppender), "curSizeRollBackups after rollOver at [" + m_curSizeRollBackups + "]");
                     }
                 }
             }
@@ -820,11 +853,11 @@ namespace ClearCanvas.Common.log4net
                 {
                     if (m_maxSizeRollBackups == 0)
                     {
-                        LogLog.Debug("RollingFileAppender: Output file [" + fileName + "] already exists. MaxSizeRollBackups is 0; cannot roll. Overwriting existing file.");
+                        LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: Output file [" + fileName + "] already exists. MaxSizeRollBackups is 0; cannot roll. Overwriting existing file.");
                     }
                     else
                     {
-                        LogLog.Debug("RollingFileAppender: Output file [" + fileName + "] already exists. Not appending to file. Rolling existing file out of the way.");
+                        LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: Output file [" + fileName + "] already exists. Not appending to file. Rolling existing file out of the way.");
 
                         RollOverRenameFiles(fileName);
                     }
@@ -843,7 +876,7 @@ namespace ClearCanvas.Common.log4net
         /// <param name="curFileName"></param>
         private void InitializeFromOneFile(string baseFile, string curFileName)
         {
-            if (!curFileName.StartsWith(baseFile))
+            if (curFileName.StartsWith(Path.GetFileNameWithoutExtension(baseFile)) == false)
             {
                 // This is not a log file, so ignore
                 return;
@@ -854,17 +887,7 @@ namespace ClearCanvas.Common.log4net
                 return;
             }
 
-            // Remove the extension
-            if (curFileName.EndsWith(m_logFileExtension))
-                curFileName = curFileName.Remove(curFileName.LastIndexOf(m_logFileExtension));
-
-            int index = curFileName.LastIndexOf(".");
-            if (-1 == index)
-            {
-                // This is not an incremented logfile (.1 or .2)
-                return;
-            }
-
+            /*
             if (m_staticLogFileName)
             {
                 int endLength = curFileName.Length - index;
@@ -874,13 +897,14 @@ namespace ClearCanvas.Common.log4net
                     return;
                 }
             }
+            */
 
             // Only look for files in the current roll point
             if (m_rollDate && !m_staticLogFileName)
             {
-                if (!curFileName.StartsWith(baseFile + m_dateTime.Now.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo)))
+                if (!curFileName.StartsWith(CombinePath(baseFile, m_dateTime.Now.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo))))
                 {
-                    LogLog.Debug("RollingFileAppender: Ignoring file [" + curFileName + "] because it is from a different date period");
+                    LogLog.Debug(typeof(RollingFileAppender), "Ignoring file [" + curFileName + "] because it is from a different date period");
                     return;
                 }
             }
@@ -888,47 +912,80 @@ namespace ClearCanvas.Common.log4net
             try
             {
                 // Bump the counter up to the highest count seen so far
-                int backup;
-                if (SystemInfo.TryParse(curFileName.Substring(index + 1), out backup))
+                int backup = GetBackUpIndex(curFileName);
+
+                // caution: we might get a false positive when certain
+                // date patterns such as yyyyMMdd are used...those are
+                // valid number but aren't the kind of back up index
+                // we're looking for
+                if (backup > m_curSizeRollBackups)
                 {
-                    if (backup > m_curSizeRollBackups)
+                    if (0 == m_maxSizeRollBackups)
                     {
-                        if (0 == m_maxSizeRollBackups)
+                        // Stay at zero when zero backups are desired
+                    }
+                    else if (-1 == m_maxSizeRollBackups)
+                    {
+                        // Infinite backups, so go as high as the highest value
+                        m_curSizeRollBackups = backup;
+                    }
+                    else
+                    {
+                        // Backups limited to a finite number
+                        if (m_countDirection >= 0)
                         {
-                            // Stay at zero when zero backups are desired
-                        }
-                        else if (-1 == m_maxSizeRollBackups)
-                        {
-                            // Infinite backups, so go as high as the highest value
+                            // Go with the highest file when counting up
                             m_curSizeRollBackups = backup;
                         }
                         else
                         {
-                            // Backups limited to a finite number
-                            if (m_countDirection >= 0)
+                            // Clip to the limit when counting down
+                            if (backup <= m_maxSizeRollBackups)
                             {
-                                // Go with the highest file when counting up
                                 m_curSizeRollBackups = backup;
                             }
-                            else
-                            {
-                                // Clip to the limit when counting down
-                                if (backup <= m_maxSizeRollBackups)
-                                {
-                                    m_curSizeRollBackups = backup;
-                                }
-                            }
                         }
-                        LogLog.Debug("RollingFileAppender: File name [" + curFileName + "] moves current count to [" + m_curSizeRollBackups + "]");
                     }
+                    LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: File name [" + curFileName + "] moves current count to [" + m_curSizeRollBackups + "]");
                 }
+
             }
             catch (FormatException)
             {
                 //this happens when file.log -> file.log.yyyy-mm-dd which is normal
                 //when staticLogFileName == false
-                LogLog.Debug("RollingFileAppender: Encountered a backup file not ending in .x [" + curFileName + "]");
+                LogLog.Debug(typeof(RollingFileAppender), "Encountered a backup file not ending in .x [" + curFileName + "]");
             }
+        }
+
+        /// <summary>
+        /// Attempts to extract a number from the end of the file name that indicates
+        /// the number of the times the file has been rolled over.
+        /// </summary>
+        /// <remarks>
+        /// Certain date pattern extensions like yyyyMMdd will be parsed as valid backup indexes.
+        /// </remarks>
+        /// <param name="curFileName"></param>
+        /// <returns></returns>
+        private int GetBackUpIndex(string curFileName)
+        {
+            int backUpIndex = -1;
+            string fileName = curFileName;
+
+            if (m_preserveLogFileNameExtension)
+            {
+                fileName = Path.GetFileNameWithoutExtension(fileName);
+            }
+
+            int index = fileName.LastIndexOf(".");
+            if (index > 0)
+            {
+                // if the "yyyy-MM-dd" component of file.log.yyyy-MM-dd is passed to TryParse
+                // it will gracefully fail and return backUpIndex will be 0
+                SystemInfo.TryParse(fileName.Substring(index + 1), out backUpIndex);
+            }
+
+            return backUpIndex;
         }
 
         /// <summary>
@@ -946,7 +1003,7 @@ namespace ClearCanvas.Common.log4net
 
                 foreach (string curFileName in arrayFiles)
                 {
-                    InitializeFromOneFile(baseFileLower, curFileName.ToLower(CultureInfo.InvariantCulture));
+                    InitializeFromOneFile(baseFileLower, curFileName.ToLower(System.Globalization.CultureInfo.InvariantCulture));
                 }
             }
         }
@@ -979,10 +1036,10 @@ namespace ClearCanvas.Common.log4net
                 // Get string representation of next pattern
                 string r1 = NextCheckDate(s_date1970, (RollPoint)i).ToString(datePattern, DateTimeFormatInfo.InvariantInfo);
 
-                LogLog.Debug("RollingFileAppender: Type = [" + i + "], r0 = [" + r0 + "], r1 = [" + r1 + "]");
+                LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: Type = [" + i + "], r0 = [" + r0 + "], r1 = [" + r1 + "]");
 
                 // Check if the string representations are different
-                if (!r0.Equals(r1))
+                if (r0 != null && r1 != null && !r0.Equals(r1))
                 {
                     // Found highest precision roll point
                     return (RollPoint)i;
@@ -1017,6 +1074,11 @@ namespace ClearCanvas.Common.log4net
         {
             lock (this)
             {
+                if (m_dateTime == null)
+                {
+                    m_dateTime = new LocalDateTime();
+                }
+
                 if (m_rollDate && m_datePattern != null)
                 {
                     m_now = m_dateTime.Now;
@@ -1056,7 +1118,7 @@ namespace ClearCanvas.Common.log4net
 
                 if (m_rollDate && File != null && m_scheduledFilename == null)
                 {
-                    m_scheduledFilename = File + m_now.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo);
+                    m_scheduledFilename = CombinePath(File, m_now.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo));
                 }
 
                 ExistingInit();
@@ -1068,6 +1130,25 @@ namespace ClearCanvas.Common.log4net
         #endregion
 
         #region Roll File
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path1"></param>
+        /// <param name="path2">.1, .2, .3, etc.</param>
+        /// <returns></returns>
+        private string CombinePath(string path1, string path2)
+        {
+            string extension = Path.GetExtension(path1);
+            if (m_preserveLogFileNameExtension && extension.Length > 0)
+            {
+                return Path.Combine(Path.GetDirectoryName(path1), Path.GetFileNameWithoutExtension(path1) + path2 + extension);
+            }
+            else
+            {
+                return path1 + path2;
+            }
+        }
 
         /// <summary>
         /// Rollover the file(s) to date/time tagged file(s).
@@ -1094,10 +1175,10 @@ namespace ClearCanvas.Common.log4net
                 //is the new file name equivalent to the 'current' one
                 //something has gone wrong if we hit this -- we should only
                 //roll over if the new file will be different from the old
-                string dateFormat = m_now.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo);
-                if (m_scheduledFilename.Equals(File + dateFormat))
+                string dateFormat = m_now.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                if (m_scheduledFilename.Equals(CombinePath(File, dateFormat)))
                 {
-                    ErrorHandler.Error("Compare " + m_scheduledFilename + " : " + File + dateFormat);
+                    ErrorHandler.Error("Compare " + m_scheduledFilename + " : " + CombinePath(File, dateFormat));
                     return;
                 }
 
@@ -1110,8 +1191,8 @@ namespace ClearCanvas.Common.log4net
                 //we may have to roll over a large number of backups here
                 for (int i = 1; i <= m_curSizeRollBackups; i++)
                 {
-                    string from = File + '.' + i + m_logFileExtension;
-                    string to = m_scheduledFilename + '.' + i + m_logFileExtension;
+                    string from = CombinePath(File, "." + i);
+                    string to = CombinePath(m_scheduledFilename, "." + i);
                     RollFile(from, to);
                 }
 
@@ -1122,15 +1203,15 @@ namespace ClearCanvas.Common.log4net
             m_curSizeRollBackups = 0;
 
             //new scheduled name
-            m_scheduledFilename = File + m_now.ToString(m_datePattern, DateTimeFormatInfo.InvariantInfo);
+            m_scheduledFilename = CombinePath(File, m_now.ToString(m_datePattern, System.Globalization.DateTimeFormatInfo.InvariantInfo));
 
             if (fileIsOpen)
             {
                 // This will also close the file. This is OK since multiple close operations are safe.
-				// SRW: 11/20/2009, Changed append parameter to true here.  The append = false setting
-				// was causing us to delete the log file whenever a new app domain detected that the 
-				// file should be rolled over.  This preserves the other logs that were logged in the 
-				// mean time before the current app domain detected the rollover condition.
+                // SRW: 11/20/2009, Changed append parameter to true here.  The append = false setting
+                // was causing us to delete the log file whenever a new app domain detected that the 
+                // file should be rolled over.  This preserves the other logs that were logged in the 
+                // mean time before the current app domain detected the rollover condition.
                 SafeOpenFile(m_baseFileName, true);
             }
         }
@@ -1156,7 +1237,7 @@ namespace ClearCanvas.Common.log4net
                 // We may not have permission to move the file, or the file may be locked
                 try
                 {
-                    LogLog.Debug("RollingFileAppender: Moving [" + fromFile + "] -> [" + toFile + "]");
+                    LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: Moving [" + fromFile + "] -> [" + toFile + "]");
                     using (SecurityContext.Impersonate(this))
                     {
                         System.IO.File.Move(fromFile, toFile);
@@ -1169,7 +1250,7 @@ namespace ClearCanvas.Common.log4net
             }
             else
             {
-                LogLog.Warn("RollingFileAppender: Cannot RollFile [" + fromFile + "] -> [" + toFile + "]. Source does not exist");
+                LogLog.Warn(typeof(RollingFileAppender), "RollingFileAppender: Cannot RollFile [" + fromFile + "] -> [" + toFile + "]. Source does not exist");
             }
         }
 
@@ -1224,7 +1305,7 @@ namespace ClearCanvas.Common.log4net
                 }
                 catch (Exception moveEx)
                 {
-                    LogLog.Debug("RollingFileAppender: Exception while moving file to be deleted [" + fileName + "] -> [" + tempFileName + "]", moveEx);
+                    LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: Exception while moving file to be deleted [" + fileName + "] -> [" + tempFileName + "]", moveEx);
                 }
 
                 // Try to delete the file (either the original or the moved file)
@@ -1234,7 +1315,7 @@ namespace ClearCanvas.Common.log4net
                     {
                         System.IO.File.Delete(fileToDelete);
                     }
-                    LogLog.Debug("RollingFileAppender: Deleted file [" + fileName + "]");
+                    LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: Deleted file [" + fileName + "]");
                 }
                 catch (Exception deleteEx)
                 {
@@ -1247,7 +1328,7 @@ namespace ClearCanvas.Common.log4net
                     {
                         // Moved the file, but the delete failed. File is probably locked.
                         // The file should automatically be deleted when the lock is released.
-                        LogLog.Debug("RollingFileAppender: Exception while deleting temp file [" + fileToDelete + "]", deleteEx);
+                        LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: Exception while deleting temp file [" + fileToDelete + "]", deleteEx);
                     }
                 }
             }
@@ -1283,10 +1364,10 @@ namespace ClearCanvas.Common.log4net
         {
             CloseFile(); // keep windows happy.
 
-            LogLog.Debug("RollingFileAppender: rolling over count [" + ((CountingQuietTextWriter)QuietWriter).Count + "]");
-            LogLog.Debug("RollingFileAppender: maxSizeRollBackups [" + m_maxSizeRollBackups + "]");
-            LogLog.Debug("RollingFileAppender: curSizeRollBackups [" + m_curSizeRollBackups + "]");
-            LogLog.Debug("RollingFileAppender: countDirection [" + m_countDirection + "]");
+            LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: rolling over count [" + ((CountingQuietTextWriter)QuietWriter).Count + "]");
+            LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: maxSizeRollBackups [" + m_maxSizeRollBackups + "]");
+            LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: curSizeRollBackups [" + m_curSizeRollBackups + "]");
+            LogLog.Debug(typeof(RollingFileAppender), "RollingFileAppender: countDirection [" + m_countDirection + "]");
 
             RollOverRenameFiles(File);
 
@@ -1335,21 +1416,20 @@ namespace ClearCanvas.Common.log4net
                     // Delete the oldest file, to keep Windows happy.
                     if (m_curSizeRollBackups == m_maxSizeRollBackups)
                     {
-                        DeleteFile(baseFileName + '.' + m_maxSizeRollBackups + m_logFileExtension);
+                        DeleteFile(CombinePath(baseFileName, "." + m_maxSizeRollBackups));
                         m_curSizeRollBackups--;
                     }
 
                     // Map {(maxBackupIndex - 1), ..., 2, 1} to {maxBackupIndex, ..., 3, 2}
                     for (int i = m_curSizeRollBackups; i >= 1; i--)
                     {
-                        RollFile((baseFileName + "." + i + m_logFileExtension),
-                            (baseFileName + '.' + (i + 1) + m_logFileExtension));
+                        RollFile((CombinePath(baseFileName, "." + i)), (CombinePath(baseFileName, "." + (i + 1))));
                     }
 
                     m_curSizeRollBackups++;
 
                     // Rename fileName to fileName.1
-                    RollFile(baseFileName, baseFileName + ".1" + m_logFileExtension);
+                    RollFile(baseFileName, CombinePath(baseFileName, ".1"));
                 }
                 else
                 {
@@ -1371,13 +1451,7 @@ namespace ClearCanvas.Common.log4net
                         string archiveFileBaseName = baseFileName;
                         if (!m_staticLogFileName)
                         {
-                            int lastDotIndex = archiveFileBaseName.LastIndexOf(m_logFileExtension);
-                            if (lastDotIndex >= 0)
-                            {
-                                archiveFileBaseName = archiveFileBaseName.Substring(0, lastDotIndex);
-                            }
-
-                            lastDotIndex = archiveFileBaseName.LastIndexOf(".");
+                            int lastDotIndex = archiveFileBaseName.LastIndexOf(".");
                             if (lastDotIndex >= 0)
                             {
                                 archiveFileBaseName = archiveFileBaseName.Substring(0, lastDotIndex);
@@ -1385,13 +1459,13 @@ namespace ClearCanvas.Common.log4net
                         }
 
                         // Delete the archive file
-                        DeleteFile(archiveFileBaseName + '.' + oldestFileIndex + m_logFileExtension);
+                        DeleteFile(CombinePath(archiveFileBaseName, "." + oldestFileIndex));
                     }
 
                     if (m_staticLogFileName)
                     {
                         m_curSizeRollBackups++;
-                        RollFile(baseFileName, baseFileName + '.' + m_curSizeRollBackups + m_logFileExtension);
+                        RollFile(baseFileName, CombinePath(baseFileName, "." + m_curSizeRollBackups));
                     }
                 }
             }
@@ -1489,7 +1563,8 @@ namespace ClearCanvas.Common.log4net
 
         /// <summary>
         /// This object supplies the current date/time.  Allows test code to plug in
-        /// a method to control this class when testing date/time based rolling.
+        /// a method to control this class when testing date/time based rolling. The default
+        /// implementation uses the underlying value of DateTime.Now.
         /// </summary>
         private IDateTime m_dateTime = null;
 
@@ -1562,14 +1637,15 @@ namespace ClearCanvas.Common.log4net
         private bool m_staticLogFileName = true;
 
         /// <summary>
+        /// Value indicating whether to preserve the file name extension when rolling.
+        /// </summary>
+        private bool m_preserveLogFileNameExtension = false;
+
+
+        /// <summary>
         /// FileName provided in configuration.  Used for rolling properly
         /// </summary>
         private string m_baseFileName;
-
-        /// <summary>
-        /// Extension to be used for the log file.
-        /// </summary>
-        private string m_logFileExtension = ".log";
 
         #endregion Private Instance Fields
 
@@ -1609,7 +1685,7 @@ namespace ClearCanvas.Common.log4net
         /// <summary>
         /// Default implementation of <see cref="IDateTime"/> that returns the current time.
         /// </summary>
-        private class DefaultDateTime : IDateTime
+        private class LocalDateTime : IDateTime
         {
             /// <summary>
             /// Gets the <b>current</b> time.
@@ -1623,6 +1699,26 @@ namespace ClearCanvas.Common.log4net
             public DateTime Now
             {
                 get { return DateTime.Now; }
+            }
+        }
+
+        /// <summary>
+        /// Implementation of <see cref="IDateTime"/> that returns the current time as the coordinated universal time (UTC).
+        /// </summary>
+        private class UniversalDateTime : IDateTime
+        {
+            /// <summary>
+            /// Gets the <b>current</b> time.
+            /// </summary>
+            /// <value>The <b>current</b> time.</value>
+            /// <remarks>
+            /// <para>
+            /// Gets the <b>current</b> time.
+            /// </para>
+            /// </remarks>
+            public DateTime Now
+            {
+                get { return DateTime.UtcNow; }
             }
         }
 
