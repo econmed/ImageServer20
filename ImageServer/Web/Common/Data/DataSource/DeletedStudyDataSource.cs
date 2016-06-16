@@ -37,8 +37,8 @@ using ClearCanvas.Dicom.Utilities;
 using ClearCanvas.ImageServer.Common.Utilities;
 using ClearCanvas.ImageServer.Model;
 using ClearCanvas.ImageServer.Model.EntityBrokers;
-using ClearCanvas.ImageServer.Services.WorkQueue.DeleteStudy.Extensions;
 using ClearCanvas.ImageServer.Web.Common.Data.Model;
+using ClearCanvas.ImageServer.Services.WorkQueue.DeleteStudy.Extensions;
 
 namespace ClearCanvas.ImageServer.Web.Common.Data.DataSource
 {
